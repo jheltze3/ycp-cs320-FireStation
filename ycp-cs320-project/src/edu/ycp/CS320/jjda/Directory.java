@@ -3,6 +3,11 @@ package edu.ycp.CS320.jjda;
 import java.util.Map;
 import java.util.TreeMap;
 
+
+/*
+ * Added comment!
+ * JDH, 2/15/13
+ */
 public class Directory {
 
 	//the directory can use a tree map to store the names/phone numbers in alphabetical order
