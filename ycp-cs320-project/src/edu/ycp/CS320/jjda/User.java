@@ -11,6 +11,7 @@ public class User {
 	public User(int id, String username, String password){
 		this.name = username;
 		this.password = password;
+		this.id = id;
 	}
 	
 	public void setId(int id) {
