@@ -1,15 +1,28 @@
 html{
-	background-color: #0FFF40;	
+	background-color: #F7F2E0;	
 }
-h1{
-	margin-left: 40px;	
+h1{ 
+	text-align: center;
+	border-bottom: 3px solid #008;
+	font-variant: small-caps;
+	font-size: 250%;
+}
+h2{
+	text-align: center;
+	margin-bottom: 10px;
 }
 #usernameArea{
+	text-align: center;
 	margin-bottom: 5px;
 }
 #passwordArea{
+	text-align: center;
 	margin-bottom: 5px;
 }
 #loginbutton{
+	
+}
+
+#newUserButton{
 	
 }
