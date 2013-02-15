@@ -11,9 +11,14 @@ public class ContactInfoTest {
 	public void test() {
 		
 		ContactInfo testDirectory = new ContactInfo();
-		testDirectory.setPhoneNumber("1-000-000-0000");
+		testDirectory.setHomephoneNumber("1-000-000-0000");
+		testDirectory.setCellphoneNumber("1-555-000-1958");
+		testDirectory.setName("John Smith");
 		
-		assertEquals("1-000-000-0000", testDirectory.getPhoneNumber());
+		assertEquals("1-000-000-0000", testDirectory.getHomePhoneNumber());
+		assertEquals("John Smith", testDirectory.getName());
+		assertEquals("1-555-000-1958", testDirectory.getCellPhoneNumber());
 	}
+
 
 }
