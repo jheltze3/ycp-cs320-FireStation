@@ -9,7 +9,7 @@ public class UserTest {
 	@Test
 	public void test() {
 		
-		User testUser = new User("Bob", "ninja");
+		User testUser = new User(521252, "Bob","Password");
 		assertEquals("Bob", testUser.getUsername());
 		assertEquals("ninja", testUser.getPassword());
 	}
