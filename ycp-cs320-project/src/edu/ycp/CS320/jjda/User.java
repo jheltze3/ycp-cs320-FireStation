@@ -3,13 +3,22 @@ package edu.ycp.CS320.jjda;
 public class User {
 	
 	//user fields that will be checked against the database to determine if the credentials are valid
-	String name = "";
-	String password = "";
+	private int id;
+	private String name = "";
+	private String password = "";
 
 	//this fields can be taken from the html web page and will instantiate the user object
-	public User(String username, String password){
+	public User(int id, String username, String password){
 		this.name = username;
 		this.password = password;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getUsername(){
