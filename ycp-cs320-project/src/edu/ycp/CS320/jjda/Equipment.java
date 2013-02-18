@@ -1,9 +1,9 @@
 package edu.ycp.CS320.jjda;
 
 public class Equipment {
-	String equipmentName = "";
-	int amount;
-	String condition = "";
+	private String equipmentName = "";
+	private int amount;
+	private String condition = "";
 	//String location = "";
 	
 	
