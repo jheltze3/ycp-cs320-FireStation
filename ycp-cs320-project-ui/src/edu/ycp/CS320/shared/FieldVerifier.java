@@ -1,4 +1,4 @@
-package edu.ycp.CS320.ui.shared;
+package edu.ycp.CS320.shared;
 
 /**
  * <p>

@@ -1,7 +1,8 @@
-package edu.ycp.CS320.ui.server;
+package edu.ycp.CS320.server;
 
-import edu.ycp.CS320.ui.client.GreetingService;
-import edu.ycp.CS320.ui.shared.FieldVerifier;
+import edu.ycp.CS320.client.GreetingService;
+import edu.ycp.CS320.shared.FieldVerifier;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**

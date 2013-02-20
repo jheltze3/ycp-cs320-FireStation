@@ -1,4 +1,4 @@
-package edu.ycp.CS320.ui.client;
+package edu.ycp.CS320.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
