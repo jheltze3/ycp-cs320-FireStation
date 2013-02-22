@@ -3,11 +3,12 @@
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+	color: #777777;
+	margin: 40px 0px 70px;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	background-color: beige;
 }
 
 .sendButton {
@@ -31,4 +32,15 @@ h1 {
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;
+}
+Title {
+	border-bottom: thin solid midnightblue;
+	font-stretch: normal;
+	font-variant: small-caps;
+	font-size: 43px;
+	font-style: normal;
+	font-weight: normal;
+}
+.fireStation-panelBackground {
+	background: #F7F2E0;
 }
