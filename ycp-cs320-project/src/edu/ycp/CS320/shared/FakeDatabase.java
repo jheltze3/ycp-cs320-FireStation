@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.ycp.CS320.jjda;
+package edu.ycp.CS320.shared;
 
 import java.util.ArrayList;
 import java.util.List;

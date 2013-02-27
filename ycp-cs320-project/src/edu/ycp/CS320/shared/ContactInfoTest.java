@@ -1,4 +1,4 @@
-package edu.ycp.CS320.jjda;
+package edu.ycp.CS320.shared;
 
 import static org.junit.Assert.*;
 
