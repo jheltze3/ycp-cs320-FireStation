@@ -1,4 +1,4 @@
-package edu.ycp.CS320.jjda;
+package edu.ycp.CS320.shared;
 
 public class Equipment {
 	private String equipmentName = "";
