@@ -1,21 +1,39 @@
 package edu.ycp.CS320.client;
 
+
+
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.i18n.client.HasDirection.Direction;
-import com.google.gwt.user.client.ui.TextBoxBase;
-import com.google.gwt.user.client.ui.ValueBoxBase.TextAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.LayoutPanel;
+
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Button;
+import edu.ycp.CS320.shared.*;
 
-public class DemoView extends Composite {
-	public DemoView() {
-		
+
+
+public class DemoView extends Composite implements ISubscriber {
+	
+	private Button btnLogIn = new Button("Log In");
+	private Button btnNewUser = new Button("New User?");
+	private TextBox textBox = new TextBox();
+	private PasswordTextBox passwordTextBox = new PasswordTextBox();
+	private Label lblLoginStatus = new Label("Login Status");	
+	
+	public DemoView() {			
+		/**
+		 * 
+		 * widgets
+		 * 
+		 */
 		LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
@@ -27,6 +45,11 @@ public class DemoView extends Composite {
 		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 333.0, Unit.PX, 193.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 17.0, Unit.PX, 25.0, Unit.PX);
 		
+		
+		layoutPanel.add(lblLoginStatus);
+		layoutPanel.setWidgetLeftWidth(lblLoginStatus, 300, Unit.PX, 100, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblLoginStatus, 30, Unit.PX, 38, Unit.PX);
+		
 		Label lblUsername = new Label("Username:");
 		layoutPanel.add(lblUsername);
 		layoutPanel.setWidgetLeftWidth(lblUsername, 269.0, Unit.PX, 62.0, Unit.PX);
@@ -37,25 +60,99 @@ public class DemoView extends Composite {
 		layoutPanel.setWidgetLeftWidth(nlnlblPassword, 269.0, Unit.PX, 66.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(nlnlblPassword, 141.0, Unit.PX, 18.0, Unit.PX);
 		
-		TextBox textBox = new TextBox();
+		
 		layoutPanel.add(textBox);
 		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);
 		
-		PasswordTextBox passwordTextBox = new PasswordTextBox();
+		
 		layoutPanel.add(passwordTextBox);
 		layoutPanel.setWidgetLeftWidth(passwordTextBox, 341.0, Unit.PX, 173.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);
 		
-		Button btnLogIn = new Button("Log In");
-		layoutPanel.add(btnLogIn);
-		layoutPanel.setWidgetLeftWidth(btnLogIn, 397.0, Unit.PX, 56.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
 		
-		Button btnNewUser = new Button("New User?");
+		layoutPanel.add(btnLogIn);
+		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
+		btnLogIn.addClickHandler(new ClickHandler() {
+
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 * 
+			 * this method creates a local User object this is used to login to the system
+			 * an async callback is created that will confirm if the RPC was successful or not
+			 * 
+			 */
+			@Override
+			public void onClick(ClickEvent event) {
+				User user = new User();
+				user.setUsername(textBox.getText());
+				user.setPassword(passwordTextBox.getText());
+				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
+					
+					@Override
+					public void onSuccess(Boolean result) {
+						System.out.print("UN/PW received");
+						Window.alert("Logged In");
+					}
+					
+					@Override
+					public void onFailure(Throwable caught) {
+						System.out.print("Fail");
+						
+					}
+				});
+			}			
+			
+		});
 		layoutPanel.add(btnNewUser);
-		layoutPanel.setWidgetLeftWidth(btnNewUser, 383.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);		
+		
+		btnNewUser.addClickHandler(new ClickHandler() {
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 * 
+			 * if the user does not have an account yet they can click this button to create a User object that is
+			 * added to the database. From then on they will be able to use the regular login button.
+			 */
+			@Override
+			public void onClick(ClickEvent event) {
+				User user = new User();
+				user.setUsername(textBox.getText());
+				user.setPassword(passwordTextBox.getText());
+				RPC.loginService.addNewUser(user, new AsyncCallback<Boolean>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Failed to add");
+						
+					}
+
+					@Override
+					public void onSuccess(Boolean result) {
+						Window.alert("New user added");
+						
+					}
+				});
+				
+			}
+		});
 	}
+
+	/* (non-Javadoc)
+	 * @see edu.ycp.CS320.shared.ISubscriber#eventOccurred(java.lang.Object, edu.ycp.CS320.shared.IPublisher, java.lang.Object)
+	 * 
+	 * TODO: implement subscribing/publishing events
+	 */
+	
+	
+	@Override
+	public void eventOccurred(Object key, IPublisher publisher, Object hint) {		
+		
+	}		
+	
 }
 

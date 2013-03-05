@@ -1,11 +1,17 @@
 package edu.ycp.CS320.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import edu.ycp.CS320.shared.*;
+
 
 /**
- * The async counterpart of <code>GreetingService</code>.
+ * @author drew
+ *asynchronous version of LoginService
  */
 public interface LoginServiceAsync {
-	void login(String username, String userPassword,
-			AsyncCallback<Boolean> callback);
+	void message(String message, AsyncCallback<Boolean> callback);
+	
+	void login(User user, AsyncCallback<Boolean> callback);
+
+	void addNewUser(User user, AsyncCallback<Boolean> callback);
 }
