@@ -3,6 +3,7 @@ package edu.ycp.CS320.server;
 import java.util.List;
 
 import edu.ycp.CS320.shared.*;
+import edu.ycp.cs320.shared.ContactInfo;
 
 /**
  * @author dho7

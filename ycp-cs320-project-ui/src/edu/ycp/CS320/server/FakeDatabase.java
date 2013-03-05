@@ -10,11 +10,9 @@ import java.util.TreeMap;
 
 import org.apache.commons.collections.list.TreeList;
 
-import edu.ycp.CS320.shared.*;
-
-
-
-
+import edu.ycp.CS320.server.IDatabase;
+import edu.ycp.cs320.shared.ContactInfo;
+import edu.ycp.cs320.shared.ContactInfoType;
 
 /**
  * @author jheltze3
