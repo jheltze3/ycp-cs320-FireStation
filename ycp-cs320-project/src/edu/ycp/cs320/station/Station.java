@@ -1,4 +1,4 @@
-package edu.ycp.CS320.shared;
+package edu.ycp.cs320.station;
 
 public class Station {
 
@@ -6,7 +6,7 @@ public class Station {
 	
 	//so far every station will at least have a name, you can easily add other parameters to the station constructor
 	//if needed in the future
-	Station(String stationName){
+	public Station(String stationName){
 		this.name = stationName;
 	}
 	

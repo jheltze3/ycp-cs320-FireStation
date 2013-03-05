@@ -1,8 +1,10 @@
-package edu.ycp.CS320.shared;
+package edu.ycp.cs320.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import edu.ycp.cs320.shared.ContactInfo;
 
 public class ContactInfoTest {
 

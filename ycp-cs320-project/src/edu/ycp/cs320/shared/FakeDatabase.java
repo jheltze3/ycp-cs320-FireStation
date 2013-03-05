@@ -1,12 +1,14 @@
 /**
  * 
  */
-package edu.ycp.CS320.shared;
+package edu.ycp.cs320.shared;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import edu.ycp.cs320.station.User;
 
 /**
  * @author jheltze3
@@ -29,7 +31,7 @@ public class FakeDatabase implements IDatabase {
 		ContactInfo userHomeContactInfo= new ContactInfo();
 		userHomeContactInfo.setType(ContactInfoType.HOME);
 		userHomeContactInfo.setUserId(user.getId());
-		userHomeContactInfo.setPhoneNumber("555-666-7787");
+		userHomeContactInfo.setCellphoneNumber("555-666-7787");
 		contactInfoMap.put(user.getId(), new ArrayList<ContactInfo>());
 		contactInfoMap.get(user.getId()).add(userHomeContactInfo);
 		

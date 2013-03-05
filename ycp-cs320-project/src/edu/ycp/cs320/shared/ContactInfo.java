@@ -1,21 +1,14 @@
-package edu.ycp.CS320.shared;
+package edu.ycp.cs320.shared;
 
 public class ContactInfo {
-	private int id;
 	private int userId;
 	private ContactInfoType type;
-	private String phoneNumber;
+	private String homePhoneNumber = "";
+	private String cellPhoneNumber = "";
+	private String name = "";
 	
 	public ContactInfo() {
 		
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getId() {
-		return id;
 	}
 	
 	public void setUserId(int userId) {
@@ -32,22 +25,7 @@ public class ContactInfo {
 	
 	public ContactInfoType getType() {
 		return type;
-	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	
-	String homePhoneNumber = "";
-	String cellPhoneNumber = "";
-	String name = "";
-	//String hobbies = "";
-	
+	}	
 	
 	public void setHomephoneNumber(String homePhoneNumber) {
 		
