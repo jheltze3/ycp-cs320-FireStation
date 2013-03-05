@@ -1,12 +1,11 @@
 package edu.ycp.CS320.client;
 
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
-import edu.ycp.CS320.shared.Station;
+import edu.ycp.cs320.station.Station;
 
 public class LoginView extends Composite {
 	private Station station;
