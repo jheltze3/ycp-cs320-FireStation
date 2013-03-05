@@ -1,7 +1,4 @@
-/**
- * 
- */
-package edu.ycp.CS320.server;
+package edu.ycp.CS320.shared;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +7,10 @@ import java.util.TreeMap;
 
 import org.apache.commons.collections.list.TreeList;
 
-import edu.ycp.CS320.server.IDatabase;
-import edu.ycp.cs320.shared.ContactInfo;
-import edu.ycp.cs320.shared.ContactInfoType;
+import edu.ycp.CS320.common.ContactInfo;
+import edu.ycp.CS320.common.ContactInfoType;
+import edu.ycp.CS320.equipment.Equipment;
+import edu.ycp.CS320.shared.IDatabase;
 
 /**
  * @author jheltze3
@@ -39,7 +37,7 @@ public class FakeDatabase implements IDatabase {
 		ContactInfo userHomeContactInfo= new ContactInfo();
 		userHomeContactInfo.setType(ContactInfoType.HOME);
 		userHomeContactInfo.setUserId(user.getId());
-		userHomeContactInfo.setPhoneNumber("555-666-7787");
+		userHomeContactInfo.setCellphoneNumber("555-666-7787");
 		contactInfoMap.put(user.getId(), new ArrayList<ContactInfo>());
 		contactInfoMap.get(user.getId()).add(userHomeContactInfo);
 		
@@ -49,7 +47,6 @@ public class FakeDatabase implements IDatabase {
 	 * 
 	 * TODO: implement adding to database via LoginServiceImpl and define methods
 	 */
-	@Override
 	public void addUserToDatabase(User user) {
 		userList.add(user);
 		

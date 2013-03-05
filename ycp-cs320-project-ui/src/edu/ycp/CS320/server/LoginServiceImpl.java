@@ -3,8 +3,12 @@
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.ycp.CS320.client.LoginService;
+import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
 
+/**
+ * The server side implementation of the RPC service.
+ */
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
 
 	private FakeDatabase db = new FakeDatabase();
@@ -18,21 +22,20 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
  * 
  */
 	@Override
-	public boolean login(User user) {
-		System.out.print("logging in?");
+	public Boolean login(User user) {
+		System.out.println("logging in?");
 		return true;
 	}
 	
 	@Override
-	public boolean addNewUser(User user){
+	public Boolean addNewUser(User user) {
 		db.addUserToDatabase(user);		
-		System.out.print("hi");
+		System.out.println("hi");
 		return true;
 	}
 
 	@Override
-	public boolean message(String message) {
-		// TODO Auto-generated method stub
+	public Boolean message(String message) {
 		System.out.println("Message is: " + message);
 		return true;
 	}

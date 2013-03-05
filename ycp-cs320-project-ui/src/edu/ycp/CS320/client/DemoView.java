@@ -1,7 +1,5 @@
 package edu.ycp.CS320.client;
 
-
-
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
@@ -9,16 +7,16 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.LayoutPanel;
-
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Button;
-import edu.ycp.CS320.shared.*;
 
-
+import edu.ycp.CS320.shared.IPublisher;
+import edu.ycp.CS320.shared.ISubscriber;
+import edu.ycp.CS320.shared.User;
 
 public class DemoView extends Composite implements ISubscriber {
 	
@@ -74,9 +72,7 @@ public class DemoView extends Composite implements ISubscriber {
 		layoutPanel.add(btnLogIn);
 		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
-		btnLogIn.addClickHandler(new ClickHandler() {
-
-			
+		btnLogIn.addClickHandler(new ClickHandler() {			
 			/* (non-Javadoc)
 			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
 			 * 
@@ -84,11 +80,12 @@ public class DemoView extends Composite implements ISubscriber {
 			 * an async callback is created that will confirm if the RPC was successful or not
 			 * 
 			 */
-			@Override
 			public void onClick(ClickEvent event) {
+				
 				User user = new User();
 				user.setUsername(textBox.getText());
-				user.setPassword(passwordTextBox.getText());
+				user.setPassword(passwordTextBox.getText());	
+				
 				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
 					
 					@Override
@@ -106,6 +103,9 @@ public class DemoView extends Composite implements ISubscriber {
 			}			
 			
 		});
+		
+		
+		
 		layoutPanel.add(btnNewUser);
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);		
@@ -142,17 +142,15 @@ public class DemoView extends Composite implements ISubscriber {
 		});
 	}
 
+	@Override
+	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
+		
+	}
+
 	/* (non-Javadoc)
 	 * @see edu.ycp.CS320.shared.ISubscriber#eventOccurred(java.lang.Object, edu.ycp.CS320.shared.IPublisher, java.lang.Object)
 	 * 
 	 * TODO: implement subscribing/publishing events
 	 */
-	
-	
-	@Override
-	public void eventOccurred(Object key, IPublisher publisher, Object hint) {		
-		
-	}		
-	
 }
 

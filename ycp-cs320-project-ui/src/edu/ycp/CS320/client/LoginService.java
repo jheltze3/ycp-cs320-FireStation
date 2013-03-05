@@ -1,21 +1,23 @@
 package edu.ycp.CS320.client;
 
 import com.google.gwt.user.client.rpc.RemoteService;
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+//import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import edu.ycp.CS320.shared.User;
+
+
 
 /**
  * @author drew
  *these are the general methods that the login service implementation will perform
  */
-@RemoteServiceRelativePath("LoginServiceImpl")
+//@RemoteServiceRelativePath("LoginServiceImpl")
 public interface LoginService extends RemoteService {
 
-	public boolean login(User user);
+	Boolean login(User user);
 
-	public boolean message(String message);
+	Boolean message(String message);
 
-	boolean addNewUser(User user);
+	Boolean addNewUser(User user);
 
 }

@@ -1,4 +1,4 @@
-package edu.ycp.cs320.shared;
+package edu.ycp.CS320.common;
 
 public enum ContactInfoType {
 	HOME,

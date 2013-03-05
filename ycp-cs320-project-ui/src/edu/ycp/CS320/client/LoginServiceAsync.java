@@ -1,8 +1,8 @@
 package edu.ycp.CS320.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import edu.ycp.CS320.shared.*;
 
+import edu.ycp.CS320.shared.User;
 
 /**
  * @author drew

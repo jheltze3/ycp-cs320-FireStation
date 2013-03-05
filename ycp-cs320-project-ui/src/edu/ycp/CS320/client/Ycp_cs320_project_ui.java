@@ -1,16 +1,9 @@
  package edu.ycp.CS320.client;
-
-
-
-
+ 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-
-import edu.ycp.CS320.shared.User;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

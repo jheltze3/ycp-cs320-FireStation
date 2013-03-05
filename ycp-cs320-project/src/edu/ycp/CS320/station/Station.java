@@ -1,4 +1,4 @@
-package edu.ycp.cs320.station;
+package edu.ycp.CS320.station;
 
 public class Station {
 

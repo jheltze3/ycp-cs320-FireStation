@@ -1,4 +1,4 @@
-package edu.ycp.cs320.apparatus;
+package edu.ycp.CS320.apparatus;
 
 import java.util.ArrayList;
 

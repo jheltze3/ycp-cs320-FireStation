@@ -1,9 +1,10 @@
-package edu.ycp.CS320.server;
+package edu.ycp.CS320.shared;
 
 import java.util.List;
 
-import edu.ycp.CS320.shared.*;
-import edu.ycp.cs320.shared.ContactInfo;
+import edu.ycp.CS320.common.ContactInfo;
+import edu.ycp.CS320.equipment.Equipment;
+
 
 /**
  * @author dho7

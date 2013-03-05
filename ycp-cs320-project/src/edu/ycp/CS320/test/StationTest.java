@@ -1,10 +1,10 @@
-package edu.ycp.cs320.test;
+package edu.ycp.CS320.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ycp.cs320.station.Station;
+import edu.ycp.CS320.station.Station;
 
 public class StationTest {
 	
