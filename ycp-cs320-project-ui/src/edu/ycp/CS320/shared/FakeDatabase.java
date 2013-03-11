@@ -11,6 +11,7 @@ import edu.ycp.CS320.common.ContactInfo;
 import edu.ycp.CS320.common.ContactInfoType;
 import edu.ycp.CS320.equipment.Equipment;
 import edu.ycp.CS320.shared.IDatabase;
+import edu.ycp.CS320.shared.User;
 
 /**
  * @author jheltze3

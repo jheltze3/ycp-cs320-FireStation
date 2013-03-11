@@ -6,7 +6,7 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
-import edu.ycp.CS320.station.Station;
+import edu.ycp.CS320.shared.Station;
 
 public class LoginView extends Composite {
 	private Station station;

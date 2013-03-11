@@ -5,7 +5,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import edu.ycp.CS320.client.LoginService;
 import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
-
 /**
  * The server side implementation of the RPC service.
  */
