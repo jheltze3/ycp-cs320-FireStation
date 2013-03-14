@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.apache.commons.collections.list.TreeList;
-
 import edu.ycp.CS320.shared.*;
+import edu.ycp.CS320.shared.User;;
 
 
 
@@ -23,7 +22,7 @@ import edu.ycp.CS320.shared.*;
 public class FakeDatabase implements IDatabase {
 	// map of user ids to users
 	Map<Integer, User> userMap;
-	List <User > userList = new TreeList();
+	List <User> userList = new 	ArrayList<User>();
 	// map of user ids to lists of ContactInfo for the user
 	Map<Integer, List<ContactInfo>> contactInfoMap;
 
@@ -32,7 +31,7 @@ public class FakeDatabase implements IDatabase {
 		contactInfoMap = new TreeMap<Integer, List<ContactInfo>>();
 		
 		
-		User user = new User();
+		/*User user = new User();
 		user.setId(-1);
 		user.setUsername("Dinky");
 		user.setPassword("tree");
@@ -43,7 +42,7 @@ public class FakeDatabase implements IDatabase {
 		userHomeContactInfo.setUserId(user.getId());
 		userHomeContactInfo.setPhoneNumber("555-666-7787");
 		contactInfoMap.put(user.getId(), new ArrayList<ContactInfo>());
-		contactInfoMap.get(user.getId()).add(userHomeContactInfo);
+		contactInfoMap.get(user.getId()).add(userHomeContactInfo);*/
 		
 	}
 
