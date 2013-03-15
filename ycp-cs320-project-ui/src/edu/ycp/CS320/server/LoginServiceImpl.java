@@ -8,10 +8,10 @@ import edu.ycp.CS320.shared.User;
 /**
  * The server side implementation of the RPC service.
  */
+import edu.ycp.cs320.controllers.ValidateUserController;
+
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
 
-	private FakeDatabase db = new FakeDatabase();
-	
 	private static final long serialVersionUID = 1L;
 /**
  * 
@@ -21,20 +21,29 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
  * 
  */
 	@Override
-	public Boolean login(User user) {
-		System.out.println("logging in?");
-		return true;
+	public boolean login(FakeDatabase db, User user) {
+		ValidateUserController userController = new ValidateUserController();
+		boolean validate = userController.containsUser(db, user);
+		if(validate == true){
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override
-	public Boolean addNewUser(User user) {
-		db.addUserToDatabase(user);		
-		System.out.println("hi");
-		return true;
+	public boolean addNewUser(FakeDatabase db, User user){
+		ValidateUserController userController = new ValidateUserController();
+		boolean validate = userController.containsUser(db, user);
+		if(validate == false){
+			db.addUserToDatabase(user);
+			return true;
+		}		
+		return false;
 	}
 
 	@Override
-	public Boolean message(String message) {
+	public boolean message(String message) {
 		System.out.println("Message is: " + message);
 		return true;
 	}

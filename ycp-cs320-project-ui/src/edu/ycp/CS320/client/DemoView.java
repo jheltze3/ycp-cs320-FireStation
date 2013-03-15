@@ -17,14 +17,18 @@ import com.google.gwt.user.client.ui.Button;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.CS320.shared.*;
+
+//mws
 
 public class DemoView extends Composite implements ISubscriber {
 	
+	private FakeDatabase fdb = new FakeDatabase(); //temporary
 	private Button btnLogIn = new Button("Log In");
 	private Button btnNewUser = new Button("New User?");
 	private TextBox textBox = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
-	private Label lblLoginStatus = new Label("Login Status");	
+	private Label lblLoginStatus = new Label("");	
 	
 	public DemoView() {			
 		/**
@@ -72,7 +76,9 @@ public class DemoView extends Composite implements ISubscriber {
 		layoutPanel.add(btnLogIn);
 		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
-		btnLogIn.addClickHandler(new ClickHandler() {			
+		btnLogIn.addClickHandler(new ClickHandler() {
+
+			
 			/* (non-Javadoc)
 			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
 			 * 
@@ -80,32 +86,31 @@ public class DemoView extends Composite implements ISubscriber {
 			 * an async callback is created that will confirm if the RPC was successful or not
 			 * 
 			 */
+			@Override
 			public void onClick(ClickEvent event) {
-				
 				User user = new User();
 				user.setUsername(textBox.getText());
-				user.setPassword(passwordTextBox.getText());	
-				
-				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
+				user.setPassword(passwordTextBox.getText());
+				RPC.loginService.login(fdb, user, new AsyncCallback<Boolean>() {
 					
 					@Override
 					public void onSuccess(Boolean result) {
-						System.out.print("UN/PW received");
-						Window.alert("Success! Logged In");
+						if(result == true){
+							lblLoginStatus.setText("Logged In");
+						}
+						else{
+							lblLoginStatus.setText("Fail");
+						}
 					}
 					
 					@Override
 					public void onFailure(Throwable caught) {
-						System.out.print("Fail");
-						
+						lblLoginStatus.setText("Could not Log In");						
 					}
 				});
 			}			
 			
 		});
-		
-		
-		
 		layoutPanel.add(btnNewUser);
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);		
@@ -123,17 +128,22 @@ public class DemoView extends Composite implements ISubscriber {
 				User user = new User();
 				user.setUsername(textBox.getText());
 				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.addNewUser(user, new AsyncCallback<Boolean>() {
+				RPC.loginService.addNewUser(fdb, user, new AsyncCallback<Boolean>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Failed to add");
+						lblLoginStatus.setText("Failed to add");
 						
 					}
 
 					@Override
 					public void onSuccess(Boolean result) {
-						Window.alert("New user added");
+						if(result == true){
+							lblLoginStatus.setText("New user added");
+						}
+						else{
+							lblLoginStatus.setText("User already exists");
+						}
 						
 					}
 				});
@@ -142,15 +152,16 @@ public class DemoView extends Composite implements ISubscriber {
 		});
 	}
 
-	@Override
-	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
-		
-	}
-
 	/* (non-Javadoc)
 	 * @see edu.ycp.CS320.shared.ISubscriber#eventOccurred(java.lang.Object, edu.ycp.CS320.shared.IPublisher, java.lang.Object)
 	 * 
 	 * TODO: implement subscribing/publishing events
 	 */
+	
+	
+	@Override
+	public void eventOccurred(Object key, IPublisher publisher, Object hint) {		
+		
+	}		
+	
 }
-

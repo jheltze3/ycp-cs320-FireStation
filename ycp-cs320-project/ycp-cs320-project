@@ -1,0 +1,11 @@
+tree f514bea3ef726961f97ec367823c9ab2858154b7
+parent ac18467f6f28849c6e41fbc6f7f6c88f3a18747a
+author drew <dholtzap@ycp.edu> 1363301531 -0400
+committer drew <dholtzap@ycp.edu> 1363301531 -0400
+
+updated LoginService interfaces to include a database parameter & added
+AddUserController
+
+the AddUserController adds the passed User object into the Database and
+the database parameter in the interfaces allows it to recognize which
+database to invoke the methods on
