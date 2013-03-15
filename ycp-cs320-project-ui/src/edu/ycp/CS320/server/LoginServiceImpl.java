@@ -4,6 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.ycp.CS320.client.LoginService;
 import edu.ycp.CS320.shared.FakeDatabase;
+import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 import edu.ycp.cs320.controllers.ValidateUserController;
 
@@ -22,8 +23,11 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
  * 
  */
 	@Override
-	public boolean login(FakeDatabase db, User user) {
+	public boolean login(User user) {
 		ValidateUserController userController = new ValidateUserController();
+		
+		IDatabase db = DatabaseSingleton.instance();
+		
 		boolean validate = userController.containsUser(db, user);
 		if(validate == true){
 			return true;
@@ -33,8 +37,11 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 	}
 	
 	@Override
-	public boolean addNewUser(FakeDatabase db, User user){
+	public boolean addNewUser(User user){
 		ValidateUserController userController = new ValidateUserController();
+		
+		IDatabase db = DatabaseSingleton.instance();
+
 		boolean validate = userController.containsUser(db, user);
 		if(validate == false){
 			db.addUserToDatabase(user);
