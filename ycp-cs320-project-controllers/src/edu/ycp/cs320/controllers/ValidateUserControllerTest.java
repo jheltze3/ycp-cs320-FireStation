@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ycp.CS320.server.FakeDatabase;
+import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
 
 public class ValidateUserControllerTest {
@@ -13,8 +13,8 @@ public class ValidateUserControllerTest {
 	public void test() {
 		ValidateUserController userController = new ValidateUserController();
 		FakeDatabase db = new FakeDatabase();
-		User user = new User(1, "Bob", "bobpw");
-		User user2 = new User(2, "Steve", "stevepw");
+		User user = new User();
+		User user2 = new User();
 		db.addUserToDatabase(user);
 		assertTrue(userController.containsUser(db, user));
 		assertFalse(userController.containsUser(db, user2));

@@ -1,29 +1,26 @@
 package edu.ycp.CS320.client;
 
-
-
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.LayoutPanel;
-
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.InlineLabel;
-import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.TextBox;
 
-import edu.ycp.CS320.server.FakeDatabase;
-import edu.ycp.CS320.shared.*;
+import edu.ycp.CS320.shared.IPublisher;
+import edu.ycp.CS320.shared.ISubscriber;
+import edu.ycp.CS320.shared.User;
 
-
+//mws
 
 public class DemoView extends Composite implements ISubscriber {
 	
-	private FakeDatabase fdb = new FakeDatabase(); //temporary
 	private Button btnLogIn = new Button("Log In");
 	private Button btnNewUser = new Button("New User?");
 	private TextBox textBox = new TextBox();
@@ -91,11 +88,16 @@ public class DemoView extends Composite implements ISubscriber {
 				User user = new User();
 				user.setUsername(textBox.getText());
 				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.login(fdb, user, new AsyncCallback<Boolean>() {
+				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
 					
 					@Override
 					public void onSuccess(Boolean result) {
-						lblLoginStatus.setText("Logged In");
+						if(result == true){
+							lblLoginStatus.setText("Logged In");
+						}
+						else{
+							lblLoginStatus.setText("Fail");
+						}
 					}
 					
 					@Override
@@ -123,7 +125,7 @@ public class DemoView extends Composite implements ISubscriber {
 				User user = new User();
 				user.setUsername(textBox.getText());
 				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.addNewUser(fdb, user, new AsyncCallback<Boolean>() {
+				RPC.loginService.addNewUser(user, new AsyncCallback<Boolean>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -133,7 +135,12 @@ public class DemoView extends Composite implements ISubscriber {
 
 					@Override
 					public void onSuccess(Boolean result) {
-						lblLoginStatus.setText("New user added");
+						if(result == true){
+							lblLoginStatus.setText("New user added");
+						}
+						else{
+							lblLoginStatus.setText("User already exists");
+						}
 						
 					}
 				});
@@ -155,4 +162,3 @@ public class DemoView extends Composite implements ISubscriber {
 	}		
 	
 }
-

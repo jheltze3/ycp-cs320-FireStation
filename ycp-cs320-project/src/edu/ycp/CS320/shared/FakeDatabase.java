@@ -1,15 +1,13 @@
 /**
  * 
  */
-package edu.ycp.CS320.server;
+package edu.ycp.CS320.shared;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import edu.ycp.CS320.shared.*;
-import edu.ycp.CS320.shared.User;;
 
 
 
@@ -19,7 +17,12 @@ import edu.ycp.CS320.shared.User;;
  * @author jheltze3
  *
  */
-public class FakeDatabase implements IDatabase {
+
+public class FakeDatabase implements IDatabase, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// map of user ids to users
 	Map<Integer, User> userMap;
 	List <User> userList = new 	ArrayList<User>();
@@ -69,8 +72,7 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public List<User> getUsersFromDatabase() {
-		
+	public List<User> getUsersFromDatabase() {		
 		return userList;
 	}
 
@@ -82,6 +84,18 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public List<Equipment> getEquipmentFromDatabase() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addToDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getFromDatabase() {
 		// TODO Auto-generated method stub
 		return null;
 	}

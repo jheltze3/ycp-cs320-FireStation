@@ -3,12 +3,17 @@
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.ycp.CS320.client.LoginService;
+import edu.ycp.CS320.shared.FakeDatabase;
+import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.cs320.controllers.ValidateUserController;
+
+/**
+ * The server side implementation of the RPC service.
+ */
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
 
-	private FakeDatabase db = new FakeDatabase();
-	
 	private static final long serialVersionUID = 1L;
 /**
  * 
@@ -19,20 +24,34 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
  */
 	@Override
 	public boolean login(User user) {
-		System.out.print("logging in?");
-		return true;
+		ValidateUserController userController = new ValidateUserController();
+		
+		IDatabase db = DatabaseSingleton.instance();
+		
+		boolean validate = userController.containsUser(db, user);
+		if(validate == true){
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override
 	public boolean addNewUser(User user){
-		db.addUserToDatabase(user);		
-		System.out.print("hi");
-		return true;
+		ValidateUserController userController = new ValidateUserController();
+		
+		IDatabase db = DatabaseSingleton.instance();
+
+		boolean validate = userController.containsUser(db, user);
+		if(validate == false){
+			db.addUserToDatabase(user);
+			return true;
+		}		
+		return false;
 	}
 
 	@Override
 	public boolean message(String message) {
-		// TODO Auto-generated method stub
 		System.out.println("Message is: " + message);
 		return true;
 	}

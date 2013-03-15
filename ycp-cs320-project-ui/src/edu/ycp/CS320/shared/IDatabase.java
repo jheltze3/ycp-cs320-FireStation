@@ -1,8 +1,9 @@
-package edu.ycp.CS320.server;
+package edu.ycp.CS320.shared;
 
 import java.util.List;
 
-import edu.ycp.CS320.shared.*;
+import edu.ycp.CS320.shared.User;
+
 
 /**
  * @author dho7

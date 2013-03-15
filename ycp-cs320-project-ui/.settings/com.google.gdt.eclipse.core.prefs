@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
-lastWarOutDir=/home/drew/git/ycp-cs320-project/ycp-cs320-project-ui/war
+<<<<<<< HEAD
+lastWarOutDir=H\:/git/ycp-cs320-FireStation/ycp-cs320-project-ui/war
+=======
+lastWarOutDir=H\:/git/ycp-cs320-project/ycp-cs320-project-ui/war
+>>>>>>> refs/remotes/choose_remote_name/master
 warSrcDir=war
 warSrcDirIsOutput=false

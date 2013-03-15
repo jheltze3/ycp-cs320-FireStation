@@ -1,8 +1,5 @@
  package edu.ycp.CS320.client;
-
-
-
-
+ 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.LayoutPanel;

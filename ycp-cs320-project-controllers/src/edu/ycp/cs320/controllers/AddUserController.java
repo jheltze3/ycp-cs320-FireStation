@@ -1,6 +1,6 @@
 package edu.ycp.cs320.controllers;
 
-import edu.ycp.CS320.server.FakeDatabase;
+import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
 
 /**
