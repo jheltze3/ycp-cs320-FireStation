@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ycp.CS320.server.FakeDatabase;
+import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
 
 

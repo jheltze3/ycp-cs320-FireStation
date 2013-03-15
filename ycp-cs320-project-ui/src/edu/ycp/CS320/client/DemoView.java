@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Button;
 
-import edu.ycp.CS320.server.FakeDatabase;
 import edu.ycp.CS320.shared.*;
 
 
@@ -95,7 +94,12 @@ public class DemoView extends Composite implements ISubscriber {
 					
 					@Override
 					public void onSuccess(Boolean result) {
-						lblLoginStatus.setText("Logged In");
+						if(result == true){
+							lblLoginStatus.setText("Logged In");
+						}
+						else{
+							lblLoginStatus.setText("Fail");
+						}
 					}
 					
 					@Override
@@ -133,7 +137,12 @@ public class DemoView extends Composite implements ISubscriber {
 
 					@Override
 					public void onSuccess(Boolean result) {
-						lblLoginStatus.setText("New user added");
+						if(result == true){
+							lblLoginStatus.setText("New user added");
+						}
+						else{
+							lblLoginStatus.setText("User already exists");
+						}
 						
 					}
 				});

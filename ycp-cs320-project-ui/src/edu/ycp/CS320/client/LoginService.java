@@ -3,7 +3,7 @@ package edu.ycp.CS320.client;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-import edu.ycp.CS320.server.FakeDatabase;
+import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
 
 /**
@@ -17,6 +17,6 @@ public interface LoginService extends RemoteService {
 
 	public boolean message(String message);
 
-	boolean addNewUser(FakeDatabase db, User user);
+	public boolean addNewUser(FakeDatabase db, User user);
 
 }
