@@ -3,12 +3,12 @@
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.ycp.CS320.client.LoginService;
+import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.cs320.controllers.ValidateUserController;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
 
-	private FakeDatabase db = new FakeDatabase();
-	
 	private static final long serialVersionUID = 1L;
 /**
  * 
@@ -18,16 +18,25 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
  * 
  */
 	@Override
-	public boolean login(User user) {
-		System.out.print("logging in?");
-		return true;
+	public boolean login(FakeDatabase db, User user) {
+		ValidateUserController userController = new ValidateUserController();
+		boolean validate = userController.containsUser(db, user);
+		if(validate == true){
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override
-	public boolean addNewUser(User user){
-		db.addUserToDatabase(user);		
-		System.out.print("hi");
-		return true;
+	public boolean addNewUser(FakeDatabase db, User user){
+		ValidateUserController userController = new ValidateUserController();
+		boolean validate = userController.containsUser(db, user);
+		if(validate == false){
+			db.addUserToDatabase(user);
+			return true;
+		}		
+		return false;
 	}
 
 	@Override
