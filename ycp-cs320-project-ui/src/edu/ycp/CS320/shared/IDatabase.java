@@ -2,8 +2,6 @@ package edu.ycp.CS320.shared;
 
 import java.util.List;
 
-import edu.ycp.CS320.common.ContactInfo;
-import edu.ycp.CS320.equipment.Equipment;
 import edu.ycp.CS320.shared.User;
 
 

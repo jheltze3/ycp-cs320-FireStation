@@ -1,4 +1,6 @@
-package edu.ycp.CS320.equipment;
+package edu.ycp.CS320.shared;
+
+import edu.ycp.CS320.equipment.EquipmentSpec;
 
 public class Equipment {
 	private String equipmentName = "";

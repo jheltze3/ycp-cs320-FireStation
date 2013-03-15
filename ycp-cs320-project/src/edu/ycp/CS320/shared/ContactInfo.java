@@ -1,4 +1,4 @@
-package edu.ycp.CS320.common;
+package edu.ycp.CS320.shared;
 
 public class ContactInfo {
 	private int userId;

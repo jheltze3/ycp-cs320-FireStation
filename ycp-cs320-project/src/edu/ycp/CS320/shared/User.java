@@ -8,18 +8,7 @@ public class User implements Serializable {
 	 * allows serialization
 	 */
 	private static final long serialVersionUID = 8812779888704000801L;
-	/**
-	 * 
-	 */
-
-	/**
-	 * each user has fields such as id, name, and password. The id will be used to get it from and add it to
-	 * the database
-	 * 
-	 * the name string will be the User's username
-	 * 
-	 * the password string will be their password
-	 */
+	//user fields that will be checked against the database to determine if the credentials are valid
 	private int id;
 	private String name = "";
 	private String password = "";

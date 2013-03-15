@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ycp.CS320.common.ContactInfo;
+import edu.ycp.CS320.shared.ContactInfo;
 
 public class ContactInfoTest {
 

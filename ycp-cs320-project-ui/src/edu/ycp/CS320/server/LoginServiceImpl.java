@@ -5,10 +5,11 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import edu.ycp.CS320.client.LoginService;
 import edu.ycp.CS320.shared.FakeDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.cs320.controllers.ValidateUserController;
+
 /**
  * The server side implementation of the RPC service.
  */
-import edu.ycp.cs320.controllers.ValidateUserController;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
 

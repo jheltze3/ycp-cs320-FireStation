@@ -2,6 +2,8 @@ package edu.ycp.CS320.equipment;
 
 import java.util.ArrayList;
 
+import edu.ycp.CS320.shared.Equipment;
+
 public class EquipmentInventory {
 
 	private ArrayList<Equipment> inventory;

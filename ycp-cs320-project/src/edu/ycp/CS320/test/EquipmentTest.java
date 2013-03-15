@@ -3,7 +3,7 @@ package edu.ycp.CS320.test;
 	import static org.junit.Assert.*;
 import org.junit.Test;
 
-import edu.ycp.CS320.equipment.Equipment;
+import edu.ycp.CS320.shared.Equipment;
 
 public class EquipmentTest {
 

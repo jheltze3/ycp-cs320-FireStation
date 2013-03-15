@@ -2,9 +2,9 @@ package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+
 public class User implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	//user fields that will be checked against the database to determine if the credentials are valid
 	private int id;
 	private String name = "";
