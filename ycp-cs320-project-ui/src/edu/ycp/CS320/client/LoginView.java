@@ -9,9 +9,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import edu.ycp.CS320.shared.Station;
 
 public class LoginView extends Composite {
-	private Station station;
 	private InlineLabel usernameLabel;
 	private InlineLabel passwordLabel;
+	private Station station;
 
 	public LoginView(){
 		LayoutPanel layoutPanel = new LayoutPanel();
