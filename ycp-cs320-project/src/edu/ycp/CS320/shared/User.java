@@ -5,20 +5,28 @@ import java.io.Serializable;
 public class User implements Serializable {
 	
 	/**
-	 * 
+	 * allows serialization
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8812779888704000801L;
 	//user fields that will be checked against the database to determine if the credentials are valid
 	private int id;
 	private String name = "";
 	private String password = "";
 
-	//this fields can be taken from the html web page and will instantiate the user object
-	public User(int id, String username, String password){
+	
+	/**
+	 * 
+	 * standard accessor methods
+	 *
+	 */
+	public void setUsername(String username){
 		this.name = username;
-		this.password = password;
-		this.id = id;
 	}
+	
+	public void setPassword(String pw){
+		this.password = pw;
+	}
+	
 	
 	public void setId(int id) {
 		this.id = id;

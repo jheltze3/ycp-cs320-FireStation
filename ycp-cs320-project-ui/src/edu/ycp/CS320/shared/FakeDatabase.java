@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
@@ -10,22 +7,18 @@ import java.util.Map;
 import java.util.TreeMap;
 
 
-
-
+import edu.ycp.CS320.shared.IDatabase;
+import edu.ycp.CS320.shared.User;
 
 /**
  * @author jheltze3
  *
  */
-
 public class FakeDatabase implements IDatabase, Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	// map of user ids to users
 	Map<Integer, User> userMap;
-	List <User> userList = new 	ArrayList<User>();
+	List <User > userList = new ArrayList<User>();
 	// map of user ids to lists of ContactInfo for the user
 	Map<Integer, List<ContactInfo>> contactInfoMap;
 
@@ -34,7 +27,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		contactInfoMap = new TreeMap<Integer, List<ContactInfo>>();
 		
 		
-		/*User user = new User();
+		User user = new User();
 		user.setId(-1);
 		user.setUsername("Dinky");
 		user.setPassword("tree");
@@ -43,9 +36,9 @@ public class FakeDatabase implements IDatabase, Serializable {
 		ContactInfo userHomeContactInfo= new ContactInfo();
 		userHomeContactInfo.setType(ContactInfoType.HOME);
 		userHomeContactInfo.setUserId(user.getId());
-		userHomeContactInfo.setPhoneNumber("555-666-7787");
+		userHomeContactInfo.setCellphoneNumber("555-666-7787");
 		contactInfoMap.put(user.getId(), new ArrayList<ContactInfo>());
-		contactInfoMap.get(user.getId()).add(userHomeContactInfo);*/
+		contactInfoMap.get(user.getId()).add(userHomeContactInfo);
 		
 	}
 
@@ -53,50 +46,30 @@ public class FakeDatabase implements IDatabase, Serializable {
 	 * 
 	 * TODO: implement adding to database via LoginServiceImpl and define methods
 	 */
-	@Override
 	public void addUserToDatabase(User user) {
 		userList.add(user);
-		
 	}
 
 	@Override
 	public void addContactToDatabase() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void addEquipmentToDatabase() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public List<User> getUsersFromDatabase() {		
+	public List<User> getUsersFromDatabase() {
 		return userList;
 	}
 
 	@Override
 	public List<ContactInfo> getContactsFromDatabase() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Equipment> getEquipmentFromDatabase() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addToDatabase() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getFromDatabase() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

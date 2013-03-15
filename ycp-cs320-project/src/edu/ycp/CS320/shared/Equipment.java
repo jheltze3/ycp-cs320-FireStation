@@ -1,41 +1,41 @@
 package edu.ycp.CS320.shared;
 
+import edu.ycp.CS320.equipment.EquipmentSpec;
+
 public class Equipment {
 	private String equipmentName = "";
 	private int amount;
 	private String condition = "";
-	//String location = "";
+	private EquipmentSpec spec;
 	
 	
-	public void setEquipmentName(String equipmentName )
-	{
+	public void setName(String equipmentName ) {
 		this.equipmentName = equipmentName;
 	}
 	
-	public String getEquipmentName()
-	{
+	public String getName() {
 		return  equipmentName;
 	}
 	
-	public void setAmount(int amount )
-	{
+	public void setPrice(int amount ) {
 		this.amount = amount;
 	}
 	
-	public int getAmount()
-	{
+	public int getPrice() {
 		return  amount;
 	}
 	
-	
-	public void setCondition(String condition )
-	{
+	public void setCondition(String condition ) {
 		this.condition = condition;
 	}
 	
-	public String getCondition()
-	{
+	public String getCondition() {
 		return  condition;
+	}
+	
+	public EquipmentSpec getSpec()
+	{
+		return null;
 	}
 	
 	

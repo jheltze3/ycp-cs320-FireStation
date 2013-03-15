@@ -14,8 +14,8 @@ public class AddUserControllerTest {
 	public void test() {
 		FakeDatabase db = new FakeDatabase();
 		AddUserController addUserController = new AddUserController();
-		User user = new User(1, "Bob", "bobpw");
-		User user2 = new User(2, "Steve", "stevepw");
+		User user = new User();
+		User user2 = new User();
 		
 		addUserController.addUser(db, user);
 		assertTrue(db.getUsersFromDatabase().contains(user));
