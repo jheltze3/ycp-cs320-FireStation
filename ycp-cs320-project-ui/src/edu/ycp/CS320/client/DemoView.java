@@ -91,7 +91,7 @@ public class DemoView extends Composite implements ISubscriber {
 					@Override
 					public void onSuccess(Boolean result) {
 						System.out.print("UN/PW received");
-						Window.alert("Logged In");
+						Window.alert("Success! Logged In");
 					}
 					
 					@Override
