@@ -40,8 +40,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 	}
 
 	@Override
-	public boolean message(String message) {
-		// TODO Auto-generated method stub
+	public boolean message(String message) {		
 		System.out.println("Message is: " + message);
 		return true;
 	}
