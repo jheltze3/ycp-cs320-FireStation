@@ -1,6 +1,6 @@
 package edu.ycp.cs320.controllers;
 
-import edu.ycp.CS320.shared.FakeDatabase;
+import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
 /**
@@ -16,7 +16,7 @@ public class ValidateUserController {
 	 * @return		if the user does exist in the database then a true is returned
 	 * 					otherwise a false is returned and the user can be added to the system
 	 */
-	public boolean containsUser(FakeDatabase db, User user){
+	public boolean containsUser(IDatabase db, User user){
 		if(db.getUsersFromDatabase().contains(user)){
 		//the user does exist and is now logged in
 			return true;
