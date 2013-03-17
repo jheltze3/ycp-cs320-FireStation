@@ -15,7 +15,7 @@ public class ValidateUserControllerTest {
 		FakeDatabase db = new FakeDatabase();
 		User user = new User();
 		User user2 = new User();
-		db.addUserToDatabase(user);
+		db.addUserToDB(user);
 		assertTrue(userController.containsUser(db, user));
 		assertFalse(userController.containsUser(db, user2));
 	}

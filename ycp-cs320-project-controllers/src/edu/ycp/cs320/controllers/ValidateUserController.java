@@ -17,7 +17,7 @@ public class ValidateUserController {
 	 * 					otherwise a false is returned and the user can be added to the system
 	 */
 	public boolean containsUser(IDatabase db, User user){
-		if(db.getUsersFromDatabase().contains(user)){
+		if(db.getUsersFromDB().contains(user)){
 		//the user does exist and is now logged in
 			return true;
 		}

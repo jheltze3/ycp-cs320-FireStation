@@ -18,8 +18,8 @@ public class AddUserControllerTest {
 		User user2 = new User();
 		
 		addUserController.addUser(db, user);
-		assertTrue(db.getUsersFromDatabase().contains(user));
-		assertFalse(db.getUsersFromDatabase().contains(user2));
+		assertTrue(db.getUsersFromDB().contains(user));
+		assertFalse(db.getUsersFromDB().contains(user2));
 	}
 
 }

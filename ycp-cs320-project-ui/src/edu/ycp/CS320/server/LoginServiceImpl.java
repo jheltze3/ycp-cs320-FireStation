@@ -43,7 +43,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 
 		boolean validate = userController.containsUser(db, user);
 		if(validate == false){
-			db.addUserToDatabase(user);
+			db.addUserToDB(user);
 			return true;
 		}		
 		return false;

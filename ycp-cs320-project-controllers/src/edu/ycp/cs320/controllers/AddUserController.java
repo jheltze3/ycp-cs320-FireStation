@@ -14,6 +14,6 @@ public class AddUserController {
 	 * @param user	this user object will be added to that database
 	 */
 	public void addUser(FakeDatabase db, User user){
-		db.addUserToDatabase(user);
+		db.addUserToDB(user);
 	}
 }

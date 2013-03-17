@@ -10,12 +10,12 @@ import java.util.List;
  *
  */
 public interface IDatabase {
-	public void addToDatabase();
-	public String getFromDatabase();
-	List<User> getUsersFromDatabase();
-	void addEquipmentToDatabase();
-	void addContactToDatabase();
-	void addUserToDatabase(User user);
-	List<ContactInfo> getContactsFromDatabase();
-	List<Equipment> getEquipmentFromDatabase();
+	public void addToDB();
+	public String getFromDB();
+	public List<User> getUsersFromDB();
+	public void addEquipmentToDB();
+	public void addContactToDB();
+	public void addUserToDB(User user);
+	public List<ContactInfo> getContactsFromDB();
+	public List<Equipment> getEquipmentFromDB();
 }
