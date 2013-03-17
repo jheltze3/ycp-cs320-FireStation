@@ -2,32 +2,24 @@ package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
-	
-	/**
-	 * allows serialization
-	 */
+public class User implements Serializable{
 	private static final long serialVersionUID = 8812779888704000801L;
 	//user fields that will be checked against the database to determine if the credentials are valid
 	private int id;
 	private String name = "";
 	private String password = "";
 
-	
-	/**
-	 * 
-	 * standard accessor methods
-	 *
-	 */
-	public void setUsername(String username){
+	//this fields can be taken from the html web page and will instantiate the user object
+	public User(int id, String username, String password){
 		this.name = username;
+		this.password = password;
+		this.id = id;
 	}
 	
-	public void setPassword(String pw){
-		this.password = pw;
+	public User() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -42,6 +34,15 @@ public class User implements Serializable {
 	
 	public String getPassword(){
 		return password;
+	}
+
+	public void setUsername(String un) {
+		this.name = un;
+	}
+
+	public void setPassword(String pw) {
+		this.password = pw;
+		
 	}
 	
 	
