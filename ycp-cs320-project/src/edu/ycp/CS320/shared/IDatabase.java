@@ -14,6 +14,11 @@ public interface IDatabase {
 	public void addToDB();
 	public String getFromDB();
 	public Map<Integer, User> getUsersFromDB();
+	
+	/*
+	public User findUser(String username, String password);
+	 */
+	
 	public void addEquipmentToDB();
 	public void addContactToDB();
 	public void addUserToDB(User user);
