@@ -29,12 +29,13 @@ public class DemoView extends Composite implements ISubscriber {
 	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
 	
 	
+	
 	public DemoView() {			
 		/**
 		 * 
 		 * widgets
 		 * 
-		 */
+		 */		
 		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);		

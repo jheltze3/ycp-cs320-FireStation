@@ -21,6 +21,8 @@ public class ValidateUserControllerTest {
 	}
 	
 	/**
+	 * addAndLoginTest()
+	 * 
 	 * this test performs the operation sequence that 
 	 * should occur in the scenario that a new User
 	 * adds his login credentials via the New User button

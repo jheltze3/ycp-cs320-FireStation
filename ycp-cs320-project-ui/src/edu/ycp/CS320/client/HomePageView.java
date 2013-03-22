@@ -8,13 +8,14 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 /**
  * @author drew
  *this is the homepage which the logged in user will see after clicking log in
+ *right now it is lonely and needs features
  */
 public class HomePageView extends Composite{
 	
 	public HomePageView(){
 		LayoutPanel layout = new LayoutPanel();
-		initWidget(layout);
-		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");
+		initWidget(layout);		
+		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");		
 		layout.add(hi);
 		
 	}
