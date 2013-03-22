@@ -20,7 +20,7 @@ public class HomePageView extends Composite{
 	private Button btnApparatus;
 	private ApparatusView apparatusView = new ApparatusView();
 	private Button btnCalendar;
-	private calendar cal = new calendar();
+	private theCalendar cal = new theCalendar();
 	
 	public HomePageView(){
 
