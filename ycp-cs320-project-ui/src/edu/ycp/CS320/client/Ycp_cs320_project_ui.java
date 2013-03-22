@@ -16,7 +16,7 @@ public class Ycp_cs320_project_ui implements EntryPoint{
 		
 		LayoutPanel panel = new LayoutPanel();
 		
-		DemoView demoView = new DemoView();
+		LoginView demoView = new LoginView();
 		
 		panel.add(demoView);		
 		
