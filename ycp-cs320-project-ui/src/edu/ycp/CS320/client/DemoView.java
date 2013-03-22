@@ -35,7 +35,7 @@ public class DemoView extends Composite implements ISubscriber {
 		 */
 		LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
-		initWidget(layoutPanel);
+		initWidget(layoutPanel);		
 		
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");
 		lblWelcomeToYork.setStyleName("Title");

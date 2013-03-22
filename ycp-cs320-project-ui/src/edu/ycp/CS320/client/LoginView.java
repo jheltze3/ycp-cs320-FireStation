@@ -42,7 +42,7 @@ public class LoginView extends Composite {
 
 	public void setModel(Station model) {
 		this.station = model;  		
-	}
+	}	
 
 	public void update() {
 		
