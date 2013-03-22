@@ -21,13 +21,6 @@ import edu.ycp.CS320.shared.User;
 
 public class ApparatusView extends Composite implements ISubscriber {
 	
-	private HomePageView homePage = new HomePageView();
-	private Button btnLogIn = new Button("Log In");
-	private Button btnNewUser = new Button("New User?");
-	private TextBox textBox = new TextBox();
-	private PasswordTextBox passwordTextBox = new PasswordTextBox();
-	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
-	
 	
 	public ApparatusView() {			
 		/**
@@ -40,125 +33,12 @@ public class ApparatusView extends Composite implements ISubscriber {
 		initWidget(layoutPanel);
 		layoutPanel.setSize("780px", "413px");
 		
-		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");
+		Label lblWelcomeToYork = new Label("Apparatus Page!!!");
 		lblWelcomeToYork.setStyleName("Title");
 		lblWelcomeToYork.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(lblWelcomeToYork);
 		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 333.0, Unit.PX, 193.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 17.0, Unit.PX, 25.0, Unit.PX);		
-		
-		layoutPanel.add(lblLoginStatus);
-		layoutPanel.setWidgetLeftWidth(lblLoginStatus, 240, Unit.PX, 100, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblLoginStatus, 180, Unit.PX, 38, Unit.PX);
-		
-		Label lblUsername = new Label("Username:");
-		layoutPanel.add(lblUsername);
-		layoutPanel.setWidgetLeftWidth(lblUsername, 269.0, Unit.PX, 62.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblUsername, 106.0, Unit.PX, 18.0, Unit.PX);
-		
-		InlineLabel nlnlblPassword = new InlineLabel("Password:");
-		layoutPanel.add(nlnlblPassword);
-		layoutPanel.setWidgetLeftWidth(nlnlblPassword, 269.0, Unit.PX, 66.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(nlnlblPassword, 141.0, Unit.PX, 18.0, Unit.PX);
-		
-		
-		layoutPanel.add(textBox);
-		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);
-		
-		
-		layoutPanel.add(passwordTextBox);
-		layoutPanel.setWidgetLeftWidth(passwordTextBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);
-		
-		
-		layoutPanel.add(btnLogIn);
-		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
-		btnLogIn.addClickHandler(new ClickHandler() {
-
-			
-			/* (non-Javadoc)
-			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
-			 * 
-			 * this method creates a local User object this is used to login to the system
-			 * an async callback is created that will confirm if the RPC was successful or not
-			 * 
-			 */
-			@Override
-			public void onClick(ClickEvent event) {
-				User user = new User();
-				user.setUsername(textBox.getText());
-				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
-					
-					@Override
-					public void onSuccess(Boolean result) {
-						if(result == true){
-							lblLoginStatus.setText("Logged In");
-							//if you successfully login, go to the homepage
-							layoutPanel.clear();
-							layoutPanel.add(homePage);
-						}
-						else{
-							lblLoginStatus.setText("Login Failed");	
-							layoutPanel.clear();
-							layoutPanel.add(homePage);
-						}
-					}
-					
-					@Override
-					public void onFailure(Throwable caught) {
-						lblLoginStatus.setText("Could not Log In");						
-					}
-				});
-			}			
-			
-		});
-		btnNewUser.setText("Add New User");
-		layoutPanel.add(btnNewUser);
-		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 139.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
-		
-	
-		
-		btnNewUser.addClickHandler(new ClickHandler() {
-			
-			/* (non-Javadoc)
-			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
-			 * 
-			 * if the user does not have an account yet they can click this button to create a User object that is
-			 * added to the database. From then on they will be able to use the regular login button.
-			 */
-			@Override
-			public void onClick(ClickEvent event) {
-				User user = new User();
-				user.setUsername(textBox.getText());
-				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.addNewUser(user, new AsyncCallback<Boolean>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						lblLoginStatus.setText("Failed to add");
-						
-					}
-
-					@Override
-					public void onSuccess(Boolean result) {
-						if(result == true){
-							lblLoginStatus.setText("New user added");
-						}
-						else{
-							lblLoginStatus.setText("User already exists");
-						}
-						
-					}
-				});
-				
-			}
-			
-			
-		});
+		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 17.0, Unit.PX, 25.0, Unit.PX);
 	}
 
 	/* (non-Javadoc)

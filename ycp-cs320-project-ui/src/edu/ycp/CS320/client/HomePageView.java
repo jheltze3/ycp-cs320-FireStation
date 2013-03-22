@@ -18,9 +18,11 @@ import edu.ycp.CS320.shared.User;
  */
 public class HomePageView extends Composite{
 	private Button btnApparatus;
+	private ApparatusView apparatusView = new ApparatusView();
 	
 	public HomePageView(){
-		LayoutPanel layout = new LayoutPanel();
+		final LayoutPanel layout = new LayoutPanel();
+		
 		initWidget(layout);
 		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");
 		layout.add(hi);
@@ -43,6 +45,9 @@ public class HomePageView extends Composite{
 			@Override
 			public void onClick(ClickEvent event) {
 				System.out.println("Apparatus!");
+				layout.clear();
+				layout.add(apparatusView);
+				
 			}			
 			
 		});
