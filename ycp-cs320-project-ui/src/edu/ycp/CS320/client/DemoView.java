@@ -21,11 +21,13 @@ import edu.ycp.CS320.shared.User;
 
 public class DemoView extends Composite implements ISubscriber {
 	
+	private HomePageView homePage = new HomePageView();
 	private Button btnLogIn = new Button("Log In");
 	private Button btnNewUser = new Button("New User?");
 	private TextBox textBox = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
-	private Label lblLoginStatus = new Label("");	
+	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
+	
 	
 	public DemoView() {			
 		/**
@@ -33,7 +35,7 @@ public class DemoView extends Composite implements ISubscriber {
 		 * widgets
 		 * 
 		 */
-		LayoutPanel layoutPanel = new LayoutPanel();
+		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
 		
@@ -42,12 +44,11 @@ public class DemoView extends Composite implements ISubscriber {
 		lblWelcomeToYork.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(lblWelcomeToYork);
 		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 333.0, Unit.PX, 193.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 17.0, Unit.PX, 25.0, Unit.PX);
-		
+		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 17.0, Unit.PX, 25.0, Unit.PX);		
 		
 		layoutPanel.add(lblLoginStatus);
-		layoutPanel.setWidgetLeftWidth(lblLoginStatus, 300, Unit.PX, 100, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblLoginStatus, 30, Unit.PX, 38, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblLoginStatus, 240, Unit.PX, 100, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblLoginStatus, 180, Unit.PX, 38, Unit.PX);
 		
 		Label lblUsername = new Label("Username:");
 		layoutPanel.add(lblUsername);
@@ -94,9 +95,12 @@ public class DemoView extends Composite implements ISubscriber {
 					public void onSuccess(Boolean result) {
 						if(result == true){
 							lblLoginStatus.setText("Logged In");
+							//if you successfully login, go to the homepage
+							layoutPanel.clear();
+							layoutPanel.add(homePage);
 						}
 						else{
-							lblLoginStatus.setText("Fail");
+							lblLoginStatus.setText("Fail");							
 						}
 					}
 					
@@ -110,7 +114,9 @@ public class DemoView extends Composite implements ISubscriber {
 		});
 		layoutPanel.add(btnNewUser);
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);		
+		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
+		
+	
 		
 		btnNewUser.addClickHandler(new ClickHandler() {
 			
@@ -146,6 +152,8 @@ public class DemoView extends Composite implements ISubscriber {
 				});
 				
 			}
+			
+			
 		});
 	}
 

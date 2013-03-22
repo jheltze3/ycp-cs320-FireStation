@@ -48,8 +48,8 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 		
 		IDatabase db = DatabaseSingleton.instance();
 
-		boolean validate = userController.containsUser(db, user);
-		if(validate == false){
+		boolean contains = userController.containsUser(db, user);
+		if(contains == false){
 			addController.addUser(db, user);
 			return true;
 		}		
