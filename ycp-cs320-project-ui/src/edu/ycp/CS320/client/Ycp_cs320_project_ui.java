@@ -16,9 +16,9 @@ public class Ycp_cs320_project_ui implements EntryPoint{
 		
 		LayoutPanel panel = new LayoutPanel();
 		
-		DemoView demoView = new DemoView();
+		theCalendar Calendar = new theCalendar();
 		
-		panel.add(demoView);		
+		panel.add(Calendar);		
 		
 		RootLayoutPanel.get().add(panel);
 		RootLayoutPanel.get().setWidgetLeftRight(panel, 0.0, Unit.PX, 0.0, Unit.PX);
