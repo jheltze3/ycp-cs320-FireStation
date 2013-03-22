@@ -39,8 +39,8 @@ public class HomePageView extends Composite{
 
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
-		layout.setWidgetLeftWidth(btnApparatus, 33.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnApparatus, 50.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetTopHeight(btnApparatus, 84.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
