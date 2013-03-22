@@ -27,6 +27,8 @@ public class DemoView extends Composite implements ISubscriber {
 	private TextBox textBox = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
 	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
+	private Button btnTempHpage;
+
 	
 	
 	
@@ -75,6 +77,9 @@ public class DemoView extends Composite implements ISubscriber {
 		layoutPanel.add(btnLogIn);
 		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
+		
+		
+		
 		btnLogIn.addClickHandler(new ClickHandler() {
 
 			
@@ -117,8 +122,22 @@ public class DemoView extends Composite implements ISubscriber {
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
 		
-	
+		btnTempHpage = new Button("TEMP. HPAGE");
+		layoutPanel.add(btnTempHpage);
+		layoutPanel.setWidgetLeftWidth(btnTempHpage, 184.0, Unit.PX, 81.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnTempHpage, 51.0, Unit.PX, 30.0, Unit.PX);
 		
+	
+		btnTempHpage.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				layoutPanel.clear();
+				layoutPanel.add(homePage);
+				
+			}
+			
+		});
 		btnNewUser.addClickHandler(new ClickHandler() {
 			
 			/* (non-Javadoc)
@@ -169,5 +188,4 @@ public class DemoView extends Composite implements ISubscriber {
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {		
 		
 	}		
-	
 }

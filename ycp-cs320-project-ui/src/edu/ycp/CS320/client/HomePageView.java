@@ -1,7 +1,5 @@
 package edu.ycp.CS320.client;
 
-
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
@@ -10,7 +8,8 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 
-import edu.ycp.CS320.shared.User;
+
+
 
 /**
  * @author drew
@@ -20,26 +19,30 @@ import edu.ycp.CS320.shared.User;
 public class HomePageView extends Composite{
 	private Button btnApparatus;
 	private ApparatusView apparatusView = new ApparatusView();
+	private Button btnCalendar;
+	private calendar cal = new calendar();
 	
 	public HomePageView(){
+
 		final LayoutPanel layout = new LayoutPanel();
 		
 //		initWidget(layout);
 //		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");
 
 //		LayoutPanel layout = new LayoutPanel();
+
+
 		initWidget(layout);		
 		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");		
 		layout.add(hi);
 		
+
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 33.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnApparatus, 50.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
-
-			
 			/* (non-Javadoc)
 			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
 			 * 
@@ -51,12 +54,23 @@ public class HomePageView extends Composite{
 			public void onClick(ClickEvent event) {
 				System.out.println("Apparatus!");
 				layout.clear();
-				layout.add(apparatusView);
-				
-			}			
+				layout.add(apparatusView);				
+			}		
 			
 		});
-
 		
+		
+		btnCalendar = new Button("Calendar");
+		layout.add(btnCalendar);
+		layout.setWidgetLeftWidth(btnCalendar, 21.0, Unit.PX, 81.0, Unit.PX);
+		layout.setWidgetTopHeight(btnCalendar, 48.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnCalendar.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				layout.clear();
+				layout.add(cal);				
+			}			
+		});		
 	}
 }

@@ -12,14 +12,13 @@ public class Ycp_cs320_project_ui implements EntryPoint{
 	/**
 	 * This is the entry point method.
 	 */
-	public void onModuleLoad() {
-		
+	/* (non-Javadoc)
+	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
+	 */
+	public void onModuleLoad() {		
 		LayoutPanel panel = new LayoutPanel();
-		
 		LoginView loginView = new LoginView();
-		
-		panel.add(loginView);		
-		
+		panel.add(loginView);	
 		RootLayoutPanel.get().add(panel);
 		RootLayoutPanel.get().setWidgetLeftRight(panel, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(panel, 0.0, Unit.PX, 0.0, Unit.PX);		
