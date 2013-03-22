@@ -5,12 +5,18 @@ public class FireApparatusSpec {
 	private String model;
 	private String name;
 	private String year;
+	private String type;
+	private String description;
 	
 	public FireApparatusSpec(String make, String model, String name, String year){
 		this.make = make;
 		this.model = model;
 		this.name = name;
 		this.year = year; 
+	}
+	
+	public FireApparatusSpec(){
+		
 	}
 	
 	public String getMake() {
@@ -36,6 +42,22 @@ public class FireApparatusSpec {
 	}
 	public void setYear(String year) {
 		this.year = year;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

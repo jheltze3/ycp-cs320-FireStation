@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
@@ -9,32 +6,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-
-
-
-
-/**
- * @author jheltze3
- *
- */
+import edu.ycp.CS320.apparatus.FireApparatus;
 
 public class FakeDatabase implements IDatabase, Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	// map of user ids to users
-	Map<Integer, User> userMap;
-	List <User> userList = new 	ArrayList<User>();
-	// map of user ids to lists of ContactInfo for the user
-	Map<Integer, List<ContactInfo>> contactInfoMap;
-
+	
+	
+	private Map<Integer, User> userMap; // map of user ids to users
+	private List <User> userList;
+	private Map<Integer, List<ContactInfo>> contactInfoMap; // map of user ids to lists of ContactInfo for the user
+	private List<FireApparatus> fireApparatusList;
+	
 	public FakeDatabase() {
 		userMap = new TreeMap<Integer, User>();
 		contactInfoMap = new TreeMap<Integer, List<ContactInfo>>();
+		userList = new 	ArrayList<User>();
+		fireApparatusList = new ArrayList<FireApparatus>();
 		
-		
-		/*User user = new User();
+		User user = new User();
 		user.setId(-1);
 		user.setUsername("Dinky");
 		user.setPassword("tree");
@@ -43,9 +32,9 @@ public class FakeDatabase implements IDatabase, Serializable {
 		ContactInfo userHomeContactInfo= new ContactInfo();
 		userHomeContactInfo.setType(ContactInfoType.HOME);
 		userHomeContactInfo.setUserId(user.getId());
-		userHomeContactInfo.setPhoneNumber("555-666-7787");
+		userHomeContactInfo.setCellphoneNumber("555-666-7787");
 		contactInfoMap.put(user.getId(), new ArrayList<ContactInfo>());
-		contactInfoMap.get(user.getId()).add(userHomeContactInfo);*/
+		contactInfoMap.get(user.getId()).add(userHomeContactInfo);
 		
 	}
 
@@ -53,51 +42,52 @@ public class FakeDatabase implements IDatabase, Serializable {
 	 * 
 	 * TODO: implement adding to database via LoginServiceImpl and define methods
 	 */
-	@Override
-	public void addUserToDatabase(User user) {
+	public void addUserToDB(User user) {
 		userList.add(user);
 		
 	}
 
-	@Override
-	public void addContactToDatabase() {
-		// TODO Auto-generated method stub
+	public void addContactToDB() {
 		
 	}
 
-	@Override
-	public void addEquipmentToDatabase() {
-		// TODO Auto-generated method stub
+	public void addEquipmentToDB() {
 		
 	}
 
-	@Override
-	public List<User> getUsersFromDatabase() {		
-		return userList;
+	/**
+	 * 
+	 * @param fireApparatus
+	 * @return The number of FireApparatus objects in the list
+	 */
+	public int addFireApparatusToDB(FireApparatus fireApparatus) {
+		fireApparatusList.add(fireApparatus);
+		
+		return fireApparatusList.size()-1;
 	}
 
-	@Override
-	public List<ContactInfo> getContactsFromDatabase() {
-		// TODO Auto-generated method stub
+	public Map<Integer, User> getUsersFromDB() {		
+		return userMap;
+	}
+
+	public List<ContactInfo> getContactsFromDB() {
 		return null;
 	}
 
-	@Override
-	public List<Equipment> getEquipmentFromDatabase() {
-		// TODO Auto-generated method stub
+	public List<Equipment> getEquipmentFromDB() {
 		return null;
 	}
 
-	@Override
-	public void addToDatabase() {
-		// TODO Auto-generated method stub
+	public void addToDB() {
 		
 	}
 
-	@Override
-	public String getFromDatabase() {
-		// TODO Auto-generated method stub
+	public String getFromDB() {
 		return null;
+	}
+
+	public FireApparatus getFireApparatusFromDB(int index) {
+		return fireApparatusList.get(index);
 	}
 	
 
