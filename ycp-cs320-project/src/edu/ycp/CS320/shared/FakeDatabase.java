@@ -66,8 +66,8 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return fireApparatusList.size()-1;
 	}
 
-	public List<User> getUsersFromDB() {		
-		return userList;
+	public Map<Integer, User> getUsersFromDB() {		
+		return userMap;
 	}
 
 	public List<ContactInfo> getContactsFromDB() {

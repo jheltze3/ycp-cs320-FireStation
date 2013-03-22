@@ -15,11 +15,10 @@ public class AddUserControllerTest {
 		FakeDatabase db = new FakeDatabase();
 		AddUserController addUserController = new AddUserController();
 		User user = new User();
-		User user2 = new User();
-		
+		User user2 = new User();		
 		addUserController.addUser(db, user);
-		assertTrue(db.getUsersFromDB().contains(user));
-		assertFalse(db.getUsersFromDB().contains(user2));
+		assertTrue(db.getUsersFromDB().containsValue(user));
+		assertFalse(db.getUsersFromDB().containsValue(user2));
 	}
 
 }

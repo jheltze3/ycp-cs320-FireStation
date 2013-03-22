@@ -15,9 +15,33 @@ public class ValidateUserControllerTest {
 		FakeDatabase db = new FakeDatabase();
 		User user = new User();
 		User user2 = new User();
-		db.addUserToDB(user);
+		db.getUsersFromDB().put(1, user);
 		assertTrue(userController.containsUser(db, user));
 		assertFalse(userController.containsUser(db, user2));
 	}
-
+	
+	/**
+	 * this test performs the operation sequence that 
+	 * should occur in the scenario that a new User
+	 * adds his login credentials via the New User button
+	 * then the next scenario that follows is that User
+	 * tries to log in
+	 */
+	@Test
+	
+	public void addAndLoginTest(){
+		ValidateUserController userController = new ValidateUserController();
+		AddUserController addController = new AddUserController();
+		FakeDatabase db = new FakeDatabase();
+		User user = new User();
+		User user2 = new User();
+		
+		addController.addUser(db, user);
+		
+		assertTrue(userController.containsUser(db, user));
+		assertFalse(userController.containsUser(db, user2));
+		
+	}
 }
+
+
