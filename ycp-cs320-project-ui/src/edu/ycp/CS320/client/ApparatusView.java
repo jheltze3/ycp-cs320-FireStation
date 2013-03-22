@@ -19,7 +19,7 @@ import edu.ycp.CS320.shared.User;
 
 //mws
 
-public class LoginView extends Composite implements ISubscriber {
+public class ApparatusView extends Composite implements ISubscriber {
 	
 	private HomePageView homePage = new HomePageView();
 	private Button btnLogIn = new Button("Log In");
@@ -29,7 +29,7 @@ public class LoginView extends Composite implements ISubscriber {
 	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
 	
 	
-	public LoginView() {			
+	public ApparatusView() {			
 		/**
 		 * 
 		 * widgets
@@ -38,6 +38,7 @@ public class LoginView extends Composite implements ISubscriber {
 		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
+		layoutPanel.setSize("780px", "413px");
 		
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");
 		lblWelcomeToYork.setStyleName("Title");
@@ -93,14 +94,16 @@ public class LoginView extends Composite implements ISubscriber {
 					
 					@Override
 					public void onSuccess(Boolean result) {
-						if(result != true){
+						if(result == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
 							layoutPanel.clear();
 							layoutPanel.add(homePage);
 						}
 						else{
-							lblLoginStatus.setText("Fail");							
+							lblLoginStatus.setText("Login Failed");	
+							layoutPanel.clear();
+							layoutPanel.add(homePage);
 						}
 					}
 					
