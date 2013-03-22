@@ -40,7 +40,7 @@ public class LoginView extends Composite {
 		layoutPanel.setWidgetTopHeight(passwordTextBox, 81.0, Unit.PX, 25.0, Unit.PX);
 	}
 
-	public void setModel(Station model) {
+	public void setStation(Station model) {
 		this.station = model;  		
 	}
 
