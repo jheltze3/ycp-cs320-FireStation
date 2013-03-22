@@ -15,6 +15,7 @@ import edu.ycp.CS320.shared.User;
 /**
  * @author drew
  *this is the homepage which the logged in user will see after clicking log in
+ *right now it is lonely and needs features
  */
 public class HomePageView extends Composite{
 	private Button btnApparatus;
@@ -23,8 +24,12 @@ public class HomePageView extends Composite{
 	public HomePageView(){
 		final LayoutPanel layout = new LayoutPanel();
 		
-		initWidget(layout);
-		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");
+//		initWidget(layout);
+//		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");
+
+//		LayoutPanel layout = new LayoutPanel();
+		initWidget(layout);		
+		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");		
 		layout.add(hi);
 		
 		btnApparatus = new Button("Apparatus");
