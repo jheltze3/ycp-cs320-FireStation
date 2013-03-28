@@ -5,6 +5,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import edu.ycp.CS320.client.LoginService;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.cs320.controllers.AddUserController;
 import edu.ycp.cs320.controllers.ValidateUserController;
 
 /**
@@ -36,14 +37,20 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 	}
 	
 	@Override
+	/**
+	 * TODO: hovemeyer question - will this work with an embedded database
+	 * since this IDatabase(db) is instantiated
+	 * every time the method is called...
+	 */
 	public boolean addNewUser(User user){
 		ValidateUserController userController = new ValidateUserController();
+		AddUserController addController = new AddUserController();
 		
 		IDatabase db = DatabaseSingleton.instance();
 
-		boolean validate = userController.containsUser(db, user);
-		if(validate == false){
-			db.addUserToDB(user);
+		boolean contains = userController.containsUser(db, user);
+		if(contains == false){
+			addController.addUser(db, user);
 			return true;
 		}		
 		return false;

@@ -1,1 +1,5 @@
-*.class
+/*/bin
+/*/.gwt
+/*/gwt-unitCache
+/*/war
+/ycp-cs320-project/.gitignore

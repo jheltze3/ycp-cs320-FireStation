@@ -1,6 +1,7 @@
 package edu.ycp.CS320.shared;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,7 +13,12 @@ import java.util.List;
 public interface IDatabase {
 	public void addToDB();
 	public String getFromDB();
-	public List<User> getUsersFromDB();
+	public Map<Integer, User> getUsersFromDB();
+	
+	/*
+	public User findUser(String username, String password);
+	 */
+	
 	public void addEquipmentToDB();
 	public void addContactToDB();
 	public void addUserToDB(User user);
