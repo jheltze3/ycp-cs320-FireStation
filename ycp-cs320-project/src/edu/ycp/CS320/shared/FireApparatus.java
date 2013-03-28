@@ -1,6 +1,12 @@
-package edu.ycp.CS320.apparatus;
+package edu.ycp.CS320.shared;
 
-public class FireApparatus {
+import java.io.Serializable;
+
+public class FireApparatus implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private FireApparatusSpec fireApparatusSpec;
 
 	public FireApparatus()

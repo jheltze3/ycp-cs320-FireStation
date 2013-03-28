@@ -95,7 +95,7 @@ public class LoginView extends Composite implements ISubscriber {
 				User user = new User();
 				user.setUsername(textBox.getText());
 				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
+				RPC.loginService.login(user, new AsyncCallback<Boolean>() {		
 					
 					@Override
 					public void onSuccess(Boolean result) {

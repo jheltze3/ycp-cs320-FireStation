@@ -1,5 +1,6 @@
 package edu.ycp.CS320.shared;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +25,6 @@ public interface IDatabase {
 	public void addUserToDB(User user);
 	public List<ContactInfo> getContactsFromDB();
 	public List<Equipment> getEquipmentFromDB();
+	public ArrayList<FireApparatus> getFireApparatusFromDB();
+	public int addFireApparatusToDB(FireApparatus fireApparatus);
 }
