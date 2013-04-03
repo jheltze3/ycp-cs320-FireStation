@@ -98,16 +98,17 @@ public class LoginView extends Composite implements ISubscriber {
 				RPC.loginService.login(user, new AsyncCallback<Boolean>() {		
 					
 					@Override
-					public void onSuccess(Boolean result) {
-						if(result == true){
+					public void onSuccess(Boolean results) {
+						if(results == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
 							layoutPanel.clear();
 							layoutPanel.add(homePage);
 						}
-						else{
-							lblLoginStatus.setText("Fail");							
-						}
+					if(results!=true)
+							lblLoginStatus.setText("Fail");	
+							results = false;
+						
 					}
 					
 					@Override
@@ -164,9 +165,9 @@ public class LoginView extends Composite implements ISubscriber {
 						if(result == true){
 							lblLoginStatus.setText("New user added");
 						}
-						else{
+						if (result != true)
 							lblLoginStatus.setText("User already exists");
-						}
+						result = false;
 						
 					}
 				});
