@@ -17,6 +17,8 @@ import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.CS320.shared.*;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.FlowPanel;
 
 //mws
 
@@ -43,7 +45,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 		layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
-		layoutPanel.setSize("780px", "413px");
+		layoutPanel.setSize("1142px", "761px");
 		
 		lblTitle = new Label("Apparatus Page!!!");
 		lblTitle.setStyleName("Title");
@@ -117,6 +119,42 @@ public class ApparatusView extends Composite implements ISubscriber {
 		layoutPanel.add(lblYear_1);
 		layoutPanel.setWidgetLeftWidth(lblYear_1, 107.0, Unit.PX, 56.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblYear_1, 122.0, Unit.PX, 18.0, Unit.PX);
+		
+		ScrollPanel scrollPanel = new ScrollPanel();
+		layoutPanel.add(scrollPanel);
+		layoutPanel.setWidgetLeftWidth(scrollPanel, 20.0, Unit.PX, 383.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scrollPanel, 392.0, Unit.PX, 96.0, Unit.PX);
+		
+		FlowPanel flowPanel = new FlowPanel();
+		scrollPanel.setWidget(flowPanel);
+		flowPanel.setSize("100%", "100%");
+		
+		FlowPanel flowPanel_1 = new FlowPanel();
+		flowPanel.add(flowPanel_1);
+		
+		Label lblPanel = new Label("panel 1");
+		flowPanel_1.add(lblPanel);
+		
+		Button btnButton_2 = new Button("Button 1");
+		flowPanel_1.add(btnButton_2);
+		
+		FlowPanel flowPanel_2 = new FlowPanel();
+		flowPanel.add(flowPanel_2);
+		
+		Label lblPanel_1 = new Label("panel 2");
+		flowPanel_2.add(lblPanel_1);
+		
+		Button btnButton_1 = new Button("Button 2");
+		flowPanel_2.add(btnButton_1);
+		
+		FlowPanel flowPanel_3 = new FlowPanel();
+		flowPanel.add(flowPanel_3);
+		
+		Label lblNewLabel = new Label("panel 2");
+		flowPanel_3.add(lblNewLabel);
+		
+		Button btnButton = new Button("button 3");
+		flowPanel_3.add(btnButton);
 		
 	
 		fireApparatusList = new FireApparatusList();		
