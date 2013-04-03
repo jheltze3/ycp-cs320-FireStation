@@ -3,4 +3,6 @@ import com.google.gwt.core.client.GWT;
 
 public class RPC {
 	public static final LoginServiceAsync loginService = GWT.create(LoginService.class);
+	
+	public static final ApparatusServiceAsync apparatusService = GWT.create(ApparatusService.class);
 }

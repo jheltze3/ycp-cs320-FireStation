@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
-import edu.ycp.CS320.shared.Station;
 import edu.ycp.CS320.shared.User;
 
 //mws
@@ -27,8 +26,10 @@ public class LoginView extends Composite implements ISubscriber {
 	private Button btnNewUser = new Button("New User?");
 	private TextBox textBox = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
-	private Label lblLoginStatus = new Label("Log in or Create a new Account");
-	private Station station;	
+	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
+	private Button btnTempHpage;
+
+	
 	
 	
 	public LoginView() {			
@@ -36,10 +37,10 @@ public class LoginView extends Composite implements ISubscriber {
 		 * 
 		 * widgets
 		 * 
-		 */
+		 */		
 		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
-		initWidget(layoutPanel);
+		initWidget(layoutPanel);		
 		
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");
 		lblWelcomeToYork.setStyleName("Title");
@@ -76,6 +77,9 @@ public class LoginView extends Composite implements ISubscriber {
 		layoutPanel.add(btnLogIn);
 		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
+		
+		
+		
 		btnLogIn.addClickHandler(new ClickHandler() {
 
 			
@@ -91,11 +95,11 @@ public class LoginView extends Composite implements ISubscriber {
 				User user = new User();
 				user.setUsername(textBox.getText());
 				user.setPassword(passwordTextBox.getText());
-				RPC.loginService.login(user, new AsyncCallback<Boolean>() {
+				RPC.loginService.login(user, new AsyncCallback<Boolean>() {		
 					
 					@Override
 					public void onSuccess(Boolean result) {
-						if(result != true){
+						if(result == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
 							layoutPanel.clear();
@@ -114,13 +118,26 @@ public class LoginView extends Composite implements ISubscriber {
 			}			
 			
 		});
-		btnNewUser.setText("Add New User");
 		layoutPanel.add(btnNewUser);
-		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 139.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
 		
-	
+		btnTempHpage = new Button("TEMP. HPAGE");
+		layoutPanel.add(btnTempHpage);
+		layoutPanel.setWidgetLeftWidth(btnTempHpage, 184.0, Unit.PX, 81.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnTempHpage, 51.0, Unit.PX, 30.0, Unit.PX);
 		
+	
+		btnTempHpage.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				layoutPanel.clear();
+				layoutPanel.add(homePage);
+				
+			}
+			
+		});
 		btnNewUser.addClickHandler(new ClickHandler() {
 			
 			/* (non-Javadoc)
@@ -142,7 +159,6 @@ public class LoginView extends Composite implements ISubscriber {
 						
 					}
 
-
 					@Override
 					public void onSuccess(Boolean result) {
 						if(result == true){
@@ -161,11 +177,6 @@ public class LoginView extends Composite implements ISubscriber {
 		});
 	}
 
-	public void setModel(Station model) {
-		this.station = model;  		
-	}	
-
-
 	/* (non-Javadoc)
 	 * @see edu.ycp.CS320.shared.ISubscriber#eventOccurred(java.lang.Object, edu.ycp.CS320.shared.IPublisher, java.lang.Object)
 	 * 
@@ -177,5 +188,4 @@ public class LoginView extends Composite implements ISubscriber {
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {		
 		
 	}		
-	
 }

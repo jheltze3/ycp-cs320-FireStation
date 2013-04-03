@@ -15,6 +15,15 @@
       <url-pattern>/ycp_cs320_project_ui/LoginServiceImpl</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+      <servlet-name>ApparatusService</servlet-name>
+      <servlet-class>edu.ycp.CS320.server.ApparatusServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ApparatusService</servlet-name>
+      <url-pattern>/ycp_cs320_project_ui/ApparatusServiceImpl</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Ycp_cs320_project_ui.html</welcome-file>

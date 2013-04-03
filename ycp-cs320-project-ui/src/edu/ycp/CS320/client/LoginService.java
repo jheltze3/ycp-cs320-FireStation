@@ -5,8 +5,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import edu.ycp.CS320.shared.User;
 
-
-
 /**
  * @author drew
  *these are the general methods that the login service implementation will perform

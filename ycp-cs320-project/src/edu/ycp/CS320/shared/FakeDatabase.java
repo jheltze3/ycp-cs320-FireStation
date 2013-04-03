@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.ycp.CS320.apparatus.FireApparatus;
 
 public class FakeDatabase implements IDatabase, Serializable {
 	private static final long serialVersionUID = 1L;
@@ -15,7 +14,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 	private Map<Integer, User> userMap; // map of user ids to users
 	private List <User> userList;
 	private Map<Integer, List<ContactInfo>> contactInfoMap; // map of user ids to lists of ContactInfo for the user
-	private List<FireApparatus> fireApparatusList;
+	private ArrayList<FireApparatus> fireApparatusList;
 	
 	public FakeDatabase() {
 		userMap = new TreeMap<Integer, User>();
@@ -86,8 +85,8 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return null;
 	}
 
-	public FireApparatus getFireApparatusFromDB(int index) {
-		return fireApparatusList.get(index);
+	public ArrayList<FireApparatus> getFireApparatusFromDB() {
+		return fireApparatusList;
 	}
 	
 
