@@ -4,9 +4,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JFrame;
+
 import com.google.gwt.thirdparty.javascript.jscomp.Scope.Var;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -40,12 +43,20 @@ public class theCalendar extends Composite implements ISubscriber {
 	private InlineLabel numEvents;
 	private int count;
 
+
 	public theCalendar() {
 		count = 0;
 		initWidget(absolutePanel);
 		absolutePanel.setSize("755px", "284px");
 
 		Button btnAddEvent = new Button("Add Event");
+		btnAddEvent.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//addEvent.this.frame.setVisible(true);
+				//addEvent.openFrame();
+		}
+		});
+	
 		absolutePanel.add(btnAddEvent, 90, 233);
 
 		Button btnDeleteEvent = new Button("Delete Event");
@@ -124,3 +135,16 @@ public class theCalendar extends Composite implements ISubscriber {
 
 	}
 }
+
+/*
+ *  When the user clicks the ADD button a pop up screen for the user to enter the information
+ *  When the user clicks the DELETE button it can remove an event from the "database"
+ *  
+ * Load the information from the database in reference to the DATE selected. 
+ *  - checks to see if any events are scheduled for that day
+ * 	- Displays all the events available for that day. 
+ * 
+ * 
+ * 
+ * 
+ * */
