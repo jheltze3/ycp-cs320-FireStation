@@ -31,10 +31,16 @@ public class ApparatusServiceImpl extends RemoteServiceServlet implements Appara
 		
 		IDatabase db = DatabaseSingleton.instance();
 		
-		if(apparatusController.getApparatus(db) != null){	
-			return apparatusController.getApparatus(db);
-		} 
-		return null;
+		ArrayList<FireApparatus> result = apparatusController.getApparatus(db);
+		if (result == null) {
+			result = new ArrayList<FireApparatus>();
+		}
+		return result;
+		
+//		if(apparatusController.getApparatus(db) != null){	
+//			return apparatusController.getApparatus(db);
+//		} 
+//		return null;
 	}
 
 }
