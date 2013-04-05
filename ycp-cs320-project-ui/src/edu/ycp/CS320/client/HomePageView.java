@@ -4,10 +4,12 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 
+import edu.ycp.CS320.shared.ContactInfo;
 
 
 
@@ -21,6 +23,8 @@ public class HomePageView extends Composite{
 	private ApparatusView apparatusView = new ApparatusView();
 	private Button btnCalendar;
 	private theCalendar cal = new theCalendar();
+	private ContactInfoView contact = new ContactInfoView();
+	private Button btnContact;
 	
 	public HomePageView(){
 
@@ -33,13 +37,15 @@ public class HomePageView extends Composite{
 
 
 		initWidget(layout);		
-		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");		
+		Label hi = new Label("Welcome To York Fire Station");		
 		layout.add(hi);
+		layout.setWidgetLeftWidth(hi, 0.0, Unit.PX, 637.0, Unit.PX);
+		layout.setWidgetTopHeight(hi, 0.0, Unit.PX, 542.0, Unit.PX);
 		
 
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
-		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 81.0, Unit.PX);
 		layout.setWidgetTopHeight(btnApparatus, 84.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
@@ -65,6 +71,16 @@ public class HomePageView extends Composite{
 		layout.setWidgetLeftWidth(btnCalendar, 21.0, Unit.PX, 81.0, Unit.PX);
 		layout.setWidgetTopHeight(btnCalendar, 48.0, Unit.PX, 30.0, Unit.PX);
 		
+		btnContact = new Button("Contacts");
+		layout.add(btnContact);
+		layout.setWidgetLeftWidth(btnContact, 21.0, Unit.PX, 81.0, Unit.PX);
+		layout.setWidgetTopHeight(btnContact, 120.0, Unit.PX, 30.0, Unit.PX);
+		
+		Button btnVolunteer = new Button("Volunteer");
+		layout.add(btnVolunteer);
+		layout.setWidgetLeftWidth(btnVolunteer, 21.0, Unit.PX, 81.0, Unit.PX);
+		layout.setWidgetTopHeight(btnVolunteer, 156.0, Unit.PX, 30.0, Unit.PX);
+		
 		btnCalendar.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -72,5 +88,15 @@ public class HomePageView extends Composite{
 				layout.add(cal);				
 			}			
 		});		
+		
+		
+		btnContact.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				layout.clear();
+				layout.add(btnContact);
+			}
+		});
+		
 	}
 }
