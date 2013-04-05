@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package edu.ycp.CS320.client;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -85,4 +85,4 @@ public class FormView extends Composite {
 		
 	}
 }
->>>>>>> refs/remotes/Josh/master
+
