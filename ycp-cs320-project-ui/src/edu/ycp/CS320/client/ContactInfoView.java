@@ -24,7 +24,7 @@ public class ContactInfoView extends Composite implements ISubscriber {
 		listBox.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
-				
+				//listBox.addItem(null);
 				
 			}
 		});
