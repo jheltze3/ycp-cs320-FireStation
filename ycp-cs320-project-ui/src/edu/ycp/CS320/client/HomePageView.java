@@ -35,7 +35,7 @@ public class HomePageView extends Composite{
 		btnForms = new Button("Forms");
 		layout.add(btnForms);
 		layout.setWidgetLeftWidth(btnForms, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnForms, 160.0, Unit.PX, 180.0, Unit.PX);
+		layout.setWidgetTopHeight(btnForms, 141.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnForms.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent click){
@@ -48,7 +48,7 @@ public class HomePageView extends Composite{
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnApparatus, 84.0, Unit.PX, 100.0, Unit.PX);
+		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
@@ -70,7 +70,7 @@ public class HomePageView extends Composite{
 		
 		btnCalendar = new Button("Calendar");
 		layout.add(btnCalendar);
-		layout.setWidgetLeftWidth(btnCalendar, 21.0, Unit.PX, 81.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnCalendar, 21.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnCalendar, 48.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnCalendar.addClickHandler(new ClickHandler() {
