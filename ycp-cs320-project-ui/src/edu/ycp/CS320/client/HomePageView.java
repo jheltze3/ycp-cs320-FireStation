@@ -17,6 +17,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
  *right now it is lonely and needs features
  */
 public class HomePageView extends Composite{
+	private Button btnForms = new Button();
+	private FormView fv = new FormView();
 	private Button btnApparatus;
 	private ApparatusView apparatusView = new ApparatusView();
 	private Button btnCalendar;
@@ -25,22 +27,28 @@ public class HomePageView extends Composite{
 	public HomePageView(){
 
 		final LayoutPanel layout = new LayoutPanel();
-		
-//		initWidget(layout);
-//		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");
-
-//		LayoutPanel layout = new LayoutPanel();
-
 
 		initWidget(layout);		
 		Label hi = new Label("HOMEPAGE...\nAdd Links and Features here");		
 		layout.add(hi);
 		
+		btnForms = new Button("Forms");
+		layout.add(btnForms);
+		layout.setWidgetLeftWidth(btnForms, 21.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetTopHeight(btnForms, 160.0, Unit.PX, 180.0, Unit.PX);
+		
+		btnForms.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent click){
+				layout.clear();
+				layout.add(fv);
+			}
+		});
+		
 
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnApparatus, 84.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetTopHeight(btnApparatus, 84.0, Unit.PX, 100.0, Unit.PX);
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
