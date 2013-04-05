@@ -11,7 +11,7 @@ import edu.ycp.CS320.shared.User;
 public interface LoginServiceAsync {
 	void message(String message, AsyncCallback<Boolean> callback);
 	
-	void login(User user, AsyncCallback<Boolean> callback);
+	void login(User user, AsyncCallback<Boolean> callback1);
 
 	void addNewUser(User user, AsyncCallback<Boolean> callback);
 }

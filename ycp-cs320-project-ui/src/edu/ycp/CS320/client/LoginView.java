@@ -27,7 +27,7 @@ public class LoginView extends Composite implements ISubscriber {
 	private TextBox textBox = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
 	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
-	
+	private Button btnTempHpage;
 
 	
 	
@@ -98,16 +98,17 @@ public class LoginView extends Composite implements ISubscriber {
 				RPC.loginService.login(user, new AsyncCallback<Boolean>() {		
 					
 					@Override
-					public void onSuccess(Boolean result) {
-						if(result == true){
+					public void onSuccess(Boolean results) {
+						if(results == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
 							layoutPanel.clear();
 							layoutPanel.add(homePage);
 						}
-						else{
-							lblLoginStatus.setText("Fail");							
-						}
+					if(results!=true)
+							lblLoginStatus.setText("Fail");	
+							results = false;
+						
 					}
 					
 					@Override
@@ -122,7 +123,22 @@ public class LoginView extends Composite implements ISubscriber {
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
 		
+		btnTempHpage = new Button("TEMP. HPAGE");
+		layoutPanel.add(btnTempHpage);
+		layoutPanel.setWidgetLeftWidth(btnTempHpage, 184.0, Unit.PX, 81.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnTempHpage, 51.0, Unit.PX, 30.0, Unit.PX);
 		
+	
+		btnTempHpage.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				layoutPanel.clear();
+				layoutPanel.add(homePage);
+				
+			}
+			
+		});
 		btnNewUser.addClickHandler(new ClickHandler() {
 			
 			/* (non-Javadoc)
@@ -149,9 +165,9 @@ public class LoginView extends Composite implements ISubscriber {
 						if(result == true){
 							lblLoginStatus.setText("New user added");
 						}
-						else{
+						if (result != true)
 							lblLoginStatus.setText("User already exists");
-						}
+						result = false;
 						
 					}
 				});
