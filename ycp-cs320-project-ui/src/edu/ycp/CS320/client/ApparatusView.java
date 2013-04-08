@@ -1,4 +1,3 @@
-
 package edu.ycp.CS320.client;
 
 import java.util.ArrayList;
@@ -226,4 +225,3 @@ public class ApparatusView extends Composite implements ISubscriber {
 		
 	}		
 }
-

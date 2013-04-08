@@ -1,10 +1,11 @@
-package edu.ycp.CS320.test;
+package edu.ycp.cs320.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import edu.ycp.CS320.shared.*;
+import edu.ycp.CS320.server.FakeDatabase;
+import edu.ycp.CS320.shared.FireApparatus;
 
 public class FireApparatusTest {
 	@Test

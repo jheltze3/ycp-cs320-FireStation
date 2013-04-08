@@ -1,4 +1,3 @@
-
 package edu.ycp.cs320.controllers;
 
 import java.io.Serializable;
@@ -39,4 +38,3 @@ public class GetApparatusController implements Serializable{
 		return db.getFireApparatusFromDB();
 	}
 }
-

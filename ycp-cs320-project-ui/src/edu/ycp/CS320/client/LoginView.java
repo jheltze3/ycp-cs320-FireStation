@@ -1,5 +1,3 @@
-
-
 package edu.ycp.CS320.client;
 
 import com.google.gwt.dom.client.Style.Unit;
@@ -176,4 +174,3 @@ public class LoginView extends Composite implements ISubscriber {
 		
 	}		
 }
-

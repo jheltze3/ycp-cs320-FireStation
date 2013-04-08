@@ -1,11 +1,14 @@
 package edu.ycp.cs320.controllers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import edu.ycp.CS320.shared.FakeDatabase;
+import edu.ycp.CS320.server.FakeDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.cs320.controllers.AddUserController;
+import edu.ycp.cs320.controllers.ValidateUserController;
 
 public class ValidateUserControllerTest {
 

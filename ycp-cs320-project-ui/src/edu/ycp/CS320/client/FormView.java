@@ -1,4 +1,3 @@
-
 package edu.ycp.CS320.client;
 
 
@@ -103,4 +102,3 @@ public class FormView extends Composite {
 		
 	}
 }
-
