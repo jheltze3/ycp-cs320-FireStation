@@ -2,28 +2,32 @@
  
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class Ycp_cs320_project_ui implements EntryPoint{
+	private static IsWidget currentView;
+	
 	/**
 	 * This is the entry point method.
 	 */
-	/* (non-Javadoc)
-	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
-	 */
 	public void onModuleLoad() {		
-		LayoutPanel panel = new LayoutPanel();
-
 		LoginView loginView = new LoginView();
-		panel.add(loginView);					
 		
-		RootLayoutPanel.get().add(panel);
-		RootLayoutPanel.get().setWidgetLeftRight(panel, 0.0, Unit.PX, 0.0, Unit.PX);
-		RootLayoutPanel.get().setWidgetTopBottom(panel, 0.0, Unit.PX, 0.0, Unit.PX);		
+		setView(loginView);		
+	}
+
+	public static void setView(IsWidget view) {
+		if (currentView != null) {
+			RootLayoutPanel.get().remove(currentView);
+		}
 		
+		RootLayoutPanel.get().add(view);
+		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
+		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
+		currentView = view;
 	}
 }

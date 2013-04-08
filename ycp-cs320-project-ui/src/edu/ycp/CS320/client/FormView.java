@@ -26,9 +26,7 @@ public class FormView extends Composite {
 	private Label lblPhysiciansContactNumber;
 	private TextBox physicianContactNumberTextBox;
 	private Label lblMedicalForms;
-	private TextBox primCarePhysicianTextBox;
-	
-	//private HomePageView hpv = new HomePageView();	
+	private TextBox primCarePhysicianTextBox;		
 	
 	FormView(){
 		final LayoutPanel layout = new LayoutPanel();
@@ -92,8 +90,7 @@ public class FormView extends Composite {
 		backButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				layout.clear();
-			//	layout.add(hpv);				
+				Ycp_cs320_project_ui.setView(new HomePageView());
 			}
 		});
 		

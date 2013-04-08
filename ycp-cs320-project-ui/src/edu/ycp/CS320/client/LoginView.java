@@ -19,9 +19,8 @@ import edu.ycp.CS320.shared.User;
 
 //mws
 
-public class LoginView extends Composite implements ISubscriber {
+public class LoginView extends Composite implements ISubscriber {	
 	
-	private HomePageView homePage = new HomePageView();
 	private Button btnLogIn = new Button("Log In");
 	private Button btnNewUser = new Button("New User?");
 	private TextBox textBox = new TextBox();
@@ -66,13 +65,11 @@ public class LoginView extends Composite implements ISubscriber {
 		
 		layoutPanel.add(textBox);
 		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);
-		
+		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);		
 		
 		layoutPanel.add(passwordTextBox);
 		layoutPanel.setWidgetLeftWidth(passwordTextBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);
-		
+		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);		
 		
 		layoutPanel.add(btnLogIn);
 		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
@@ -102,8 +99,7 @@ public class LoginView extends Composite implements ISubscriber {
 						if(result == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
-							layoutPanel.clear();
-							layoutPanel.add(homePage);
+							Ycp_cs320_project_ui.setView(new HomePageView());
 						}
 						else{
 							lblLoginStatus.setText("Fail");							
