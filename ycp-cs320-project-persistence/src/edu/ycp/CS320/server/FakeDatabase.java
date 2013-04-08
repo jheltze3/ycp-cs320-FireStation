@@ -1,10 +1,17 @@
-package edu.ycp.CS320.shared;
+package edu.ycp.CS320.server;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import edu.ycp.CS320.shared.ContactInfo;
+import edu.ycp.CS320.shared.ContactInfoType;
+import edu.ycp.CS320.shared.Equipment;
+import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.IDatabase;
+import edu.ycp.CS320.shared.User;
 
 
 public class FakeDatabase implements IDatabase, Serializable {

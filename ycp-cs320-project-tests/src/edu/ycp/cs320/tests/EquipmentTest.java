@@ -1,4 +1,4 @@
-package edu.ycp.CS320.test;
+package edu.ycp.cs320.tests;
 
 	import static org.junit.Assert.*;
 import org.junit.Test;

@@ -2,10 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="lib/derby.jar"/>
-	<classpathentry kind="lib" path="lib/derbyclient.jar"/>
-	<classpathentry kind="lib" path="lib/derbynet.jar"/>
-	<classpathentry kind="lib" path="lib/derbytools.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ycp-cs320-project"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ycp-cs320-project-controllers"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ycp-cs320-project-persistence"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
