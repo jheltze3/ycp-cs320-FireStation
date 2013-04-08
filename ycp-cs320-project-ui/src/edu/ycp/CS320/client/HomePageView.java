@@ -11,9 +11,6 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 
-
-
-
 /**
  * @author drew
  *this is the homepage which the logged in user will see after clicking log in
@@ -41,6 +38,7 @@ public class HomePageView extends Composite{
 		layout.setWidgetTopHeight(btnForms, 141.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnForms.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent click){
 				layout.clear();
 				layout.add(fv);
@@ -65,11 +63,10 @@ public class HomePageView extends Composite{
 			public void onClick(ClickEvent event) {
 				System.out.println("Apparatus!");
 				layout.clear();
-				layout.add(apparatusView);				
+				layout.add(apparatusView);					
 			}		
 			
-		});
-		
+		});		
 		
 		btnCalendar = new Button("Calendar");
 		layout.add(btnCalendar);
