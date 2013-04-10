@@ -106,7 +106,30 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	void populateDatabaseWithDemoData() throws SQLException {
-		// TODO: similar to createTables()
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {	
+					Map<Integer, User> result = new HashMap<Integer, User>();
+					
+					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
+					
+					resultSet = stmt.executeQuery();
+					
+					//Trying to add data to database
+					
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+				
+				return true;
+			}
+		});
 	}
 
 	@Override
