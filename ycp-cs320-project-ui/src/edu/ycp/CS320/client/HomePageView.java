@@ -30,6 +30,7 @@ public class HomePageView extends Composite{
 	private theCalendar cal = new theCalendar();
 	private ContactInfoView contact = new ContactInfoView();
 	private Button btnContact;
+	private Button btnBackToLogin;
 	
 	public HomePageView(){
 
@@ -44,7 +45,7 @@ public class HomePageView extends Composite{
 		btnForms = new Button("Forms");
 		layout.add(btnForms);
 		layout.setWidgetLeftWidth(btnForms, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnForms, 141.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetTopHeight(btnForms, 202.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnForms.addClickHandler(new ClickHandler() {
 			@Override
@@ -82,13 +83,27 @@ public class HomePageView extends Composite{
 		
 		btnContact = new Button("Contacts");
 		layout.add(btnContact);
-		layout.setWidgetLeftWidth(btnContact, 21.0, Unit.PX, 81.0, Unit.PX);
-		layout.setWidgetTopHeight(btnContact, 120.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnContact, 21.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetTopHeight(btnContact, 151.0, Unit.PX, 30.0, Unit.PX);
 		
 		Button btnVolunteer = new Button("Volunteer");
 		layout.add(btnVolunteer);
-		layout.setWidgetLeftWidth(btnVolunteer, 21.0, Unit.PX, 81.0, Unit.PX);
-		layout.setWidgetTopHeight(btnVolunteer, 156.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnVolunteer, 21.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetTopHeight(btnVolunteer, 246.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnBackToLogin = new Button("Back to Login");
+		layout.add(btnBackToLogin);
+		layout.setWidgetLeftWidth(btnBackToLogin, 331.0, Unit.PX, 103.0, Unit.PX);
+		layout.setWidgetTopHeight(btnBackToLogin, 48.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnBackToLogin.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {				
+				Ycp_cs320_project_ui.setView(new LoginView());				
+			}
+			
+		});
 		
 		btnCalendar.addClickHandler(new ClickHandler() {
 			@Override
@@ -101,8 +116,7 @@ public class HomePageView extends Composite{
 		btnContact.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				layout.clear();
-				layout.add(btnContact);
+				Ycp_cs320_project_ui.setView(new ContactInfoView());
 			}
 		});
 	}

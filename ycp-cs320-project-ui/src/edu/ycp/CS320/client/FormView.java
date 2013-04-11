@@ -57,10 +57,10 @@ public class FormView extends Composite {
 		layout.setWidgetLeftWidth(cellTextBox, 86.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(cellTextBox, 117.0, Unit.PX, 34.0, Unit.PX);
 		
-		backButton = new Button("Back");
+		backButton = new Button("Home Page");
 		layout.add(backButton);
-		layout.setWidgetLeftWidth(backButton, 86.0, Unit.PX, 81.0, Unit.PX);
-		layout.setWidgetTopHeight(backButton, 564.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetLeftWidth(backButton, 572.0, Unit.PX, 102.0, Unit.PX);
+		layout.setWidgetTopHeight(backButton, 49.0, Unit.PX, 30.0, Unit.PX);
 		
 		primCarePhysicianTextBox = new TextBox();
 		layout.add(primCarePhysicianTextBox);

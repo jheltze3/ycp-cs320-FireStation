@@ -37,11 +37,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 	}
 	
 	@Override
-	/**
-	 * TODO: hovemeyer question - will this work with an embedded database
-	 * since this IDatabase(db) is instantiated
-	 * every time the method is called...
-	 */
+	
 	public boolean addNewUser(User user){
 		ValidateUserController userController = new ValidateUserController();
 		AddUserController addController = new AddUserController();

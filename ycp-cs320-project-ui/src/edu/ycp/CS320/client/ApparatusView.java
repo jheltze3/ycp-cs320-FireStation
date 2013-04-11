@@ -41,6 +41,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 	private Label lblDescription;
 	private Label lblYear;
 	private Label lblYear_1;
+	private Button btnHomePage;
 	
 	
 	public ApparatusView() {			
@@ -121,6 +122,19 @@ public class ApparatusView extends Composite implements ISubscriber {
 		layoutPanel.add(lblYear_1);
 		layoutPanel.setWidgetLeftWidth(lblYear_1, 107.0, Unit.PX, 56.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblYear_1, 122.0, Unit.PX, 18.0, Unit.PX);
+		
+		btnHomePage = new Button("Home Page");
+		layoutPanel.add(btnHomePage);
+		layoutPanel.setWidgetLeftWidth(btnHomePage, 597.0, Unit.PX, 103.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnHomePage, 74.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnHomePage.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Ycp_cs320_project_ui.setView(new HomePageView());				
+			}
+		});
 				
 		fireApparatusList = new ArrayList<FireApparatus>();
 		

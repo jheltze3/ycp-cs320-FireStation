@@ -90,9 +90,9 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"create table users (" +
-							"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-							"  name VARCHAR(64) NOT NULL, " +
-							"  password VARCHAR(64) " +
+		/*id*/				"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+		/*name*/			"  name VARCHAR(64) NOT NULL, " +
+		/*pw*/				"  password VARCHAR(64) " +
 							")"
 					);
 					
@@ -162,8 +162,22 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public void addUserToDB(User user) {
-		// TODO Auto-generated method stub
+	public void addUserToDB(final User user) {
+		
+		databaseRun(new ITransaction<Boolean>() {
+		
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				stmt = conn.prepareStatement("INSERT INTO users (id, name, password)" +
+											 "VALUES (?, ?, ?");
+				stmt.setInt(1, user.getId());
+				stmt.setString(2, user.getUsername());
+				stmt.setString(3, user.getPassword());
+				stmt.execute();
+				return null;
+			}
+		});
 		
 	}
 
