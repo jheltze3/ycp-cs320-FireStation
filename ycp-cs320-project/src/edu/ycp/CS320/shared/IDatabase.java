@@ -27,4 +27,7 @@ public interface IDatabase {
 	public List<Equipment> getEquipmentFromDB();
 	public ArrayList<FireApparatus> getFireApparatusFromDB();
 	public int addFireApparatusToDB(FireApparatus fireApparatus);
+	
+	public ArrayList<FireCalendar> getFireEventFromDB();
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar);
 }
