@@ -118,6 +118,8 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
 					
+					stmt.setInt(1, 1);
+					
 					resultSet = stmt.executeQuery();
 					
 					//Trying to add data to database
