@@ -71,6 +71,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		this.simpleRadioButton = new SimpleRadioButton("");
 		simpleRadioButton.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent event) {
 				
 				simpleRadioButton_1.setChecked(false);
@@ -85,6 +86,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		this.simpleRadioButton_1 = new SimpleRadioButton("");
 		simpleRadioButton_1.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent event) {
 				
 				simpleRadioButton.setChecked(false);
@@ -104,6 +106,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		Button btnNewButton = new Button("Add Event");
 		btnNewButton.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent event) {
 				// send the information to the database
 				formPanel.setVisible(false);
@@ -211,6 +214,7 @@ public class theCalendar extends Composite implements ISubscriber {
 
 		Button btnAddEvent = new Button("Add Event");
 		btnAddEvent.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent event) {
 				
 				// this is to add events to the calendar
@@ -224,6 +228,7 @@ public class theCalendar extends Composite implements ISubscriber {
 
 		Button btnDeleteEvent = new Button("Delete Event");
 		btnDeleteEvent.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent event) {
 				
 				// this is to remove the events from the calendar
@@ -262,6 +267,7 @@ public class theCalendar extends Composite implements ISubscriber {
 			@SuppressWarnings("unused")
 			private String nEvents;
 
+			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 				Date date1 = datePicker.getValue();

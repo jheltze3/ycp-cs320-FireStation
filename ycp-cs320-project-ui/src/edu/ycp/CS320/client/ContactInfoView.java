@@ -2,7 +2,6 @@ package edu.ycp.CS320.client;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -24,6 +23,7 @@ public class ContactInfoView extends Composite implements ISubscriber {
 		
 		ListBox listBox = new ListBox();
 		listBox.addClickHandler(new ClickHandler() {
+			@Override
 			public void onClick(ClickEvent event) {
 				
 				//listBox.addItem(null);
