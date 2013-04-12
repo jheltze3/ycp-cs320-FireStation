@@ -19,15 +19,14 @@ import edu.ycp.CS320.shared.User;
 
 //mws
 
-public class LoginView extends Composite implements ISubscriber {
+public class LoginView extends Composite implements ISubscriber {	
 	
-	private HomePageView homePage = new HomePageView();
 	private Button btnLogIn = new Button("Log In");
 	private Button btnNewUser = new Button("New User?");
 	private TextBox textBox = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
 	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
-	private Button btnTempHpage;
+	
 
 	
 	
@@ -66,13 +65,11 @@ public class LoginView extends Composite implements ISubscriber {
 		
 		layoutPanel.add(textBox);
 		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);
-		
+		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);		
 		
 		layoutPanel.add(passwordTextBox);
 		layoutPanel.setWidgetLeftWidth(passwordTextBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);
-		
+		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);		
 		
 		layoutPanel.add(btnLogIn);
 		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
@@ -98,17 +95,15 @@ public class LoginView extends Composite implements ISubscriber {
 				RPC.loginService.login(user, new AsyncCallback<Boolean>() {		
 					
 					@Override
-					public void onSuccess(Boolean results) {
-						if(results == true){
+					public void onSuccess(Boolean result) {
+						if(result == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
-							layoutPanel.clear();
-							layoutPanel.add(homePage);
+							Ycp_cs320_project_ui.setView(new HomePageView());
 						}
-					if(results!=true)
-							lblLoginStatus.setText("Fail");	
-							results = false;
-						
+						else{
+							lblLoginStatus.setText("Fail");							
+						}
 					}
 					
 					@Override
@@ -123,22 +118,7 @@ public class LoginView extends Composite implements ISubscriber {
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
 		
-		btnTempHpage = new Button("TEMP. HPAGE");
-		layoutPanel.add(btnTempHpage);
-		layoutPanel.setWidgetLeftWidth(btnTempHpage, 184.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnTempHpage, 51.0, Unit.PX, 30.0, Unit.PX);
 		
-	
-		btnTempHpage.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				layoutPanel.clear();
-				layoutPanel.add(homePage);
-				
-			}
-			
-		});
 		btnNewUser.addClickHandler(new ClickHandler() {
 			
 			/* (non-Javadoc)
@@ -165,9 +145,9 @@ public class LoginView extends Composite implements ISubscriber {
 						if(result == true){
 							lblLoginStatus.setText("New user added");
 						}
-						if (result != true)
+						else{
 							lblLoginStatus.setText("User already exists");
-						result = false;
+						}
 						
 					}
 				});

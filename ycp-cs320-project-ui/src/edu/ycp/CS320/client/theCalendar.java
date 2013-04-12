@@ -35,6 +35,7 @@ public class theCalendar extends Composite implements ISubscriber {
 	private FormPanel formPanel;
 	private SimpleRadioButton simpleRadioButton;
 	private SimpleRadioButton simpleRadioButton_1;
+	private Button btnHomePage;
 
 	@SuppressWarnings("deprecation")
 	public theCalendar() {
@@ -206,7 +207,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		count = 0;
 		initWidget(absolutePanel);
-		absolutePanel.setSize("755px", "601px");
+		absolutePanel.setSize("822px", "601px");
 
 		Button btnAddEvent = new Button("Add Event");
 		btnAddEvent.addClickHandler(new ClickHandler() {
@@ -287,6 +288,17 @@ public class theCalendar extends Composite implements ISubscriber {
 		this.numEvents = new InlineLabel("0");
 		absolutePanel.add(numEvents, 587, 50);
 		numEvents.setSize("64px", "18px");
+		
+		btnHomePage = new Button("Home Page");
+		absolutePanel.add(btnHomePage, 698, 10);
+		
+		btnHomePage.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Ycp_cs320_project_ui.setView(new HomePageView());				
+			}
+		});
 		
 
 		

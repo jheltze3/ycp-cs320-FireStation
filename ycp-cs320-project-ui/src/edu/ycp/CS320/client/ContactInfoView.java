@@ -11,8 +11,10 @@ import com.google.gwt.user.client.ui.Label;
 
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
+import com.google.gwt.user.client.ui.Button;
 
 public class ContactInfoView extends Composite implements ISubscriber {
+	private Button btnHomePage;
 	
 	public ContactInfoView() {
 		
@@ -43,6 +45,19 @@ public class ContactInfoView extends Composite implements ISubscriber {
 		layout.add(lblContactInformation);
 		layout.setWidgetLeftWidth(lblContactInformation, 253.0, Unit.PX, 170.0, Unit.PX);
 		layout.setWidgetTopHeight(lblContactInformation, 15.0, Unit.PX, 18.0, Unit.PX);
+		
+		btnHomePage = new Button("Home Page");
+		layout.add(btnHomePage);
+		layout.setWidgetLeftWidth(btnHomePage, 446.0, Unit.PX, 97.0, Unit.PX);
+		layout.setWidgetTopHeight(btnHomePage, 15.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnHomePage.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Ycp_cs320_project_ui.setView(new HomePageView());				
+			}
+		});
 	}
 
 	@Override
