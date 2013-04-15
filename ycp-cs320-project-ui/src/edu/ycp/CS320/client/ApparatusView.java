@@ -28,7 +28,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 	private Label lblName;
 	private Label lblName01;
 	private Label lblTitle;
-	private ArrayList<FireApparatus> fireApparatusList;
+//	private ArrayList<FireApparatus> fireApparatusList;
 	private Label lblType;
 	private Label lblModel;
 	private Label lblMake;
@@ -135,31 +135,25 @@ public class ApparatusView extends Composite implements ISubscriber {
 				Ycp_cs320_project_ui.setView(new HomePageView());				
 			}
 		});
-				
-		fireApparatusList = new ArrayList<FireApparatus>();
-		
-		final ScrollPanel scrollPanel = new ScrollPanel();
+		ScrollPanel scrollPanel = new ScrollPanel();
 		layoutPanel.add(scrollPanel);
-		layoutPanel.setWidgetLeftWidth(scrollPanel, 20.0, Unit.PX, 383.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(scrollPanel, 392.0, Unit.PX, 96.0, Unit.PX);
-		
-		final FlowPanel flowPanel = new FlowPanel();
-		scrollPanel.setWidget(flowPanel);
-		flowPanel.setSize("100%", "100%");
-		//ApparatusDetailsView apparatusDetailsView = new ApparatusDetailsView("a","a", "a", "a", "a", "a"); 
+		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 600.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scrollPanel, 250.0, Unit.PX, 500.0, Unit.PX);
+		final FlowPanel scrollPanelContents = new FlowPanel();
+		scrollPanel.add(scrollPanelContents);
 		
 		RPC.apparatusService.loadApparatus(new AsyncCallback<ArrayList<FireApparatus>>() {
 			@Override
 			public void onSuccess(ArrayList<FireApparatus> fireApparatusList) {		
-				scrollPanel.clear();
-				flowPanel.clear();
+				scrollPanelContents.clear();
 				if(fireApparatusList != null){					
-					
-					for(int i=0; i<1; i++){						
+					System.out.println(fireApparatusList.size());
+					for(int i=0; i<fireApparatusList.size(); i++){						
 						ApparatusDetailsView view = new ApparatusDetailsView();
-						scrollPanel.add(view);
+						scrollPanelContents.add(view);
 						view.setModel(fireApparatusList.get(i));
-					}					
+					}	
+					fireApparatusList.clear();
 				}
 				else{
 					lblName_1.setText("Fail");							
@@ -170,50 +164,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 			public void onFailure(Throwable caught) {
 				lblName_1.setText("RPC failure");						
 			}
-		});
-		
-		
-		
-		
-		
-//		FlowPanel subFlowPanel_1 = new FlowPanel();
-//		flowPanel.add(subFlowPanel_1);
-//		
-//		Label lblPanel = new Label("panel 1");
-//		subFlowPanel_1.add(lblPanel);
-//		
-//		Button btnButton_2 = new Button("Button 1");
-//		subFlowPanel_1.add(btnButton_2);
-//		
-//		
-//		
-//		
-//		
-//		FlowPanel subFlowPanel_2 = new FlowPanel();
-//		flowPanel.add(subFlowPanel_2);
-//		
-//		Label lblPanel_1 = new Label("panel 2");
-//		subFlowPanel_2.add(lblPanel_1);
-//		
-//		Button btnButton_1 = new Button("Button 2");
-//		subFlowPanel_2.add(btnButton_1);
-//		
-//		
-//		
-//		
-//		FlowPanel subFlowPanel_3 = new FlowPanel();
-//		flowPanel.add(subFlowPanel_3);
-//		
-//		Label lblNewLabel = new Label("panel 2");
-//		subFlowPanel_3.add(lblNewLabel);
-//		
-//		Button btnButton = new Button("button 3");
-//		subFlowPanel_3.add(btnButton);
-		
-	
-		
-		
-		
+		});	
 	}	
 
 	
