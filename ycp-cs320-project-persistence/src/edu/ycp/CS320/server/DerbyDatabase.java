@@ -190,20 +190,37 @@ public class DerbyDatabase implements IDatabase {
 	public void addUserToDB(final User user) {
 		
 		databaseRun(new ITransaction<Boolean>() {
-		
+			
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+			
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
-				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("INSERT INTO users (id, name, password)" +
-											 "VALUES (?, ?, ?");
-				stmt.setInt(1, user.getId());
-				stmt.setString(2, user.getUsername());
-				stmt.setString(3, user.getPassword());
-				stmt.execute();
+				try{
+				
+				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
+											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+				
+				//stmt.setInt(1, user.getId());
+				stmt.setString(1, user.getUsername());
+				stmt.setString(2, user.getPassword());
+				
+				stmt.executeUpdate();
+				
+				keys = stmt.getGeneratedKeys();
+				if (!keys.next()) {
+					throw new SQLException("Couldn't get generated key");
+				}
+				user.setId(keys.getInt(1));
+				
 				return null;
-			}
-		});
-		
+				
+				} finally {
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(keys);
+				}
+			}	
+		});		
 	}
 
 	@Override
