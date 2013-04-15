@@ -12,6 +12,7 @@ import java.util.Map;
 
 import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.Equipment;
+import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.IDatabase;
@@ -225,6 +226,18 @@ public class DerbyDatabase implements IDatabase {
 		user.setId(resultSet.getInt(1));
 		user.setUsername(resultSet.getString(2));
 		user.setPassword(resultSet.getString(3));
+	}
+
+	@Override
+	public void addEventsToDB() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Events> getEventsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

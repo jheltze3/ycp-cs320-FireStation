@@ -7,55 +7,49 @@ public class FireCalendarEvent implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String make;
-	private String model;
-	private String name;
-	private String year;
-	private String type;
+	private String title;
+	private String location;
+	private String startTime;
+	private String endTime;
 	private String description;
+	private String date;
 	
-	public FireCalendarEvent(String make, String model, String name, String year){
-		this.make = make;
-		this.model = model;
-		this.name = name;
-		this.year = year; 
+	public FireCalendarEvent(String title, String location, String startTime, String endTime, String description, String date){
+		this.title = title;
+		this.location = location;
+		this.startTime = startTime;
+		this.endTime = endTime; 
+		this.description = description; 
+		this.date = date; 
 	}
 	
 	public FireCalendarEvent(){
 		
 	}
 	
-	public String getMake() {
-		return make;
+	public String getTitle() {
+		return title;
 	}
-	public void setMake(String make) {
-		this.make = make;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getModel() {
-		return model;
+	public String getLocation() {
+		return location;
 	}
-	public void setModel(String model) {
-		this.model = model;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	public String getName() {
-		return name;
+	public String getStartTime() {
+		return startTime;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
-	public String getYear() {
-		return year;
+	public String getEndTime() {
+		return endTime;
 	}
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setEndtime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getDescription() {
@@ -65,5 +59,14 @@ public class FireCalendarEvent implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 
 }

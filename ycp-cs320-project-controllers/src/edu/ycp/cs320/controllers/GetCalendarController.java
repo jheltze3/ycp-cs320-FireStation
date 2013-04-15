@@ -16,23 +16,23 @@ public class GetCalendarController implements Serializable{
 	public ArrayList<FireCalendar> getEvent(IDatabase db){
 		
 		FireCalendar fireCalendar = new FireCalendar();
-		fireCalendar.getFireCalendarSpec().setName("Engine 62-1");		
-		fireCalendar.getFireCalendarSpec().setDescription("A Fire Engine");
-		fireCalendar.getFireCalendarSpec().setMake("Pierce");
-		fireCalendar.getFireCalendarSpec().setModel("Arrow XT PUC");
-		fireCalendar.getFireCalendarSpec().setYear("2009");
-		fireCalendar.getFireCalendarSpec().setType("Pumper-Rescue");
+		fireCalendar.getFireCalendarSpec().setTitle("FOCE TEST");		
+		fireCalendar.getFireCalendarSpec().setDescription("A terrible test that invloves alot of work");
+		fireCalendar.getFireCalendarSpec().setStartTime("11:00 A.M");
+		fireCalendar.getFireCalendarSpec().setEndtime("12:15 PM");
+		fireCalendar.getFireCalendarSpec().setLocation("KEC ROOM");
+		fireCalendar.getFireCalendarSpec().setDate("4/18/2013");
+		
 		db.addFireCalendarEventToDB(fireCalendar);
 		
 		for(int i=0; i<4; i++){
 			FireCalendar fireCalendar1 = new FireCalendar();
-			fireCalendar1.getFireCalendarSpec().setName("Engine "+Integer.toString(i));
-			
-			fireCalendar1.getFireCalendarSpec().setDescription("A Fire Engine");
-			fireCalendar1.getFireCalendarSpec().setMake("Pierce");
-			fireCalendar1.getFireCalendarSpec().setModel("Arrow XT PUC");
-			fireCalendar1.getFireCalendarSpec().setYear("2009");
-			fireCalendar1.getFireCalendarSpec().setType("Pumper-Rescue");
+			fireCalendar1.getFireCalendarSpec().setTitle("FOCE TEST");		
+			fireCalendar1.getFireCalendarSpec().setDescription("A terrible test that invloves alot of work");
+			fireCalendar1.getFireCalendarSpec().setStartTime("11:00 A.M");
+			fireCalendar1.getFireCalendarSpec().setEndtime("12:15 PM");
+			fireCalendar1.getFireCalendarSpec().setLocation("KEC ROOM");
+			fireCalendar1.getFireCalendarSpec().setDate("4/18/2013");
 			db.addFireCalendarEventToDB(fireCalendar1);
 		}
 		
