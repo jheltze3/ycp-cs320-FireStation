@@ -138,45 +138,28 @@ public class ApparatusView extends Composite implements ISubscriber {
 				
 		fireApparatusList = new ArrayList<FireApparatus>();
 		
+		final ScrollPanel scrollPanel = new ScrollPanel();
+		layoutPanel.add(scrollPanel);
+		layoutPanel.setWidgetLeftWidth(scrollPanel, 20.0, Unit.PX, 383.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scrollPanel, 392.0, Unit.PX, 96.0, Unit.PX);
+		
+		final FlowPanel flowPanel = new FlowPanel();
+		scrollPanel.setWidget(flowPanel);
+		flowPanel.setSize("100%", "100%");
+		//ApparatusDetailsView apparatusDetailsView = new ApparatusDetailsView("a","a", "a", "a", "a", "a"); 
+		
 		RPC.apparatusService.loadApparatus(new AsyncCallback<ArrayList<FireApparatus>>() {
 			@Override
-			public void onSuccess(ArrayList<FireApparatus> result) {						
-				if(result != null){
-					fireApparatusList = result;
-					lblName_1.setText(fireApparatusList.get(0).getFireApparatusSpec().getName());
-					lblYear_1.setText(fireApparatusList.get(0).getFireApparatusSpec().getYear());
-					lblmake_1.setText(fireApparatusList.get(0).getFireApparatusSpec().getMake());
-					lblmodel_1.setText(fireApparatusList.get(0).getFireApparatusSpec().getModel());
-					lbltype_1.setText(fireApparatusList.get(0).getFireApparatusSpec().getType());	
-					lbldescription_1.setText(fireApparatusList.get(0).getFireApparatusSpec().getDescription());
+			public void onSuccess(ArrayList<FireApparatus> fireApparatusList) {		
+				scrollPanel.clear();
+				flowPanel.clear();
+				if(fireApparatusList != null){					
 					
-					ScrollPanel scrollPanel = new ScrollPanel();
-					layoutPanel.add(scrollPanel);
-					layoutPanel.setWidgetLeftWidth(scrollPanel, 20.0, Unit.PX, 383.0, Unit.PX);
-					layoutPanel.setWidgetTopHeight(scrollPanel, 392.0, Unit.PX, 96.0, Unit.PX);
-					
-					FlowPanel flowPanel = new FlowPanel();
-					scrollPanel.setWidget(flowPanel);
-					flowPanel.setSize("100%", "100%");
-					
-					for(int i=0; i<fireApparatusList.size(); i++){
-						FlowPanel subFlowPanel_1 = new FlowPanel();
-						flowPanel.add(subFlowPanel_1);
-						
-//						Label lblPanel = new Label("panel" +Integer.toString(i));
-//						subFlowPanel_1.add(lblPanel);
-//						
-//						Button btnButton_2 = new Button("Button" +Integer.toString(i));
-//						subFlowPanel_1.add(btnButton_2);
-						
-						lblName01 = new Label("Name:");
-						subFlowPanel_1.add(lblName);
-						
-						lblName_2 = new Label("name" +Integer.toString(i));
-						subFlowPanel_1.add(lblName_2);						
-						lblName_2.setText(fireApparatusList.get(i).getFireApparatusSpec().getName());
-					}
-					
+					for(int i=0; i<1; i++){						
+						ApparatusDetailsView view = new ApparatusDetailsView();
+						scrollPanel.add(view);
+						view.setModel(fireApparatusList.get(i));
+					}					
 				}
 				else{
 					lblName_1.setText("Fail");							
