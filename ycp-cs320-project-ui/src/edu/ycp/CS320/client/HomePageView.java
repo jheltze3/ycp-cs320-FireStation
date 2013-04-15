@@ -28,6 +28,7 @@ public class HomePageView extends Composite{
 	private ContactInfoView contact = new ContactInfoView();
 	private Button btnContact;
 	private Button btnBackToLogin;
+	private Button btnUsersButton;
 	
 	public HomePageView(){
 
@@ -67,7 +68,8 @@ public class HomePageView extends Composite{
 			 */
 			@Override
 			public void onClick(ClickEvent event) {
-				System.out.println("Apparatus!");				
+				System.out.println("Apparatus!");	
+				
 				Ycp_cs320_project_ui.setView(new ApparatusView());
 			}		
 			
@@ -92,6 +94,20 @@ public class HomePageView extends Composite{
 		layout.add(btnBackToLogin);
 		layout.setWidgetLeftWidth(btnBackToLogin, 331.0, Unit.PX, 103.0, Unit.PX);
 		layout.setWidgetTopHeight(btnBackToLogin, 48.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnUsersButton = new Button("Users");
+		layout.add(btnUsersButton);
+		layout.setWidgetLeftWidth(btnUsersButton, 331.0, Unit.PX, 103.0, Unit.PX);
+		layout.setWidgetTopHeight(btnUsersButton, 202.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnUsersButton.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+			//	Ycp_cs320_project_ui.setView(UsersView);
+				
+			}
+		});
 		
 		btnBackToLogin.addClickHandler(new ClickHandler() {
 

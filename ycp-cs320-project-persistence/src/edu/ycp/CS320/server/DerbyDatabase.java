@@ -106,7 +106,32 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	void populateDatabaseWithDemoData() throws SQLException {
-		// TODO: similar to createTables()
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {	
+					Map<Integer, User> result = new HashMap<Integer, User>();
+					
+					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
+					
+					stmt.setInt(1, 1);
+					
+					resultSet = stmt.executeQuery();
+					
+					//Trying to add data to database
+					
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+				
+				return true;
+			}
+		});
 	}
 
 	@Override
@@ -165,20 +190,37 @@ public class DerbyDatabase implements IDatabase {
 	public void addUserToDB(final User user) {
 		
 		databaseRun(new ITransaction<Boolean>() {
-		
+			
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+			
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
-				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("INSERT INTO users (id, name, password)" +
-											 "VALUES (?, ?, ?");
-				stmt.setInt(1, user.getId());
-				stmt.setString(2, user.getUsername());
-				stmt.setString(3, user.getPassword());
-				stmt.execute();
+				try{
+				
+				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
+											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+				
+				//stmt.setInt(1, user.getId());
+				stmt.setString(1, user.getUsername());
+				stmt.setString(2, user.getPassword());
+				
+				stmt.executeUpdate();
+				
+				keys = stmt.getGeneratedKeys();
+				if (!keys.next()) {
+					throw new SQLException("Couldn't get generated key");
+				}
+				user.setId(keys.getInt(1));
+				
 				return null;
-			}
-		});
-		
+				
+				} finally {
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(keys);
+				}
+			}	
+		});		
 	}
 
 	@Override
