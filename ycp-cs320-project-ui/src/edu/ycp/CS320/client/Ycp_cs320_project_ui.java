@@ -25,6 +25,7 @@ public class Ycp_cs320_project_ui implements EntryPoint{
 			RootLayoutPanel.get().remove(currentView);
 		}
 		
+		RootLayoutPanel.get().clear();
 		RootLayoutPanel.get().add(view);
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);

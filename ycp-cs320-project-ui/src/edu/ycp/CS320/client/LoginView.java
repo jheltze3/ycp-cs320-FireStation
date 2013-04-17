@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 
+import edu.ycp.CS320.server.DerbyDatabase;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
 import edu.ycp.CS320.shared.User;
@@ -132,6 +133,7 @@ public class LoginView extends Composite implements ISubscriber {
 				User user = new User();
 				user.setUsername(textBox.getText());
 				user.setPassword(passwordTextBox.getText());
+				
 				RPC.loginService.addNewUser(user, new AsyncCallback<Boolean>() {
 
 					@Override

@@ -12,22 +12,21 @@ import java.util.Map;
  *
  */
 public interface IDatabase {
-	public void addToDB();
-	public String getFromDB();
-	public Map<Integer, User> getUsersFromDB();
 	
-	/*
-	public User findUser(String username, String password);
-	 */
+	public Map<Integer, User> getUsersFromDB();	
 	
 	public void addEquipmentToDB();
-
 	
 	public void addContactToDB();
+	
 	public void addUserToDB(User user);
+	
 	public List<ContactInfo> getContactsFromDB();
+	
 	public List<Equipment> getEquipmentFromDB();
+	
 	public ArrayList<FireApparatus> getFireApparatusFromDB();
+	
 	public int addFireApparatusToDB(FireApparatus fireApparatus);
 	
 	
