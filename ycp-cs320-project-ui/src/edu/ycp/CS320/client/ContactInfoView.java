@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Label;
 
+import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
 import com.google.gwt.user.client.ui.Button;
@@ -21,12 +22,12 @@ public class ContactInfoView extends Composite implements ISubscriber {
 		initWidget(layout);
 		layout.setSize("627px", "523px");
 		
-		ListBox listBox = new ListBox();
+		final ListBox listBox = new ListBox();
 		listBox.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				
-				//listBox.addItem(null);
+				listBox.addItem(ContactInfo.class.getName());
 				
 			}
 		});
