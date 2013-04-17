@@ -95,6 +95,7 @@ public class DerbyDatabase implements IDatabase {
 		/*pw*/				"  password VARCHAR(64) " +
 							")"
 					);
+					stmt.executeUpdate();
 					
 				} finally {
 					DBUtil.closeQuietly(stmt);
@@ -107,18 +108,6 @@ public class DerbyDatabase implements IDatabase {
 	
 	void populateDatabaseWithDemoData() throws SQLException {
 		// TODO: similar to createTables()
-	}
-
-	@Override
-	public void addToDB() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getFromDB() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -176,7 +165,6 @@ public class DerbyDatabase implements IDatabase {
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
 											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				
-				//stmt.setInt(1, user.getId());
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getPassword());
 				

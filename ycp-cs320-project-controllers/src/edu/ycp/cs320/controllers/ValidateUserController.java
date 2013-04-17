@@ -19,12 +19,7 @@ public class ValidateUserController {
 	 * 					otherwise a false is returned and the user can be added to the system
 	 */
 	public boolean containsUser(IDatabase db, User user){
-		/*
-		if(db.getUsersFromDB().containsValue(user)){
-		//the user does exist and is now logged in
-			return true;
-		}
-		*/
+		
 		Collection<User> allUsers = db.getUsersFromDB().values();
 		for (User dbUser : allUsers) {
 			if (user.getUsername().equals(dbUser.getUsername()) && user.getPassword().equals(dbUser.getPassword())) {
