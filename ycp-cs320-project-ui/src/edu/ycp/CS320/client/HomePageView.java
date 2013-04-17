@@ -25,10 +25,10 @@ public class HomePageView extends Composite{
 	private Button btnForms = new Button();
 //	private FormView fv = new FormView();
 	private Button btnApparatus;
-	private ApparatusView apparatusView = new ApparatusView();
+	//private ApparatusView apparatusView = new ApparatusView();
 	private Button btnCalendar;
-	private theCalendar cal = new theCalendar();
-	private ContactInfoView contact = new ContactInfoView();
+	//private theCalendar cal = new theCalendar();
+	//private ContactInfoView contact = new ContactInfoView();
 	private Button btnContact;
 	private Button btnBackToLogin;
 	private Button btnUsersButton;
@@ -73,7 +73,9 @@ public class HomePageView extends Composite{
 			public void onClick(ClickEvent event) {
 				System.out.println("Apparatus!");	
 				
-				Ycp_cs320_project_ui.setView(new ApparatusView());
+				ApparatusView view = new ApparatusView();
+				Ycp_cs320_project_ui.setView(view);
+				view.activate();
 			}		
 			
 		});		

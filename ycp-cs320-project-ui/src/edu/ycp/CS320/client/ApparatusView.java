@@ -42,6 +42,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 	private Label lblYear;
 	private Label lblYear_1;
 	private Button btnHomePage;
+	private FlowPanel scrollPanelContents;
 	
 	
 	public ApparatusView() {			
@@ -139,9 +140,17 @@ public class ApparatusView extends Composite implements ISubscriber {
 		layoutPanel.add(scrollPanel);
 		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 600.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(scrollPanel, 250.0, Unit.PX, 500.0, Unit.PX);
-		final FlowPanel scrollPanelContents = new FlowPanel();
+		this.scrollPanelContents = new FlowPanel();
 		scrollPanel.add(scrollPanelContents);
 		
+//		loadApparatusList(scrollPanelContents);	
+	}
+
+	public void activate() {
+		loadApparatusList();
+	}
+
+	private void loadApparatusList() {
 		RPC.apparatusService.loadApparatus(new AsyncCallback<ArrayList<FireApparatus>>() {
 			@Override
 			public void onSuccess(ArrayList<FireApparatus> fireApparatusList) {		
@@ -164,7 +173,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 			public void onFailure(Throwable caught) {
 				lblName_1.setText("RPC failure");						
 			}
-		});	
+		});
 	}	
 
 	
