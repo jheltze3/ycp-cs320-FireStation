@@ -70,9 +70,7 @@ public class HomePageView extends Composite{
 			 * 
 			 */
 			@Override
-			public void onClick(ClickEvent event) {
-				System.out.println("Apparatus!");	
-				
+			public void onClick(ClickEvent event) {				
 				ApparatusView view = new ApparatusView();
 				Ycp_cs320_project_ui.setView(view);
 				view.activate();
