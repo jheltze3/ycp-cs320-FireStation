@@ -21,6 +21,8 @@ public interface IDatabase {
 	 */
 	
 	public void addEquipmentToDB();
+
+	
 	public void addContactToDB();
 	public void addUserToDB(User user);
 	public List<ContactInfo> getContactsFromDB();
@@ -28,6 +30,11 @@ public interface IDatabase {
 	public ArrayList<FireApparatus> getFireApparatusFromDB();
 	public int addFireApparatusToDB(FireApparatus fireApparatus);
 	
+	
+	public void addEventsToDB();
+	
 	public ArrayList<FireCalendar> getFireEventFromDB();
 	public int addFireCalendarEventToDB(FireCalendar fireCalendar);
+	public List<Events> getEventsFromDB();
+
 }

@@ -156,6 +156,8 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 
 	@Override
 	public void addContactToDB() {
@@ -256,5 +258,7 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }
