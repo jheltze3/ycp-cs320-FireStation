@@ -67,7 +67,7 @@ public class DerbyDatabase implements IDatabase {
 				boolean origAutoCommit = dbConn.conn.getAutoCommit();
 				try {
 					dbConn.conn.setAutoCommit(false);
-	
+					
 					return transaction.run(dbConn.conn);
 				} finally {
 					dbConn.conn.setAutoCommit(origAutoCommit);
@@ -107,7 +107,29 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	void populateDatabaseWithDemoData() throws SQLException {
-		// TODO: similar to createTables()
+
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				
+				PreparedStatement stmt = null;			
+				
+				try {				
+					
+					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
+					
+					stmt.setInt(1, 1);				
+					
+					//FIXME: Trying to add data to database
+					
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+				
+				return true;
+			}
+		});
 	}
 
 	@Override
@@ -161,7 +183,7 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
-				
+					
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
 											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				

@@ -42,6 +42,28 @@ public class FakeDatabase implements IDatabase, Serializable {
 		contactInfoMap.put(user.getId(), new ArrayList<ContactInfo>());
 		contactInfoMap.get(user.getId()).add(userHomeContactInfo);
 		
+		//Add fire apparatus to database
+		FireApparatus fireApparatus = new FireApparatus();
+		fireApparatus.getFireApparatusSpec().setName("Engine 62-1");		
+		fireApparatus.getFireApparatusSpec().setDescription("A Fire Engine");
+		fireApparatus.getFireApparatusSpec().setMake("Pierce");
+		fireApparatus.getFireApparatusSpec().setModel("Arrow XT PUC");
+		fireApparatus.getFireApparatusSpec().setYear("2009");
+		fireApparatus.getFireApparatusSpec().setType("Pumper-Rescue");
+		addFireApparatusToDB(fireApparatus);
+		
+		for(int i=0; i<4; i++){
+			FireApparatus fireApparatus_1 = new FireApparatus();
+			fireApparatus_1.getFireApparatusSpec().setName("Engine "+Integer.toString(i));			
+			fireApparatus_1.getFireApparatusSpec().setDescription("A Fire Engine");
+			fireApparatus_1.getFireApparatusSpec().setMake("Pierce");
+			fireApparatus_1.getFireApparatusSpec().setModel("Arrow XT PUC");
+			fireApparatus_1.getFireApparatusSpec().setYear("2009");
+			fireApparatus_1.getFireApparatusSpec().setType("Pumper-Rescue");
+			addFireApparatusToDB(fireApparatus_1);
+		}
+
+		
 	}
 
 	/**
