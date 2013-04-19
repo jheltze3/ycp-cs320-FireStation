@@ -253,7 +253,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		// get current date time with Date()
 		Date date = new Date();
 		lblDate.setText(dateFormat.format(date));
-		////////////////////////////////////////////////
+
 		listBox.setVisibleItemCount(4);		
 		
 		
@@ -301,16 +301,7 @@ public class theCalendar extends Composite implements ISubscriber {
 				Ycp_cs320_project_ui.setView(new HomePageView());				
 			}
 		});
-		
-
-		
-	
-
 	}
-
-
-
-
 	@Override
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
 

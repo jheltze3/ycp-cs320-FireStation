@@ -191,6 +191,8 @@ public class DerbyDatabase implements IDatabase {
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
 											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				
+			
+				
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getPassword());
 				
