@@ -42,9 +42,9 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 	
 	public ApparatusDetailsView(/*String name, String make, String model, String type, String description, String year*/) {			
 		layoutPanel = new LayoutPanel();
-		layoutPanel.setStyleName("fireStation-panelBackground");
+		layoutPanel.setStyleName("ApparatusDetailViewStyle");
 		initWidget(layoutPanel);
-		layoutPanel.setSize("400px", "200px");
+		layoutPanel.setSize("1200px", "203px");
 		
 //		lblTitle = new Label("Apparatus Page!!!");
 //		lblTitle.setStyleName("Title");
