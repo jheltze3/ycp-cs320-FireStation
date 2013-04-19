@@ -73,9 +73,9 @@ public class LoginView extends Composite implements ISubscriber {
 		layoutPanel.setWidgetLeftWidth(username, 341.0, Unit.PX, 173.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(username, 96.0, Unit.PX, 34.0, Unit.PX);		
 
-		layoutPanel.add(textBox);
-		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(textBox, 85.0, Unit.PX, 34.0, Unit.PX);		
+//		layoutPanel.add(textBox);
+//		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
+//		layoutPanel.setWidgetTopHeight(textBox, 85.0, Unit.PX, 34.0, Unit.PX);		
 
 		
 		layoutPanel.add(passwordTextBox);
