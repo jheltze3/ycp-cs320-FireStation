@@ -16,16 +16,17 @@ public class CreateInitialData {
 		User josh = new User(-1, "josh", "pw");
 		User alana = new User(-1, "alana", "pw");
 		
-		/*db.addUserToDB(drew);
+		db.addUserToDB(drew);
 		db.addUserToDB(jake);
 		db.addUserToDB(josh);
 		db.addUserToDB(alana);
+		
 		
 		FireApparatusSpec spec1 = new FireApparatusSpec("x", "y", "z", "2013");
 		FireApparatus app1 = new FireApparatus();
 		app1.setFireApparatusSpec(spec1);
 		
-		db.addFireApparatusToDB(app1);*/
+		db.addFireApparatusToDB(app1);
 		
 		System.out.println("Successfully created initial data");
 	}

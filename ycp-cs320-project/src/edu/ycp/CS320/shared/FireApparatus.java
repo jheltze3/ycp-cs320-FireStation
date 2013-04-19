@@ -7,11 +7,16 @@ public class FireApparatus implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String name;
 	private FireApparatusSpec fireApparatusSpec;
+	
+	public FireApparatus(){
+		//default constructor		
+	}
 
-	public FireApparatus()
+	public FireApparatus(String name, FireApparatusSpec spec)
 	{
-		setFireApparatusSpec(new FireApparatusSpec());
+		setFireApparatusSpec(spec);
 	}
 
 	public FireApparatusSpec getFireApparatusSpec() {
@@ -20,6 +25,10 @@ public class FireApparatus implements Serializable{
 
 	public void setFireApparatusSpec(FireApparatusSpec fireApparatusSpec) {
 		this.fireApparatusSpec = fireApparatusSpec;
+	}
+	
+	public String getFireApparatusName(){
+		return this.name;		
 	}
 	
 	
