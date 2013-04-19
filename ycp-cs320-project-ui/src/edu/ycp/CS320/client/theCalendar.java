@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.text.*;     // Used for date formatting.
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -251,7 +253,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		// get current date time with Date()
 		Date date = new Date();
 		lblDate.setText(dateFormat.format(date));
-		////////////////////////////////////////////////
+
 		listBox.setVisibleItemCount(4);		
 		
 		
@@ -299,16 +301,7 @@ public class theCalendar extends Composite implements ISubscriber {
 				Ycp_cs320_project_ui.setView(new HomePageView());				
 			}
 		});
-		
-
-		
-	
-
 	}
-
-
-
-
 	@Override
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
 

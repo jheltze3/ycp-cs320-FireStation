@@ -24,7 +24,7 @@ public class LoginView extends Composite implements ISubscriber {
 	
 	private Button btnLogIn = new Button("Log In");
 	private Button btnNewUser = new Button("New User?");
-	private TextBox textBox = new TextBox();
+	public TextBox username = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
 	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
 	
@@ -41,6 +41,7 @@ public class LoginView extends Composite implements ISubscriber {
 		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);		
+		layoutPanel.setSize("870px", "432px");
 		
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");
 		lblWelcomeToYork.setStyleName("Title");
@@ -64,9 +65,9 @@ public class LoginView extends Composite implements ISubscriber {
 		layoutPanel.setWidgetTopHeight(nlnlblPassword, 141.0, Unit.PX, 18.0, Unit.PX);
 		
 		
-		layoutPanel.add(textBox);
-		layoutPanel.setWidgetLeftWidth(textBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(textBox, 96.0, Unit.PX, 34.0, Unit.PX);		
+		layoutPanel.add(username);
+		layoutPanel.setWidgetLeftWidth(username, 341.0, Unit.PX, 173.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(username, 96.0, Unit.PX, 34.0, Unit.PX);		
 		
 		layoutPanel.add(passwordTextBox);
 		layoutPanel.setWidgetLeftWidth(passwordTextBox, 341.0, Unit.PX, 173.0, Unit.PX);
@@ -91,7 +92,7 @@ public class LoginView extends Composite implements ISubscriber {
 			@Override
 			public void onClick(ClickEvent event) {
 				User user = new User();
-				user.setUsername(textBox.getText());
+				user.setUsername(getUsername());
 				user.setPassword(passwordTextBox.getText());
 				RPC.loginService.login(user, new AsyncCallback<Boolean>() {		
 					
@@ -100,8 +101,10 @@ public class LoginView extends Composite implements ISubscriber {
 						if(result == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
+				
 							Ycp_cs320_project_ui.setView(new HomePageView());
 						}
+					
 						else{
 							lblLoginStatus.setText("Fail");							
 						}
@@ -131,7 +134,7 @@ public class LoginView extends Composite implements ISubscriber {
 			@Override
 			public void onClick(ClickEvent event) {
 				User user = new User();
-				user.setUsername(textBox.getText());
+				user.setUsername(getUsername());
 				user.setPassword(passwordTextBox.getText());
 				
 				RPC.loginService.addNewUser(user, new AsyncCallback<Boolean>() {
@@ -170,5 +173,11 @@ public class LoginView extends Composite implements ISubscriber {
 	@Override
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {		
 		
-	}		
+	}
+
+	public String getUsername() {
+		return username.getText();
+	}
+
+	
 }

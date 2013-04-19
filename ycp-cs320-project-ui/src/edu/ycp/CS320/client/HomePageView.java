@@ -15,6 +15,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 
 import edu.ycp.CS320.shared.ContactInfo;
+import com.google.gwt.user.client.ui.InlineLabel;
 
 /**
  * @author drew
@@ -32,6 +33,7 @@ public class HomePageView extends Composite{
 	private Button btnContact;
 	private Button btnBackToLogin;
 	private Button btnUsersButton;
+	public InlineLabel lblUser;
 	
 	public HomePageView(){
 
@@ -60,6 +62,9 @@ public class HomePageView extends Composite{
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
+		
+
+	
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
@@ -103,11 +108,22 @@ public class HomePageView extends Composite{
 		layout.setWidgetLeftWidth(btnUsersButton, 331.0, Unit.PX, 103.0, Unit.PX);
 		layout.setWidgetTopHeight(btnUsersButton, 202.0, Unit.PX, 30.0, Unit.PX);
 		
+		InlineLabel nlnlblUserLoggedIn = new InlineLabel("User Logged In is: ");
+		layout.add(nlnlblUserLoggedIn);
+		layout.setWidgetLeftWidth(nlnlblUserLoggedIn, 189.0, Unit.PX, 90.0, Unit.PX);
+		layout.setWidgetTopHeight(nlnlblUserLoggedIn, 122.0, Unit.PX, 18.0, Unit.PX);
+		
+		lblUser = new InlineLabel("USER");
+		layout.add(lblUser);
+		layout.setWidgetLeftWidth(lblUser, 315.0, Unit.PX, 90.0, Unit.PX);
+		layout.setWidgetTopHeight(lblUser, 122.0, Unit.PX, 18.0, Unit.PX);
+		
 		btnUsersButton.addClickHandler(new ClickHandler() {
 			
 			@Override
 			public void onClick(ClickEvent event) {
 			//	Ycp_cs320_project_ui.setView(UsersView);
+				
 				
 			}
 		});
