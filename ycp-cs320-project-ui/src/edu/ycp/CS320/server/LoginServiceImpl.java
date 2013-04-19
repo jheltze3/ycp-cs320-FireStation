@@ -22,6 +22,9 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
  * credentials and if they are in the database already or not.
  * 
  */
+	/* (non-Javadoc)
+	 * @see edu.ycp.CS320.client.LoginService#login(edu.ycp.CS320.shared.User)
+	 */
 	@Override
 	public boolean login(User user) {
 		ValidateUserController userController = new ValidateUserController();
@@ -36,6 +39,9 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 		return false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.ycp.CS320.client.LoginService#addNewUser(edu.ycp.CS320.shared.User)
+	 */
 	@Override
 	
 	public boolean addNewUser(User user){

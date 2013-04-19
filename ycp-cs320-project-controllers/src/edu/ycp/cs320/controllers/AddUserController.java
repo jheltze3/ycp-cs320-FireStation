@@ -12,7 +12,7 @@ public class AddUserController {
 	 * @param db	this is the database that is attached to the system
 	 * @param user	this user object will be added to that database
 	 */
-	public void addUser(IDatabase db, User user){
-		db.getUsersFromDB().put(1, user);
+	public void addUser(IDatabase db, User user){		
+		db.addUserToDB(user);
 	}
 }

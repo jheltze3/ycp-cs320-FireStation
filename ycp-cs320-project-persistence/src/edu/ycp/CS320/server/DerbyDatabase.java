@@ -67,7 +67,7 @@ public class DerbyDatabase implements IDatabase {
 				boolean origAutoCommit = dbConn.conn.getAutoCommit();
 				try {
 					dbConn.conn.setAutoCommit(false);
-	
+					
 					return transaction.run(dbConn.conn);
 				} finally {
 					dbConn.conn.setAutoCommit(origAutoCommit);
@@ -95,6 +95,7 @@ public class DerbyDatabase implements IDatabase {
 		/*pw*/				"  password VARCHAR(64) " +
 							")"
 					);
+					stmt.executeUpdate();
 					
 				} finally {
 					DBUtil.closeQuietly(stmt);
@@ -106,23 +107,20 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	void populateDatabaseWithDemoData() throws SQLException {
+
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				
-				PreparedStatement stmt = null;
-				ResultSet resultSet = null;
+				PreparedStatement stmt = null;			
 				
-				try {	
-					Map<Integer, User> result = new HashMap<Integer, User>();
+				try {				
 					
 					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
 					
-					stmt.setInt(1, 1);
+					stmt.setInt(1, 1);				
 					
-					resultSet = stmt.executeQuery();
-					
-					//Trying to add data to database
+					//FIXME: Trying to add data to database
 					
 					
 				} finally {
@@ -132,18 +130,6 @@ public class DerbyDatabase implements IDatabase {
 				return true;
 			}
 		});
-	}
-
-	@Override
-	public void addToDB() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getFromDB() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -197,11 +183,10 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
-				
+					
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
 											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				
-				//stmt.setInt(1, user.getId());
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getPassword());
 				
