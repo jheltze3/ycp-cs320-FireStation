@@ -57,12 +57,13 @@ public class ApparatusView extends Composite implements ISubscriber {
 		lblTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(lblTitle);
 		layoutPanel.setWidgetLeftWidth(lblTitle, 333.0, Unit.PX, 193.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblTitle, 17.0, Unit.PX, 25.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblTitle, 20.0, Unit.PX, 40.0, Unit.PX);
 		
 		lblEquipmentHeader = new Label("Equipment");
+		lblEquipmentHeader.setStyleName("ApparatusLabels");
 		layoutPanel.add(lblEquipmentHeader);
-		layoutPanel.setWidgetLeftWidth(lblEquipmentHeader, 0.0, Unit.PX, 79.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblEquipmentHeader, 17.0, Unit.PX, 18.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblEquipmentHeader, 0.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblEquipmentHeader, 20.0, Unit.PX, 40.0, Unit.PX);
 //		
 //		lblName = new Label("Name:");
 //		layoutPanel.add(lblName);

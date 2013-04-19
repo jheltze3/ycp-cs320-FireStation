@@ -54,6 +54,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 //		layoutPanel.setWidgetTopHeight(lblTitle, 17.0, Unit.PX, 25.0, Unit.PX);
 		
 		lblName = new Label("Name: ");
+		lblName.setStyleName("ApparatusLabels");
 		layoutPanel.add(lblName);	
 		layoutPanel.setWidgetLeftWidth(lblName, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblName, 0.0, Unit.PX, 20.0, Unit.PX);
