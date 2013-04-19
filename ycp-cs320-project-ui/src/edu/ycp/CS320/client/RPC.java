@@ -5,4 +5,6 @@ public class RPC {
 	public static final LoginServiceAsync loginService = GWT.create(LoginService.class);
 	
 	public static final ApparatusServiceAsync apparatusService = GWT.create(ApparatusService.class);
+	
+	public static final ContactInfoServiceAsync contactinfoservice = GWT.create(ContactInfoService.class);
 }

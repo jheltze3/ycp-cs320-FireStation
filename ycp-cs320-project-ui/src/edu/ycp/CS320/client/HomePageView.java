@@ -129,7 +129,9 @@ public class HomePageView extends Composite{
 		btnContact.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				Ycp_cs320_project_ui.setView(new ContactInfoView());
+				ContactInfoView view = new ContactInfoView();
+				Ycp_cs320_project_ui.setView(view);
+				view.activate();
 			}
 		});
 	}
