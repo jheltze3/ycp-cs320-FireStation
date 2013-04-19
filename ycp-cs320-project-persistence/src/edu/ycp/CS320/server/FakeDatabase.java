@@ -100,7 +100,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return userMap;
 	}
 
-	public List<ContactInfo> getContactsFromDB() {
+	public ArrayList<ContactInfo> getContactsFromDB() {
 		return null;
 	}
 

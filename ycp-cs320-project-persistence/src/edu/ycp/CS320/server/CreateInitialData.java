@@ -26,7 +26,7 @@ public class CreateInitialData {
 		/*
 
 		
-		
+		/*
 		//Add fire apparatus to database
 		FireApparatus fireApparatus = new FireApparatus();
 		fireApparatus.getFireApparatusSpec().setName("Engine 62-1");		

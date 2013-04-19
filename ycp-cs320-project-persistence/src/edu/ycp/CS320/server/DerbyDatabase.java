@@ -215,7 +215,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public List<ContactInfo> getContactsFromDB() {
+	public ArrayList<ContactInfo> getContactsFromDB() {
 		// TODO Auto-generated method stub
 		return null;
 	}

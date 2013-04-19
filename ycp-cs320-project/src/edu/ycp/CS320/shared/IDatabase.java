@@ -21,7 +21,7 @@ public interface IDatabase {
 	
 	public void addUserToDB(User user);
 	
-	public List<ContactInfo> getContactsFromDB();
+	public ArrayList<ContactInfo> getContactsFromDB();
 	
 	public List<Equipment> getEquipmentFromDB();
 	
