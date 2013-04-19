@@ -12,15 +12,15 @@ public class CreateInitialData {
 		DerbyDatabase db = new DerbyDatabase();		
 		
 		
-		User drew = new User(-1, "drew", "pw");
-		User jake = new User(-1, "jake", "pw");
-		User josh = new User(-1, "josh", "pw");
-		User alana = new User(-1, "alana", "pw");				
+	//	User drew = new User(-1, "drew", "pw");
+		//User jake = new User(-1, "jake", "pw");
+		//User josh = new User(-1, "josh", "pw");
+	//	User alana = new User(-1, "alana", "pw");				
 		
-		db.addUserToDB(drew);
-		db.addUserToDB(jake);
-		db.addUserToDB(josh);
-		db.addUserToDB(alana);
+	//	db.addUserToDB(drew);
+	//	db.addUserToDB(jake);
+	//	db.addUserToDB(josh);
+	//	db.addUserToDB(alana);
 		
 		/*
 		

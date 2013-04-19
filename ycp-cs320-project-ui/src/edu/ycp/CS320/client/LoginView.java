@@ -101,12 +101,8 @@ public class LoginView extends Composite implements ISubscriber {
 						if(result == true){
 							lblLoginStatus.setText("Logged In");
 							//if you successfully login, go to the homepage
-						try{
+				
 							Ycp_cs320_project_ui.setView(new HomePageView());
-						}
-						catch(NullPointerException ex){
-							Ycp_cs320_project_ui.setView(new HomePageView());
-						}
 						}
 					
 						else{

@@ -259,16 +259,22 @@ public class DerbyDatabase implements IDatabase {
 		user.setPassword(resultSet.getString(3));
 	}
 
-	@Override
-	public void addEventsToDB() {
+	//@Override
+//	public void addEventsToDB() {
 		// TODO Auto-generated method stub
 		
-	}
+	//}
 
 	@Override
 	public List<Events> getEventsFromDB() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addEventsToDB() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

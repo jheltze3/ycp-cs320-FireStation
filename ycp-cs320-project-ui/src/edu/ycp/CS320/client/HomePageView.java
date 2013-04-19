@@ -63,9 +63,7 @@ public class HomePageView extends Composite{
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
 		
-		LoginView login = new LoginView();
-		String name = login.getUsername();
-		lblUser.setText(name);
+
 	
 		
 		btnApparatus.addClickHandler(new ClickHandler() {
