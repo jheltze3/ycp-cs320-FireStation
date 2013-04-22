@@ -26,11 +26,7 @@ public class LoginView extends Composite implements ISubscriber {
 	private Button btnNewUser = new Button("New User?");
 	public TextBox username = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
-	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
-	
-
-	
-	
+	private Label lblLoginStatus = new Label("Log in or Create a new Account");		
 	
 	public LoginView() {			
 		/**
@@ -44,7 +40,7 @@ public class LoginView extends Composite implements ISubscriber {
 		initWidget(layoutPanel);		
 		layoutPanel.setSize("870px", "432px");
 
-		initWidget(layoutPanel);	
+
 
 		
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");

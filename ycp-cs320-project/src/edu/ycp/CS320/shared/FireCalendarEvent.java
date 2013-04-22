@@ -15,6 +15,7 @@ public class FireCalendarEvent implements Serializable{
 	private String endTime;
 	private String description;
 	private String date;
+	private int id;
 	
 	public FireCalendarEvent(String title, String location, String startTime, String endTime, String description, String date){
 		this.title = title;
@@ -68,6 +69,11 @@ public class FireCalendarEvent implements Serializable{
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+		
 	}
 
 

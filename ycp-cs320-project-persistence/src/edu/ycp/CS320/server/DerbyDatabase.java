@@ -14,12 +14,14 @@ import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireCalendarEvent;
+import edu.ycp.CS320.shared.User;
 
 import edu.ycp.CS320.shared.FireApparatusSpec;
 
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.IDatabase;
-import edu.ycp.CS320.shared.User;
+
 
 public class DerbyDatabase implements IDatabase {
 	private static final String DATASTORE = "H:/firestation.db";
@@ -170,43 +172,7 @@ public class DerbyDatabase implements IDatabase {
 		
 	}
 
-	@Override
-	public void addUserToDB(final User user) {
-		
-		databaseRun(new ITransaction<Boolean>() {
-			
-			PreparedStatement stmt = null;
-			ResultSet keys = null;
-			
-			@Override
-			public Boolean run(Connection conn) throws SQLException {
-				try{
-					
-				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
-											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-				
-			
-				
-				stmt.setString(1, user.getUsername());
-				stmt.setString(2, user.getPassword());
-				
-				stmt.executeUpdate();
-				
-				keys = stmt.getGeneratedKeys();
-				if (!keys.next()) {
-					throw new SQLException("Couldn't get generated key");
-				}
-				user.setId(keys.getInt(1));
-				
-				return null;
-				
-				} finally {
-					DBUtil.closeQuietly(stmt);
-					DBUtil.closeQuietly(keys);
-				}
-			}	
-		});		
-	}
+
 
 	@Override
 	public List<ContactInfo> getContactsFromDB() {
@@ -226,14 +192,7 @@ public class DerbyDatabase implements IDatabase {
 		return null;
 	}
 
-	@Override
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
-		// TODO Auto-generated method stub
-		return 0;
 
-	}
-	
-	
 
 
 	
@@ -256,13 +215,6 @@ public class DerbyDatabase implements IDatabase {
 		user.setPassword(resultSet.getString(3));
 	}
 
-
-
-	@Override
-	public void addEventsToDB() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public int addFireApparatusSpecToDB(final FireApparatusSpec fireApparatusSpec) {
@@ -310,6 +262,61 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+	@Override
+	public void addUserToDB(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int addFireCalendarEventToDB(final FireCalendarEvent fireCalendar) {
+		databaseRun(new ITransaction<Boolean>() {
+			
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+			
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				try{
+					
+				stmt = conn.prepareStatement("INSERT INTO fire_calender (title, location, startTime, endTime, description, date)" +
+											 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
+				
+				stmt.setString(1, fireCalendar.getTitle());
+				stmt.setString(2, fireCalendar.getLocation());
+				stmt.setString(3, fireCalendar.getStartTime());
+				stmt.setString(4, fireCalendar.getEndTime());
+				stmt.setString(5, fireCalendar.getDescription());
+				stmt.setString(6,  fireCalendar.getDate());
+				
+				stmt.executeUpdate();
+				
+				keys = stmt.getGeneratedKeys();
+				if (!keys.next()) {
+					throw new SQLException("Couldn't get generated key");
+				}
+				
+				fireCalendar.setId(keys.getInt(1));
+				
+				return null;
+				
+				} finally {
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(keys);
+				}
+			}	
+		});			return 0;
+	}
+
+	@Override
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 
 

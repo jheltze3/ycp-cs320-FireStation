@@ -11,6 +11,7 @@ import edu.ycp.CS320.shared.ContactInfoType;
 import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireCalendarEvent;
 
 import edu.ycp.CS320.shared.FireApparatusSpec;
 
@@ -125,20 +126,8 @@ public class FakeDatabase implements IDatabase, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void addEventsToDB() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public List<Events> getEventsFromDB() {
 		// TODO Auto-generated method stub
 		return null;
@@ -150,6 +139,22 @@ public class FakeDatabase implements IDatabase, Serializable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int addFireCalendarEventToDB(FireCalendarEvent fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
 
 	
 
