@@ -11,6 +11,9 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 
+import edu.ycp.CS320.shared.ContactInfo;
+import com.google.gwt.user.client.ui.InlineLabel;
+
 
 /**
  * @author drew
@@ -19,12 +22,8 @@ import com.google.gwt.user.client.ui.LayoutPanel;
  */
 public class HomePageView extends Composite{
 	private Button btnForms = new Button();
-//	private FormView fv = new FormView();
 	private Button btnApparatus;
-	//private ApparatusView apparatusView = new ApparatusView();
 	private Button btnCalendar;
-	//private theCalendar cal = new theCalendar();
-	//private ContactInfoView contact = new ContactInfoView();
 	private Button btnContact;
 	private Button btnBackToLogin;
 	private Button btnUsersButton;
@@ -50,17 +49,13 @@ public class HomePageView extends Composite{
 			public void onClick(ClickEvent click){				
 				Ycp_cs320_project_ui.setView(new FormView());
 			}
-		});
-		
+		});		
 
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
-		
 
-	
-		
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
 			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
@@ -118,6 +113,7 @@ public class HomePageView extends Composite{
 			@Override
 			public void onClick(ClickEvent event) {
 			//	Ycp_cs320_project_ui.setView(UsersView);
+				
 				
 				
 			}

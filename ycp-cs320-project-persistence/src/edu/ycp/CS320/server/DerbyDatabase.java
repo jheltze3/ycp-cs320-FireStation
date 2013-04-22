@@ -87,46 +87,29 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				
-				PreparedStatement stmt = null;
+				PreparedStatement stmtUsers = null;
+				PreparedStatement stmtApparatus = null;
 				
 				try {
-					stmt = conn.prepareStatement(
+					stmtUsers = conn.prepareStatement(
 							"create table users (" +
 		/*id*/				"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
 		/*name*/			"  name VARCHAR(64) NOT NULL, " +
 		/*pw*/				"  password VARCHAR(64) " +
 							")"
 					);
-					stmt.executeUpdate();
+					
+					stmtApparatus = conn.prepareStatement("create table fire_apparatus" +
+															"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)," +
+															"name VARCHAR(64) NOT NULL");
+															//TODO: Serialize FireApparatusSpec and store(?)
+															
+					stmtUsers.executeUpdate();
+					stmtApparatus.executeUpdate();
 					
 				} finally {
-					DBUtil.closeQuietly(stmt);
-				}
-				
-				return true;
-			}
-		});
-	}
-	
-	void populateDatabaseWithDemoData() throws SQLException {
-
-		databaseRun(new ITransaction<Boolean>() {
-			@Override
-			public Boolean run(Connection conn) throws SQLException {
-				
-				PreparedStatement stmt = null;			
-				
-				try {				
-					
-					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
-					
-					stmt.setInt(1, 1);				
-					
-					//FIXME: Trying to add data to database
-					
-					
-				} finally {
-					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(stmtUsers);
+					DBUtil.closeQuietly(stmtApparatus);
 				}
 				
 				return true;

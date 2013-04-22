@@ -57,8 +57,10 @@ public class ApparatusView extends Composite implements ISubscriber {
 		lblEquipmentHeader = new Label("Equipment");
 		lblEquipmentHeader.setStyleName("ApparatusLabels");
 		layoutPanel.add(lblEquipmentHeader);
-		layoutPanel.setWidgetLeftWidth(lblEquipmentHeader, 0.0, Unit.PX, 100.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblEquipmentHeader, 20.0, Unit.PX, 40.0, Unit.PX);
+		
+		layoutPanel.setWidgetLeftWidth(lblEquipmentHeader, 0.0, Unit.PX, 79.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblEquipmentHeader, 17.0, Unit.PX, 18.0, Unit.PX);
+
 //		
 //		lblName = new Label("Name:");
 //		layoutPanel.add(lblName);
@@ -136,6 +138,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 		ScrollPanel scrollPanel = new ScrollPanel();
 		scrollPanel.setStyleName("ApparatusViewScrollPanelStyle");
 		layoutPanel.add(scrollPanel);
+
 		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1200.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 661.0, Unit.PX);
 		this.scrollPanelContents = new FlowPanel();
