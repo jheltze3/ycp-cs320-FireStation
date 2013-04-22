@@ -11,14 +11,14 @@ import edu.ycp.CS320.shared.ContactInfoType;
 import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
 
 public class FakeDatabase implements IDatabase, Serializable {
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;	
 	
 	private Map<Integer, User> userMap; // map of user ids to users
 	private List <User> userList;
@@ -50,7 +50,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		fireApparatus.getFireApparatusSpec().setDescription("A Fire Engine");
 		fireApparatus.getFireApparatusSpec().setMake("Pierce");
 		fireApparatus.getFireApparatusSpec().setModel("Arrow XT PUC");
-		fireApparatus.getFireApparatusSpec().setYear("2009");
+		fireApparatus.getFireApparatusSpec().setYear(2009);
 		fireApparatus.getFireApparatusSpec().setType("Pumper-Rescue");
 		addFireApparatusToDB(fireApparatus);
 		
@@ -60,12 +60,10 @@ public class FakeDatabase implements IDatabase, Serializable {
 			fireApparatus_1.getFireApparatusSpec().setDescription("A Fire Engine");
 			fireApparatus_1.getFireApparatusSpec().setMake("Pierce");
 			fireApparatus_1.getFireApparatusSpec().setModel("Arrow XT PUC");
-			fireApparatus_1.getFireApparatusSpec().setYear("2009");
+			fireApparatus_1.getFireApparatusSpec().setYear(2009);
 			fireApparatus_1.getFireApparatusSpec().setType("Pumper-Rescue");
 			addFireApparatusToDB(fireApparatus_1);
-		}
-
-		
+		}		
 	}
 
 	/**
@@ -142,6 +140,12 @@ public class FakeDatabase implements IDatabase, Serializable {
 	public List<Events> getEventsFromDB() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int addFireApparatusSpecToDB(FireApparatusSpec fireApparatusSpec) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 
