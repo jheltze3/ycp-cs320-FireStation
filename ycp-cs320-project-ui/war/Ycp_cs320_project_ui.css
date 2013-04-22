@@ -3,14 +3,22 @@
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
-	color: #777777;
+	color: Black;
 	margin: 40px 0px 70px;
 	font-size: 2em;
 	font-weight: bold;
 	text-align: center;
-	background-color: beige;
+	background-color: Silver;
 }
 
+h2 {
+	color: Black;
+	margin: 40px 0px 70px;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	background-color: red;
+}
 .sendButton {
   display: block;
   font-size: 16pt;
@@ -43,4 +51,27 @@ Title {
 }
 .fireStation-panelBackground {
 	background: #F7F2E0;
+	color: Black;
+	font-size: 18px;
+	font-weight: bolder;
+	background-color: Lime;
+}
+.ApparatusViewStyle {
+	color: Black;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: Red;
+}
+.ApparatusDetailViewStyle {
+	color: Black;
+	border-top: 3px solid Black;
+	border-right: Black;
+	border-bottom: Black;
+	border-left: Black;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: Red;
+}
+.ApparatusViewScrollPanelStyle {
+	border: 3px solid Black;
 }

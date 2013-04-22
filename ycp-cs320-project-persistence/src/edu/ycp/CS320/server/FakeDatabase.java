@@ -9,7 +9,9 @@ import java.util.TreeMap;
 import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.ContactInfoType;
 import edu.ycp.CS320.shared.Equipment;
+import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
@@ -116,6 +118,30 @@ public class FakeDatabase implements IDatabase, Serializable {
 
 	public ArrayList<FireApparatus> getFireApparatusFromDB() {
 		return fireApparatusList;
+	}
+
+	@Override
+	public ArrayList<FireCalendar> getFireEventFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void addEventsToDB() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Events> getEventsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

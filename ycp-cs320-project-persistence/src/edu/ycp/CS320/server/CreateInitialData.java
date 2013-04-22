@@ -11,16 +11,17 @@ public class CreateInitialData {
 	public static void main(String[] args) throws SQLException {
 		DerbyDatabase db = new DerbyDatabase();		
 		
+		
+
 		User drew = new User(-1, "drew", "pw");
 		User jake = new User(-1, "jake", "pw");
 		User josh = new User(-1, "josh", "pw");
-		User alana = new User(-1, "alana", "pw");
+		User alana = new User(-1, "alana", "pw");				
 		
 		db.addUserToDB(drew);
 		db.addUserToDB(jake);
 		db.addUserToDB(josh);
 		db.addUserToDB(alana);
-		
 		
 		FireApparatusSpec spec1 = new FireApparatusSpec("x", "y", "z", "2013");
 		FireApparatus app1 = new FireApparatus();

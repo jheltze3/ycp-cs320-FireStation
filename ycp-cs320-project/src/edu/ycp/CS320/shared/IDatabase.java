@@ -28,4 +28,12 @@ public interface IDatabase {
 	public ArrayList<FireApparatus> getFireApparatusFromDB();
 	
 	public int addFireApparatusToDB(FireApparatus fireApparatus);
+	
+	
+	public void addEventsToDB();
+	
+	public ArrayList<FireCalendar> getFireEventFromDB();
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar);
+	public List<Events> getEventsFromDB();
+
 }
