@@ -21,7 +21,7 @@ public class CreateInitialData {
 //		db.addUserToDB(josh);
 //		db.addUserToDB(alana);
 		
-		FireApparatusSpec spec1 = new FireApparatusSpec("x", "y", "z", 2013, "engine", "this an engine");		
+		FireApparatusSpec spec1 = new FireApparatusSpec("Pierce", "PUC", "Engine 62-1", 2009, "Engine", "this an engine");		
 		db.addFireApparatusSpecToDB(spec1);
 
 //		FireApparatus app1 = new FireApparatus();
