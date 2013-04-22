@@ -44,8 +44,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("ApparatusDetailViewStyle");
 		initWidget(layoutPanel);
-
-		layoutPanel.setSize("1200px", "203px");
+		layoutPanel.setSize("2200px", "150px");
 
 
 		lblName = new Label("Name: ");

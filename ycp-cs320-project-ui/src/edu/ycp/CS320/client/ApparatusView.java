@@ -45,7 +45,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 		layoutPanel.setStyleName("ApparatusViewStyle");
 //		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
-		layoutPanel.setSize("1142px", "761px");
+		layoutPanel.setSize("2200px", "1200px");
 		
 		lblTitle = new Label("Apparatus Page!!!");
 		lblTitle.setStyleName("Title");
@@ -77,8 +77,8 @@ public class ApparatusView extends Composite implements ISubscriber {
 		scrollPanel.setStyleName("ApparatusViewScrollPanelStyle");
 		layoutPanel.add(scrollPanel);
 
-		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1200.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 661.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1915.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 952.0, Unit.PX);
 		this.scrollPanelContents = new FlowPanel();
 		scrollPanelContents.setStyleName("ApparatusViewStyle");
 		scrollPanel.add(scrollPanelContents);
