@@ -216,8 +216,7 @@ public class theCalendar extends Composite implements ISubscriber {
 			public void onClick(ClickEvent event) {
 				
 				// this is to add events to the calendar
-				formPanel.setVisible(true);
-				
+				formPanel.setVisible(true);				
 				
 				
 			}
