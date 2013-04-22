@@ -18,3 +18,4 @@ public interface CalendarService extends RemoteService {
 	public boolean message(String message);
 	public ArrayList<FireCalendar> loadEvents();
 }
+

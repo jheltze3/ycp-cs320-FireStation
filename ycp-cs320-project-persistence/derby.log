@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Mon Apr 22 09:50:07 EDT 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013e-3202-3abb-0000031e6308 
+on database directory H:\firestation.db  with class loader sun.misc.Launcher$AppClassLoader@36a75e9f 
+Loaded from file:/H:/git/ycp-cs320-project/ycp-cs320-project-persistence/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_07-b11
+user.dir=H:\git\ycp-cs320-project\ycp-cs320-project-persistence
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

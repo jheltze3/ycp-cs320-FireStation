@@ -40,44 +40,51 @@ public class LoginView extends Composite implements ISubscriber {
 		 */		
 		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
+
 		initWidget(layoutPanel);		
 		layoutPanel.setSize("870px", "432px");
+
+		initWidget(layoutPanel);	
+
 		
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");
 		lblWelcomeToYork.setStyleName("Title");
 		lblWelcomeToYork.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(lblWelcomeToYork);
-		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 333.0, Unit.PX, 193.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 333.0, Unit.PX, 269.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 17.0, Unit.PX, 25.0, Unit.PX);		
 		
 		layoutPanel.add(lblLoginStatus);
-		layoutPanel.setWidgetLeftWidth(lblLoginStatus, 240, Unit.PX, 100, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblLoginStatus, 180, Unit.PX, 38, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblLoginStatus, 240, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblLoginStatus, 180, Unit.PX, 105.0, Unit.PX);
 		
 		Label lblUsername = new Label("Username:");
 		layoutPanel.add(lblUsername);
-		layoutPanel.setWidgetLeftWidth(lblUsername, 269.0, Unit.PX, 62.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblUsername, 106.0, Unit.PX, 18.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblUsername, 269.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblUsername, 90.0, Unit.PX, 34.0, Unit.PX);
 		
 		InlineLabel nlnlblPassword = new InlineLabel("Password:");
 		layoutPanel.add(nlnlblPassword);
-		layoutPanel.setWidgetLeftWidth(nlnlblPassword, 269.0, Unit.PX, 66.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(nlnlblPassword, 141.0, Unit.PX, 18.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(nlnlblPassword, 269.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(nlnlblPassword, 141.0, Unit.PX, 33.0, Unit.PX);
 		
 		
 		layoutPanel.add(username);
+
 		layoutPanel.setWidgetLeftWidth(username, 341.0, Unit.PX, 173.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(username, 96.0, Unit.PX, 34.0, Unit.PX);		
+
+		layoutPanel.setWidgetLeftWidth(username, 364.0, Unit.PX, 173.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(username, 90.0, Unit.PX, 34.0, Unit.PX);		
+
 		
 		layoutPanel.add(passwordTextBox);
-		layoutPanel.setWidgetLeftWidth(passwordTextBox, 341.0, Unit.PX, 173.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(passwordTextBox, 136.0, Unit.PX, 34.0, Unit.PX);		
+		layoutPanel.setWidgetLeftWidth(passwordTextBox, 364.0, Unit.PX, 173.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(passwordTextBox, 141.0, Unit.PX, 34.0, Unit.PX);		
 		
 		layoutPanel.add(btnLogIn);
-		layoutPanel.setWidgetLeftWidth(btnLogIn, 387.0, Unit.PX, 75.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnLogIn, 176.0, Unit.PX, 25.0, Unit.PX);
-		
-		
+		layoutPanel.setWidgetLeftWidth(btnLogIn, 447.0, Unit.PX, 90.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnLogIn, 200.0, Unit.PX, 34.0, Unit.PX);		
 		
 		btnLogIn.addClickHandler(new ClickHandler() {
 
@@ -119,8 +126,8 @@ public class LoginView extends Composite implements ISubscriber {
 			
 		});
 		layoutPanel.add(btnNewUser);
-		layoutPanel.setWidgetLeftWidth(btnNewUser, 387.0, Unit.PX, 90.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewUser, 207.0, Unit.PX, 25.0, Unit.PX);	
+		layoutPanel.setWidgetLeftWidth(btnNewUser, 447.0, Unit.PX, 90.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnNewUser, 249.0, Unit.PX, 36.0, Unit.PX);	
 		
 		
 		btnNewUser.addClickHandler(new ClickHandler() {

@@ -7,17 +7,13 @@ public class Form implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * TODO: create FormView page
-	 */
+	private static final long serialVersionUID = 1L;	
 	
 	private String name;
 	private String password;
 	private String address;
 	private ContactInfo contact = new ContactInfo();
-	private int id = -1;	
-	
+	private int id = -1;		
 	
 	public Form(){
 		//default constructor

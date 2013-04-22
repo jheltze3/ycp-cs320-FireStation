@@ -1,6 +1,9 @@
+
 package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
+
+
 
 public class FireCalendar implements Serializable{
 	/**
@@ -28,3 +31,4 @@ public class FireCalendar implements Serializable{
 
 	
 }
+

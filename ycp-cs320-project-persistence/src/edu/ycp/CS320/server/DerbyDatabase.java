@@ -14,6 +14,9 @@ import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
+
+import edu.ycp.CS320.shared.FireApparatusSpec;
+
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
@@ -87,46 +90,37 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				
-				PreparedStatement stmt = null;
+				//PreparedStatement stmtUsers = null;
+				PreparedStatement stmtApparatusSpec = null;
 				
 				try {
-					stmt = conn.prepareStatement(
-							"create table users (" +
-		/*id*/				"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-		/*name*/			"  name VARCHAR(64) NOT NULL, " +
-		/*pw*/				"  password VARCHAR(64) " +
+//					stmtUsers = conn.prepareStatement(
+//							"create table users (" +
+//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+//							"name VARCHAR(64) NOT NULL, " +
+//							"password VARCHAR(64) " +
+//							")"
+//													);
+					
+					stmtApparatusSpec = conn.prepareStatement(
+							"create table fire_apparatus_spec (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"make VARCHAR(64), " +
+							"model VARCHAR(64), " +
+							"name VARCHAR(64) NOT NULL, " +
+							"model_year INTEGER, " +
+							"type VARCHAR(64), " +
+							"description VARCHAR(64)" +
 							")"
-					);
-					stmt.executeUpdate();
+															);
+															
+															
+					//stmtUsers.executeUpdate();
+					stmtApparatusSpec.executeUpdate();
 					
 				} finally {
-					DBUtil.closeQuietly(stmt);
-				}
-				
-				return true;
-			}
-		});
-	}
-	
-	void populateDatabaseWithDemoData() throws SQLException {
-
-		databaseRun(new ITransaction<Boolean>() {
-			@Override
-			public Boolean run(Connection conn) throws SQLException {
-				
-				PreparedStatement stmt = null;			
-				
-				try {				
-					
-					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
-					
-					stmt.setInt(1, 1);				
-					
-					//FIXME: Trying to add data to database
-					
-					
-				} finally {
-					DBUtil.closeQuietly(stmt);
+					//DBUtil.closeQuietly(stmtUsers);
+					DBUtil.closeQuietly(stmtApparatusSpec);
 				}
 				
 				return true;
@@ -236,9 +230,12 @@ public class DerbyDatabase implements IDatabase {
 	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
 	
 	
+
+
 	
 	@Override
 	public ArrayList<FireCalendar> getFireEventFromDB() {
@@ -259,22 +256,59 @@ public class DerbyDatabase implements IDatabase {
 		user.setPassword(resultSet.getString(3));
 	}
 
-	//@Override
-//	public void addEventsToDB() {
-		// TODO Auto-generated method stub
-		
-	//}
 
-	@Override
-	public List<Events> getEventsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void addEventsToDB() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int addFireApparatusSpecToDB(final FireApparatusSpec fireApparatusSpec) {
+			databaseRun(new ITransaction<Boolean>() {
+			
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+			
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				try{
+					
+				stmt = conn.prepareStatement("INSERT INTO fire_apparatus_spec (make, model, name, model_year, type, description)" +
+											 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
+				
+				stmt.setString(1, fireApparatusSpec.getMake());
+				stmt.setString(2, fireApparatusSpec.getModel());
+				stmt.setString(3, fireApparatusSpec.getName());
+				stmt.setInt(4, fireApparatusSpec.getYear());
+				stmt.setString(5, fireApparatusSpec.getType());
+				stmt.setString(6,  fireApparatusSpec.getDescription());
+				
+				stmt.executeUpdate();
+				
+				keys = stmt.getGeneratedKeys();
+				if (!keys.next()) {
+					throw new SQLException("Couldn't get generated key");
+				}
+				
+				fireApparatusSpec.setId(keys.getInt(1));
+				
+				return null;
+				
+				} finally {
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(keys);
+				}
+			}	
+		});			return 0;
+
+	}
+
+	@Override
+	public List<Events> getEventsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

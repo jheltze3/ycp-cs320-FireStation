@@ -29,6 +29,9 @@ public interface IDatabase {
 	
 	public int addFireApparatusToDB(FireApparatus fireApparatus);
 	
+
+	public int addFireApparatusSpecToDB(FireApparatusSpec fireApparatusSpec);	
+
 	
 	public void addEventsToDB();
 	
