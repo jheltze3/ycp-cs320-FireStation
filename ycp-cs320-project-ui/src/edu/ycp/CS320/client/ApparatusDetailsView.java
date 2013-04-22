@@ -129,7 +129,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		lblModel_1.setText(model.getFireApparatusSpec().getModel());
 		lblType_1.setText(model.getFireApparatusSpec().getType());
 		lblDescription_1.setText(model.getFireApparatusSpec().getDescription());
-		lblYear_1.setText(model.getFireApparatusSpec().getYear());
+		//lblYear_1.setText(model.getFireApparatusSpec().getYear());
 	}
 
 	@Override

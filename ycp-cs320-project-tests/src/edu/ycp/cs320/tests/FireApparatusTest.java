@@ -28,7 +28,7 @@ public class FireApparatusTest {
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus01).
 		getFireApparatusSpec().setName("Engine 62-1");
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus01).
-		getFireApparatusSpec().setYear("2009");
+		getFireApparatusSpec().setYear(2009);
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus01).
 		getFireApparatusSpec().setType("Pumper-Rescue");
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus01).
@@ -42,7 +42,7 @@ public class FireApparatusTest {
 				get(indexFireApparatus01).getFireApparatusSpec().getModel());
 		assertEquals("Engine 62-1", 	fireApparatusDB.getFireApparatusFromDB().
 				get(indexFireApparatus01).getFireApparatusSpec().getName());
-		assertEquals("2009", 			fireApparatusDB.getFireApparatusFromDB().
+		assertEquals(2009, 			fireApparatusDB.getFireApparatusFromDB().
 				get(indexFireApparatus01).getFireApparatusSpec().getYear());
 		assertEquals("Pumper-Rescue", 	fireApparatusDB.getFireApparatusFromDB().
 				get(indexFireApparatus01).getFireApparatusSpec().getType());
@@ -62,7 +62,7 @@ public class FireApparatusTest {
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus02).
 		getFireApparatusSpec().setName("Rescue 62");
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus02).
-		getFireApparatusSpec().setYear("2013");
+		getFireApparatusSpec().setYear(2013);
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus02).
 		getFireApparatusSpec().setType("Pumper-Rescue");
 		fireApparatusDB.getFireApparatusFromDB().get(indexFireApparatus02).
@@ -75,7 +75,7 @@ public class FireApparatusTest {
 				get(indexFireApparatus02).getFireApparatusSpec().getModel());
 		assertEquals("Rescue 62", 		fireApparatusDB.getFireApparatusFromDB().
 				get(indexFireApparatus02).getFireApparatusSpec().getName());
-		assertEquals("2013", 			fireApparatusDB.getFireApparatusFromDB().
+		assertEquals(2013, 			fireApparatusDB.getFireApparatusFromDB().
 				get(indexFireApparatus02).getFireApparatusSpec().getYear());
 		assertEquals("Pumper-Rescue", 	fireApparatusDB.getFireApparatusFromDB().
 				get(indexFireApparatus02).getFireApparatusSpec().getType());
