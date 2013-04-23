@@ -1,6 +1,8 @@
 package edu.ycp.CS320.shared;
 
-public class ContactInfo {
+import java.io.Serializable;
+
+public class ContactInfo implements Serializable {
 	private int userId;
 	private ContactInfoType type;
 	private String homePhoneNumber = "";

@@ -1,6 +1,10 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+<<<<<<< HEAD
+>>>>>>>=choose_remote_name/master
+=======
 >>>>>>>=refs/remotes/Drew/master
+>>>>>>> refs/remotes/Drew/master
 eclipse.preferences.version=1
 lastWarOutDir=H\:/git/ycp-cs320-project/ycp-cs320-project-ui/war
 warSrcDir=war

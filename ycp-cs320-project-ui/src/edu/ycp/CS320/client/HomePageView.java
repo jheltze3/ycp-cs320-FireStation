@@ -2,20 +2,18 @@ package edu.ycp.CS320.client;
 
 
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.Button;
-
-
-
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
 
 import edu.ycp.CS320.shared.ContactInfo;
 import com.google.gwt.user.client.ui.InlineLabel;
+
 
 /**
  * @author drew
@@ -57,7 +55,7 @@ public class HomePageView extends Composite{
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
-				
+
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
 			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
@@ -117,6 +115,7 @@ public class HomePageView extends Composite{
 			//	Ycp_cs320_project_ui.setView(UsersView);
 				
 				
+				
 			}
 		});
 		
@@ -140,7 +139,9 @@ public class HomePageView extends Composite{
 		btnContact.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				Ycp_cs320_project_ui.setView(new ContactInfoView());
+				ContactInfoView view = new ContactInfoView();
+				Ycp_cs320_project_ui.setView(view);
+				view.activate();
 			}
 		});
 	}
