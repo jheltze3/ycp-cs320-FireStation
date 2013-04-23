@@ -90,6 +90,7 @@ public class DerbyDatabase implements IDatabase {
 				
 				//PreparedStatement stmtUsers = null;
 				PreparedStatement stmtApparatusSpec = null;
+				PreparedStatement stmtApparatus = null;
 				
 				try {
 //					stmtUsers = conn.prepareStatement(
@@ -111,6 +112,8 @@ public class DerbyDatabase implements IDatabase {
 							"description VARCHAR(64)" +
 							")"
 															);
+					
+					stmtApparatus = conn.prepareStatement()
 															
 															
 					//stmtUsers.executeUpdate();
