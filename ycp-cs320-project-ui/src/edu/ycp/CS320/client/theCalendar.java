@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.sql.SQLException;
+
 import java.text.*;     // Used for date formatting.
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,6 +25,8 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
+import edu.ycp.CS320.server.DerbyDatabase;
+import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
 
@@ -41,6 +45,9 @@ public class theCalendar extends Composite implements ISubscriber {
 
 	@SuppressWarnings("deprecation")
 	public theCalendar() {
+		
+		// DerbyDatabase db = new DerbyDatabase();	
+		//final FireCalendarEvent fireCalendar = new FireCalendarEvent();
 		
 		this.formPanel = new FormPanel();
 		absolutePanel.add(formPanel, 21, 269);
@@ -109,6 +116,7 @@ public class theCalendar extends Composite implements ISubscriber {
 			public void onClick(ClickEvent event) {
 				// send the information to the database
 				formPanel.setVisible(false);
+				//addFireCalendarEventToDB(final FireCalendarEvent fireCalendar)
 				
 			}
 		});
@@ -216,8 +224,9 @@ public class theCalendar extends Composite implements ISubscriber {
 			public void onClick(ClickEvent event) {
 				
 				// this is to add events to the calendar
-				formPanel.setVisible(true);				
+				formPanel.setVisible(true);		
 				
+				//	db.addFireCalendarEventToDB( fireCalendar);
 				
 			}
 		});
@@ -266,12 +275,12 @@ public class theCalendar extends Composite implements ISubscriber {
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 				Date date1 = datePicker.getValue();
-				count++;
+				//count++;
 				lblDate.setText(dateFormat.format(date1));
-				this.nEvents = numEvents.getText(); // this is be updated when
+				//this.nEvents = numEvents.getText(); // this is be updated when
 			
-					listBox.addItem(count + " Events Today");
-					numEvents.setText(Integer.toString(count));
+				//	listBox.addItem(count + " Events Today");
+				//	numEvents.setText(Integer.toString(count));
 				
 
 			}

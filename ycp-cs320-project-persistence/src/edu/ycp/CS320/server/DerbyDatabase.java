@@ -94,6 +94,7 @@ public class DerbyDatabase implements IDatabase {
 				
 				//PreparedStatement stmtUsers = null;
 				PreparedStatement stmtApparatusSpec = null;
+				PreparedStatement stmtCalendar = null;
 				
 				try {
 //					stmtUsers = conn.prepareStatement(
@@ -104,7 +105,7 @@ public class DerbyDatabase implements IDatabase {
 //							")"
 //													);
 					
-					stmtApparatusSpec = conn.prepareStatement(
+				/*	stmtApparatusSpec = conn.prepareStatement(
 							"create table fire_apparatus_spec (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
 							"make VARCHAR(64), " +
@@ -114,15 +115,28 @@ public class DerbyDatabase implements IDatabase {
 							"type VARCHAR(64), " +
 							"description VARCHAR(64)" +
 							")"
+															);*/
+					stmtCalendar = conn.prepareStatement(
+							"create table fire_calendar (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"title VARCHAR(64), " +
+							"location VARCHAR(64), " +
+							"StartTime VARCHAR(64) NOT NULL, " +
+							"EndTime VARCHAR(64), " +
+							"description VARCHAR(64), " +
+							"Date VARCHAR(64)" +
+							")"
 															);
 															
 															
 					//stmtUsers.executeUpdate();
-					stmtApparatusSpec.executeUpdate();
+					//stmtApparatusSpec.executeUpdate();
+					stmtCalendar.executeUpdate();
 					
 				} finally {
 					//DBUtil.closeQuietly(stmtUsers);
-					DBUtil.closeQuietly(stmtApparatusSpec);
+					//DBUtil.closeQuietly(stmtApparatusSpec);
+					DBUtil.closeQuietly(stmtCalendar);
 				}
 				
 				return true;
