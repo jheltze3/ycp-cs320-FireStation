@@ -21,8 +21,8 @@ public class CreateInitialData {
 //		db.addUserToDB(josh);
 //		db.addUserToDB(alana);
 		
-		FireApparatusSpec spec1 = new FireApparatusSpec("Pierce", "PUC", "Engine 62-5", 2009, "Engine", "this an engine");		
-		db.addFireApparatusSpecToDB(spec1);
+		FireApparatus fireApparatus = new FireApparatus(new FireApparatusSpec("Pierce", "PUC", "Engine 62-5", 2009, "Engine", "this an engine"));		
+		db.addFireApparatusToDB(fireApparatus);
 
 //		FireApparatus app1 = new FireApparatus();
 //		app1.setFireApparatusSpec(spec1); TODO: implement addFireApparatus derby method
