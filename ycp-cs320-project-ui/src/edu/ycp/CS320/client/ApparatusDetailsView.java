@@ -44,37 +44,42 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("ApparatusDetailViewStyle");
 		initWidget(layoutPanel);
-
-		layoutPanel.setSize("1200px", "203px");
+		layoutPanel.setSize("2200px", "150px");
 
 
 		lblName = new Label("Name: ");
-		lblName.setStyleName("ApparatusLabels");
+		lblName.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		lblName.setStyleName("ApparatusDetailLabels");
 		layoutPanel.add(lblName);	
 		layoutPanel.setWidgetLeftWidth(lblName, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblName, 0.0, Unit.PX, 20.0, Unit.PX);
 		
 		lblMake = new Label("Make: ");
+		lblMake.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblMake);	
 		layoutPanel.setWidgetLeftWidth(lblMake, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblMake, 20.0, Unit.PX, 20.0, Unit.PX);
 		
 		lblModel = new Label("Model: ");
+		lblModel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblModel);	
 		layoutPanel.setWidgetLeftWidth(lblModel, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblModel, 40.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblType = new Label("Type: ");
+		lblType.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblType);	
 		layoutPanel.setWidgetLeftWidth(lblType, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblType, 60.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblDescription = new Label("Description: ");
+		lblDescription.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblDescription);
 		layoutPanel.setWidgetLeftWidth(lblDescription, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblDescription, 80.0, Unit.PX, 20.0, Unit.PX);
 				
 		lblYear = new Label("Year: ");
+		lblYear.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblYear);
 		layoutPanel.setWidgetLeftWidth(lblYear, 0.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblYear, 100.0, Unit.PX, 20.0, Unit.PX);
@@ -83,31 +88,43 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		
 		
 		lblName_1 = new Label("add Text");
+		lblName_1.setStyleName("ApparatusDetailsText");
+		lblName_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblName_1);	
 		layoutPanel.setWidgetLeftWidth(lblName_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblName_1, 0.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblMake_1 = new Label("add Text");
+		lblMake_1.setStyleName("ApparatusDetailsText");
+		lblMake_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblMake_1);	
 		layoutPanel.setWidgetLeftWidth(lblMake_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblMake_1, 20.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblModel_1 = new Label("add Text");
+		lblModel_1.setStyleName("ApparatusDetailsText");
+		lblModel_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblModel_1);
 		layoutPanel.setWidgetLeftWidth(lblModel_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblModel_1, 40.0, Unit.PX, 20.0, Unit.PX);
 				
 		lblType_1 = new Label("add Text");
+		lblType_1.setStyleName("ApparatusDetailsText");
+		lblType_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblType_1);	
 		layoutPanel.setWidgetLeftWidth(lblType_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblType_1, 60.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblDescription_1 = new Label("add Text");
+		lblDescription_1.setStyleName("ApparatusDetailsText");
+		lblDescription_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblDescription_1);	
 		layoutPanel.setWidgetLeftWidth(lblDescription_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblDescription_1, 80.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblYear_1 = new Label("add Text");
+		lblYear_1.setStyleName("ApparatusDetailsText");
+		lblYear_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblYear_1);
 		layoutPanel.setWidgetLeftWidth(lblYear_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblYear_1, 100.0, Unit.PX, 20.0, Unit.PX);
@@ -125,7 +142,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		lblModel_1.setText(model.getFireApparatusSpec().getModel());
 		lblType_1.setText(model.getFireApparatusSpec().getType());
 		lblDescription_1.setText(model.getFireApparatusSpec().getDescription());
-		//lblYear_1.setText(model.getFireApparatusSpec().getYear());
+		lblYear_1.setText(Integer.toString(model.getFireApparatusSpec().getYear()));
 	}
 
 	@Override

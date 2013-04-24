@@ -45,7 +45,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 		layoutPanel.setStyleName("ApparatusViewStyle");
 //		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
-		layoutPanel.setSize("1142px", "761px");
+		layoutPanel.setSize("2200px", "1200px");
 		
 		lblTitle = new Label("Apparatus Page!!!");
 		lblTitle.setStyleName("Title");
@@ -58,71 +58,9 @@ public class ApparatusView extends Composite implements ISubscriber {
 		lblEquipmentHeader.setStyleName("ApparatusLabels");
 		layoutPanel.add(lblEquipmentHeader);
 		
-		layoutPanel.setWidgetLeftWidth(lblEquipmentHeader, 0.0, Unit.PX, 79.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblEquipmentHeader, 17.0, Unit.PX, 18.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblEquipmentHeader, 0.0, Unit.PX, 92.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblEquipmentHeader, 17.0, Unit.PX, 30.0, Unit.PX);
 
-//		
-//		lblName = new Label("Name:");
-//		layoutPanel.add(lblName);
-//		layoutPanel.setWidgetLeftWidth(lblName, 20.0, Unit.PX, 56.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblName, 98.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblName_1 = new Label("name_1");
-//		layoutPanel.add(lblName_1);
-//		layoutPanel.setWidgetLeftWidth(lblName_1, 107.0, Unit.PX, 193.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblName_1, 98.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblMake = new Label("Make:");
-//		layoutPanel.add(lblMake);
-//		layoutPanel.setWidgetLeftWidth(lblMake, 20.0, Unit.PX, 56.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblMake, 146.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblModel = new Label("Model:");
-//		layoutPanel.add(lblModel);
-//		layoutPanel.setWidgetLeftWidth(lblModel, 20.0, Unit.PX, 56.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblModel, 171.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblType = new Label("Type:");
-//		layoutPanel.add(lblType);
-//		layoutPanel.setWidgetLeftWidth(lblType, 20.0, Unit.PX, 56.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblType, 195.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblDescription = new Label("Description:");
-//		layoutPanel.add(lblDescription);
-//		layoutPanel.setWidgetLeftWidth(lblDescription, 20.0, Unit.PX, 79.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblDescription, 219.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblmake_1 = new Label("make_1");
-//		layoutPanel.add(lblmake_1);
-//		layoutPanel.setWidgetLeftWidth(lblmake_1, 107.0, Unit.PX, 193.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblmake_1, 146.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblmodel_1 = new Label("model_1");
-//		lblmodel_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-//		layoutPanel.add(lblmodel_1);
-//		layoutPanel.setWidgetLeftWidth(lblmodel_1, 107.0, Unit.PX, 193.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblmodel_1, 171.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lbltype_1 = new Label("type_1");
-//		layoutPanel.add(lbltype_1);
-//		layoutPanel.setWidgetLeftWidth(lbltype_1, 107.0, Unit.PX, 193.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lbltype_1, 195.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lbldescription_1 = new Label("Description_1");
-//		layoutPanel.add(lbldescription_1);
-//		layoutPanel.setWidgetLeftWidth(lbldescription_1, 107.0, Unit.PX, 193.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lbldescription_1, 219.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblYear = new Label("Year:");
-//		layoutPanel.add(lblYear);
-//		layoutPanel.setWidgetLeftWidth(lblYear, 20.0, Unit.PX, 56.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblYear, 122.0, Unit.PX, 18.0, Unit.PX);
-//		
-//		lblYear_1 = new Label("year_1");
-//		layoutPanel.add(lblYear_1);
-//		layoutPanel.setWidgetLeftWidth(lblYear_1, 107.0, Unit.PX, 56.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(lblYear_1, 122.0, Unit.PX, 18.0, Unit.PX);
-		
 		btnHomePage = new Button("Home Page");
 		layoutPanel.add(btnHomePage);
 		layoutPanel.setWidgetLeftWidth(btnHomePage, 1039.0, Unit.PX, 103.0, Unit.PX);
@@ -139,8 +77,8 @@ public class ApparatusView extends Composite implements ISubscriber {
 		scrollPanel.setStyleName("ApparatusViewScrollPanelStyle");
 		layoutPanel.add(scrollPanel);
 
-		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1200.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 661.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1915.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 952.0, Unit.PX);
 		this.scrollPanelContents = new FlowPanel();
 		scrollPanelContents.setStyleName("ApparatusViewStyle");
 		scrollPanel.add(scrollPanelContents);
