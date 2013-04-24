@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Label;
 
+import edu.ycp.CS320.server.ViewUsers;
 import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.IPublisher;
@@ -22,6 +23,8 @@ public class ContactInfoView extends Composite implements ISubscriber {
 	private Button btnHomePage;
 	
 	private List<ContactInfo> contactInfoList;
+	private ListBox listBox;
+	private ListBox listBox_1;
 	
 	public ContactInfoView() {
 		
@@ -29,7 +32,7 @@ public class ContactInfoView extends Composite implements ISubscriber {
 		initWidget(layout);
 		layout.setSize("627px", "523px");
 		
-		final ListBox listBox = new ListBox();
+		listBox = new ListBox();
 		listBox.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -41,7 +44,7 @@ public class ContactInfoView extends Composite implements ISubscriber {
 		layout.setWidgetTopHeight(listBox, 48.0, Unit.PX, 339.0, Unit.PX);
 		listBox.setVisibleItemCount(5);
 		
-		ListBox listBox_1 = new ListBox();
+		listBox_1 = new ListBox();
 		layout.add(listBox_1);
 		layout.setWidgetLeftWidth(listBox_1, 365.0, Unit.PX, 235.0, Unit.PX);
 		layout.setWidgetTopHeight(listBox_1, 48.0, Unit.PX, 339.0, Unit.PX);
@@ -103,6 +106,9 @@ public class ContactInfoView extends Composite implements ISubscriber {
 	
 	private void update() {
 		// clear list box, add all contacts to it
-		
+		listBox.clear();
+		for (ContactInfo ci : contactInfoList) {
+			listBox.addItem(ci.getName());
+		}
 	}
 }

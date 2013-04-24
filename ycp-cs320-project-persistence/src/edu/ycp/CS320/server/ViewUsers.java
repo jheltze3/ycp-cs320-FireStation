@@ -7,6 +7,5 @@ public class ViewUsers {
 	public static void main(String[] args) throws SQLException {
 		DerbyDatabase db = new DerbyDatabase();
 		
-		
 	}
 }
