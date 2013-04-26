@@ -60,13 +60,6 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	private<E> E databaseRun(ITransaction<E> transaction) {
 		// FIXME: retry if transaction times out due to deadlock
 		
@@ -93,11 +86,8 @@ public class DerbyDatabase implements IDatabase {
 	void createTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
-			public Boolean run(Connection conn) throws SQLException {
-				
-//				PreparedStatement stmtUsers = null;
-				PreparedStatement stmtApparatusSpec = null;
-				
+			public Boolean run(Connection conn) throws SQLException {				
+				PreparedStatement stmtApparatusSpec = null;				
 				try {
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
@@ -105,8 +95,7 @@ public class DerbyDatabase implements IDatabase {
 //							"name VARCHAR(64) NOT NULL, " +
 //							"password VARCHAR(64) " +
 //							")"
-//													);
-					
+//													);					
 					stmtApparatusSpec = conn.prepareStatement(
 							"create table fire_apparatus_spec (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
@@ -118,16 +107,27 @@ public class DerbyDatabase implements IDatabase {
 							"description VARCHAR(64)" +
 							")"
 															);
-															
-															
-//					stmtUsers.executeUpdate();
 					stmtApparatusSpec.executeUpdate();
 					
 				} finally {
-//					DBUtil.closeQuietly(stmtUsers);
 					DBUtil.closeQuietly(stmtApparatusSpec);
-				}
-				
+				}				
+				return true;
+			}
+		});
+	}
+	
+	void dropTables() throws SQLException {
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {				
+				PreparedStatement stmtDropApparatus = null;
+				try {					
+					stmtDropApparatus = conn.prepareStatement("DROP TABLE fire_apparatus_spec");
+					stmtDropApparatus.executeUpdate();					
+				} finally {
+					DBUtil.closeQuietly(stmtDropApparatus);
+				}				
 				return true;
 			}
 		});

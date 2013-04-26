@@ -60,7 +60,7 @@ Title {
 	color: Black;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: Red;
+	background-color: #cc0000;
 }
 .ApparatusDetailViewStyle {
 	color: Black;
@@ -70,7 +70,7 @@ Title {
 	border-left: Black;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: Red;
+	background-color: #cc0000;
 }
 .ApparatusViewScrollPanelStyle {
 	border: 3px solid Black;
