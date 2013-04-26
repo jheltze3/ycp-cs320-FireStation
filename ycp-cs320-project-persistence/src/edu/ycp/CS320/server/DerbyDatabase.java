@@ -93,7 +93,7 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean run(Connection conn) throws SQLException {
 				
 				//PreparedStatement stmtUsers = null;
-				PreparedStatement stmtApparatusSpec = null;
+				//PreparedStatement stmtApparatusSpec = null;
 				PreparedStatement stmtCalendar = null;
 				
 				try {
@@ -117,7 +117,7 @@ public class DerbyDatabase implements IDatabase {
 							")"
 															);*/
 					stmtCalendar = conn.prepareStatement(
-							"create table fire_calendar (" +
+							"create table fire_calender (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
 							"title VARCHAR(64), " +
 							"location VARCHAR(64), " +
@@ -178,15 +178,11 @@ public class DerbyDatabase implements IDatabase {
 		
 	}
 	
-
-
 	@Override
 	public void addContactToDB() {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 	@Override
 	public List<ContactInfo> getContactsFromDB() {
@@ -205,10 +201,6 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
-
 	
 	@Override
 	public ArrayList<FireCalendar> getFireEventFromDB() {

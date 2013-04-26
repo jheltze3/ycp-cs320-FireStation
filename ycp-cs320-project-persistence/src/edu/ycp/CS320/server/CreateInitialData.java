@@ -28,8 +28,8 @@ public class CreateInitialData {
 		db.addFireCalendarEventToDB(event1);
 		
 		
-		FireApparatusSpec spec1 = new FireApparatusSpec("x", "y", "z", 2013, "engine", "this an engine");		
-		db.addFireApparatusSpecToDB(spec1);
+	//FireApparatusSpec spec1 = new FireApparatusSpec("x", "y", "z", 2013, "engine", "this an engine");		
+	//	db.addFireApparatusSpecToDB(spec1);
 
 	//	User drew = new User(-1, "drew", "pw");
 		//User jake = new User(-1, "jake", "pw");
