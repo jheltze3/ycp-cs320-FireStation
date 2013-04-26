@@ -87,7 +87,8 @@ public class DerbyDatabase implements IDatabase {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {				
-				PreparedStatement stmtApparatusSpec = null;				
+//				PreparedStatement stmtUsers = null;
+				PreparedStatement stmtApparatusSpec = null;			
 				try {
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
@@ -106,7 +107,7 @@ public class DerbyDatabase implements IDatabase {
 							"type VARCHAR(64), " +
 							"description VARCHAR(64)" +
 							")"
-															);
+															);		
 					stmtApparatusSpec.executeUpdate();
 					
 				} finally {
@@ -230,10 +231,9 @@ public class DerbyDatabase implements IDatabase {
 	
 	@Override
 	public ArrayList<FireCalendar> getFireEventFromDB() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
-
 
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
@@ -333,7 +333,6 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
 
 
 }
