@@ -140,7 +140,6 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return 0;
 	}
 
-	@Override
 	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
 		// TODO Auto-generated method stub
 		return 0;

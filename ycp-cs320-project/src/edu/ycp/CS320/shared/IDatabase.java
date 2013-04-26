@@ -40,9 +40,12 @@ public interface IDatabase {
 
 	List<Equipment> getEquipmentFromDB();
 
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar);
+
+	int addFireCalendarEventToDB(FireCalendar fireCalendar);
 
 	int addFireCalendarEventToDB(FireCalendarEvent fireCalendar);
+
+
 
 
 

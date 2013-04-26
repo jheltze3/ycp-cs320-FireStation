@@ -171,6 +171,18 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+	
+	public int addFireApparatusToDB(FireApparatus fireApparatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	@Override
 	public void addEquipmentToDB() {
@@ -208,11 +220,8 @@ public class DerbyDatabase implements IDatabase {
 		return null;
 	}
 
-	@Override
-	public int addFireApparatusToDB(FireApparatus fireApparatus) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
+
 
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
@@ -265,7 +274,9 @@ public class DerbyDatabase implements IDatabase {
 
 	@Override
 	public List<Events> getEventsFromDB() {
-		// TODO Auto-generated method stub
+					// /THIS IS TO GET THE EVENTS FROM THE DATABASE AND STORE THEM INTO THE OBJECT
+			
+		
 		return null;
 	}
 
@@ -276,7 +287,7 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
 	public int addFireCalendarEventToDB(final FireCalendarEvent fireCalendar) {
 		databaseRun(new ITransaction<Boolean>() {
 			
@@ -316,11 +327,10 @@ public class DerbyDatabase implements IDatabase {
 		});			return 0;
 	}
 
-	@Override
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
+
+
+
 
 
 
