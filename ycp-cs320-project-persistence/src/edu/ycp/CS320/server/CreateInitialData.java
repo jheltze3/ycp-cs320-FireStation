@@ -2,10 +2,7 @@ package edu.ycp.CS320.server;
 
 import java.sql.SQLException;
 
-import edu.ycp.CS320.shared.FireApparatus;
-import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendarEvent;
-import edu.ycp.CS320.shared.User;
 
 public class CreateInitialData {
 
@@ -23,10 +20,7 @@ public class CreateInitialData {
 //		db.addUserToDB(alana);
 		
 
-		
-		FireCalendarEvent event1 = new FireCalendarEvent("TITLE", "LOCATION", "STARTTIME", "ENDTIME", "DESCRIPTION", "DATE");		
-		db.addFireCalendarEventToDB(event1);
-		
+
 		
 	//FireApparatusSpec spec1 = new FireApparatusSpec("x", "y", "z", 2013, "engine", "this an engine");		
 	//	db.addFireApparatusSpecToDB(spec1);

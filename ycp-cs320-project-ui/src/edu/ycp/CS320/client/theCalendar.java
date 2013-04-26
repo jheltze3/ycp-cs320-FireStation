@@ -227,6 +227,9 @@ public class theCalendar extends Composite implements ISubscriber {
 				formPanel.setVisible(true);		
 				
 				//	db.addFireCalendarEventToDB( fireCalendar);
+				DerbyDatabase db = new DerbyDatabase();
+				FireCalendarEvent event1 = new FireCalendarEvent("TITLE", "LOCATION", "STARTTIME", "ENDTIME", "DESCRIPTION", "DATE");		
+					db.addFireCalendarEventToDB(event1);
 				
 			}
 		});
