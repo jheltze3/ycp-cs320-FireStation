@@ -77,5 +77,12 @@ public class FireCalendarEvent implements Serializable{
 	}
 
 
+
+	public FireCalendarEvent getFireCalendarSpec() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
 

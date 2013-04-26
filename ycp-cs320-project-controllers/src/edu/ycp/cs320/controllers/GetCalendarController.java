@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireCalendar;
+import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IDatabase;
 
 
@@ -26,7 +27,7 @@ public class GetCalendarController implements Serializable{
 
 	public ArrayList<FireCalendar> getEvent(IDatabase db){
 		
-		FireCalendar fireCalendar = new FireCalendar();
+		FireCalendarEvent fireCalendar = new FireCalendarEvent();
 		fireCalendar.getFireCalendarSpec().setTitle("FOCE TEST");		
 		fireCalendar.getFireCalendarSpec().setDescription("A terrible test that invloves alot of work");
 		fireCalendar.getFireCalendarSpec().setStartTime("11:00 A.M");
@@ -37,7 +38,7 @@ public class GetCalendarController implements Serializable{
 		db.addFireCalendarEventToDB(fireCalendar);
 		
 		for(int i=0; i<4; i++){
-			FireCalendar fireCalendar1 = new FireCalendar();
+			FireCalendarEvent fireCalendar1 = new FireCalendarEvent();
 			fireCalendar1.getFireCalendarSpec().setTitle("FOCE TEST");		
 			fireCalendar1.getFireCalendarSpec().setDescription("A terrible test that invloves alot of work");
 			fireCalendar1.getFireCalendarSpec().setStartTime("11:00 A.M");

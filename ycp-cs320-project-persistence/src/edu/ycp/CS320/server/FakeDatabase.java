@@ -55,7 +55,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		fireApparatus.getFireApparatusSpec().setModel("Arrow XT PUC");
 		fireApparatus.getFireApparatusSpec().setYear(2009);
 		fireApparatus.getFireApparatusSpec().setType("Pumper-Rescue");
-		addFireApparatusToDB(fireApparatus);
+		addFireApparatusToDBOld(fireApparatus);
 		
 		for(int i=0; i<4; i++){
 			FireApparatus fireApparatus_1 = new FireApparatus();
@@ -65,7 +65,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 			fireApparatus_1.getFireApparatusSpec().setModel("Arrow XT PUC");
 			fireApparatus_1.getFireApparatusSpec().setYear(2009);
 			fireApparatus_1.getFireApparatusSpec().setType("Pumper-Rescue");
-			addFireApparatusToDB(fireApparatus_1);
+			addFireApparatusToDBOld(fireApparatus_1);
 		}		
 	}
 
@@ -91,7 +91,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 	 * @param fireApparatus
 	 * @return The number of FireApparatus objects in the list
 	 */
-	public int addFireApparatusToDB(FireApparatus fireApparatus) {
+	public int addFireApparatusToDBOld(FireApparatus fireApparatus) {
 		fireApparatusList.add(fireApparatus);
 		
 		return fireApparatusList.size()-1;
@@ -135,14 +135,10 @@ public class FakeDatabase implements IDatabase, Serializable {
 
 
 	@Override
-	public int addFireApparatusSpecToDB(FireApparatusSpec fireApparatusSpec) {
+	public int addFireApparatusToDB(FireApparatus fireApparatus) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
 
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -154,10 +150,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 
 
 
-
-	
-
-	
-	
-
 }
+	
+
+

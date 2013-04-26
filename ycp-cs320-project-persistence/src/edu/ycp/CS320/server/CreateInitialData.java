@@ -2,6 +2,8 @@ package edu.ycp.CS320.server;
 
 import java.sql.SQLException;
 
+import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 
 public class CreateInitialData {
@@ -19,6 +21,7 @@ public class CreateInitialData {
 //		db.addUserToDB(josh);
 //		db.addUserToDB(alana);
 		
+
 
 
 		
@@ -46,7 +49,16 @@ public class CreateInitialData {
 //		FireApparatus app1 = new FireApparatus();
 //		app1.setFireApparatusSpec(spec1); TODO: implement addFireApparatus derby method
 
+
+		FireApparatus fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
+		db.addFireApparatusToDB(fireApparatus);
 		
+		fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Rescue 62", 2013, "Rescue", "This is the new rescue unit on order."));		
+		db.addFireApparatusToDB(fireApparatus);
+		
+		fireApparatus = new FireApparatus(null, new FireApparatusSpec("American Le France", "Unknown", "Engine 62-5", 2002, "Tanker", "This pumper-tanker supplies water at a fire scene"));		
+		db.addFireApparatusToDB(fireApparatus);
+
 		System.out.println("Successfully created initial data");
 	}
 
