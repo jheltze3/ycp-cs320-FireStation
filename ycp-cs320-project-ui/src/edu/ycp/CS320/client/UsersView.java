@@ -14,7 +14,7 @@ public class UsersView extends Composite{
 	private Label lblUsers;
 	
 	public UsersView() {
-		DerbyDatabase derbyDB = new DerbyDatabase();
+//		DerbyDatabase derbyDB = new DerbyDatabase();
 		final LayoutPanel layout = new LayoutPanel();
 		initWidget(layout);
 		

@@ -17,7 +17,7 @@ import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
 import com.google.gwt.user.client.ui.Button;
-
+//add commment
 public class ContactInfoView extends Composite implements ISubscriber {
 	private Button btnHomePage;
 	
