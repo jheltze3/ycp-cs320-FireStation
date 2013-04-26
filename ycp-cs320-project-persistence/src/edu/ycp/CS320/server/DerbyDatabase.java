@@ -192,9 +192,7 @@ public class DerbyDatabase implements IDatabase {
 				try{
 					
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
-											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-				
-			
+											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
 				
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getPassword());
@@ -250,17 +248,6 @@ public class DerbyDatabase implements IDatabase {
 		user.setPassword(resultSet.getString(3));
 	}
 
-	@Override
-	public List<Events> getEventsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addEventsToDB() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public int addFireApparatusToDB(final FireApparatus fireApparatus) {
