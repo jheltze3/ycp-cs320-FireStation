@@ -26,11 +26,7 @@ public class LoginView extends Composite implements ISubscriber {
 	private Button btnNewUser = new Button("New User?");
 	public TextBox username = new TextBox();
 	private PasswordTextBox passwordTextBox = new PasswordTextBox();
-	private Label lblLoginStatus = new Label("Log in or Create a new Account");	
-	
-
-	
-	
+	private Label lblLoginStatus = new Label("Log in or Create a new Account");		
 	
 	public LoginView() {			
 		/**
@@ -50,7 +46,7 @@ public class LoginView extends Composite implements ISubscriber {
 		lblWelcomeToYork.setStyleName("Title");
 		lblWelcomeToYork.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblWelcomeToYork);	
-		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 269.0, Unit.PX, 248.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblWelcomeToYork, 269.0, Unit.PX, 311.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblWelcomeToYork, 16.0, Unit.PX, 25.0, Unit.PX);		
 
 		

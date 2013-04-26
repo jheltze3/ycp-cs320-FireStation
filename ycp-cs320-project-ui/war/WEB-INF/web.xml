@@ -33,6 +33,15 @@
       <url-pattern>/ycp_cs320_project_ui/ContactInfoServiceImpl</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>ExportUsers</servlet-name>
+    <servlet-class>edu.ycp.CS320.server.ExportUsers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExportUsers</servlet-name>
+    <url-pattern>/ExportUsers/*</url-pattern>
+  </servlet-mapping>
+  
   
   <!-- Default page to serve -->
   <welcome-file-list>

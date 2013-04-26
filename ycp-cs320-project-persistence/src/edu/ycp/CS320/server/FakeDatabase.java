@@ -148,6 +148,12 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return 0;
 	}
 
+	@Override
+	public ArrayList<FireApparatus> getFireApparatusSpecFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	

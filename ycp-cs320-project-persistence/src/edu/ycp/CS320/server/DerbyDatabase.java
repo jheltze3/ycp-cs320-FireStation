@@ -108,23 +108,30 @@ public class DerbyDatabase implements IDatabase {
 //							")"
 //													);
 					
-					stmtApparatusSpec = conn.prepareStatement(
-							"create table fire_apparatus_spec (" +
-							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-							"make VARCHAR(64), " +
-							"model VARCHAR(64), " +
-							"name VARCHAR(64) NOT NULL, " +
-							"model_year INTEGER, " +
-							"type VARCHAR(64), " +
-							"description VARCHAR(64)" +
-							")"
-															);
+//					stmtApparatusSpec = conn.prepareStatement(
+//							"create table fire_apparatus_spec (" +
+//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+//							"make VARCHAR(64), " +
+//							"model VARCHAR(64), " +
+//							"name VARCHAR(64) NOT NULL, " +
+//							"model_year INTEGER, " +
+//							"type VARCHAR(64), " +
+//							"description VARCHAR(64)" +
+//							")"
+//															);
 					
-					stmtApparatus = conn.prepareStatement()
+					stmtApparatus = conn.prepareStatement(
+							"create table fire_apparatus (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"name VARCHAR(64), " +
+							"apparatus_spec fire_apparatus_spec.id" +
+							")"
+							);
 															
 															
 //					stmtUsers.executeUpdate();
-					stmtApparatusSpec.executeUpdate();
+//					stmtApparatusSpec.executeUpdate();
+					stmtApparatus.executeUpdate();
 					
 				} finally {
 //					DBUtil.closeQuietly(stmtUsers);
@@ -237,12 +244,6 @@ public class DerbyDatabase implements IDatabase {
 		return null;
 	}
 
-	@Override
-	public int addFireApparatusToDB(FireApparatus fireApparatus) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
 		user.setId(resultSet.getInt(1));
@@ -342,6 +343,10 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-
+	@Override
+	public ArrayList<FireApparatus> getFireApparatusSpecFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
