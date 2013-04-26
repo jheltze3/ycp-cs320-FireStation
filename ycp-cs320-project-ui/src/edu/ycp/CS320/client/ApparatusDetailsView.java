@@ -42,7 +42,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 	
 	public ApparatusDetailsView(/*String name, String make, String model, String type, String description, String year*/) {			
 		layoutPanel = new LayoutPanel();
-		layoutPanel.setStyleName("ApparatusDetailViewStyle");
+		layoutPanel.setStyleName("ApparatusViewStyle");
 		initWidget(layoutPanel);
 		layoutPanel.setSize("2200px", "150px");
 
@@ -119,7 +119,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		lblDescription_1.setStyleName("ApparatusDetailsText");
 		lblDescription_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layoutPanel.add(lblDescription_1);	
-		layoutPanel.setWidgetLeftWidth(lblDescription_1, 100.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(lblDescription_1, 100.0, Unit.PX, 1134.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblDescription_1, 80.0, Unit.PX, 20.0, Unit.PX);
 			
 		lblYear_1 = new Label("add Text");

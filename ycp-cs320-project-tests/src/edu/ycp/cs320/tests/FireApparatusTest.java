@@ -15,8 +15,8 @@ public class FireApparatusTest {
 		FireApparatus testFireApparatus01 = new FireApparatus(); // in the form of ID, username, password		
 		FireApparatus testFireApparatus02 = new FireApparatus(); // in the form of ID, username, password
 		
-		int indexFireApparatus01 = fireApparatusDB.addFireApparatusToDB(testFireApparatus01);		
-		int indexFireApparatus02 = fireApparatusDB.addFireApparatusToDB(testFireApparatus02);
+		int indexFireApparatus01 = fireApparatusDB.addFireApparatusToDBOld(testFireApparatus01);		
+		int indexFireApparatus02 = fireApparatusDB.addFireApparatusToDBOld(testFireApparatus02);
 		
 		/*
 		 * Test first fire truck

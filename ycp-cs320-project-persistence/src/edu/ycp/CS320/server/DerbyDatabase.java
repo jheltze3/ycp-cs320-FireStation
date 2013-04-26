@@ -60,13 +60,6 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	private<E> E databaseRun(ITransaction<E> transaction) {
 		// FIXME: retry if transaction times out due to deadlock
 		
@@ -93,12 +86,11 @@ public class DerbyDatabase implements IDatabase {
 	void createTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
+
 			public Boolean run(Connection conn) throws SQLException {
 				
 //				PreparedStatement stmtUsers = null;
 				PreparedStatement stmtApparatusSpec = null;
-				PreparedStatement stmtApparatus = null;
-				
 				try {
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
@@ -106,38 +98,44 @@ public class DerbyDatabase implements IDatabase {
 //							"name VARCHAR(64) NOT NULL, " +
 //							"password VARCHAR(64) " +
 //							")"
+
 //													);
 					
-//					stmtApparatusSpec = conn.prepareStatement(
-//							"create table fire_apparatus_spec (" +
-//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-//							"make VARCHAR(64), " +
-//							"model VARCHAR(64), " +
-//							"name VARCHAR(64) NOT NULL, " +
-//							"model_year INTEGER, " +
-//							"type VARCHAR(64), " +
-//							"description VARCHAR(64)" +
-//							")"
-//															);
-					
-					stmtApparatus = conn.prepareStatement(
-							"create table fire_apparatus (" +
+					stmtApparatusSpec = conn.prepareStatement(
+							"create table fire_apparatus_spec (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-							"name VARCHAR(64), " +
-							"apparatus_spec fire_apparatus_spec.id" +
+							"make VARCHAR(64), " +
+							"model VARCHAR(64), " +
+							"name VARCHAR(64) NOT NULL, " +
+							"model_year INTEGER, " +
+							"type VARCHAR(64), " +
+							"description VARCHAR(64)" +
 							")"
-							);
-															
-															
-//					stmtUsers.executeUpdate();
-//					stmtApparatusSpec.executeUpdate();
-					stmtApparatus.executeUpdate();
+															);
+				
+				
+					stmtApparatusSpec.executeUpdate();
+
 					
 				} finally {
-//					DBUtil.closeQuietly(stmtUsers);
 					DBUtil.closeQuietly(stmtApparatusSpec);
-				}
-				
+				}				
+				return true;
+			}
+		});
+	}
+	
+	void dropTables() throws SQLException {
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {				
+				PreparedStatement stmtDropApparatus = null;
+				try {					
+					stmtDropApparatus = conn.prepareStatement("DROP TABLE fire_apparatus_spec");
+					stmtDropApparatus.executeUpdate();					
+				} finally {
+					DBUtil.closeQuietly(stmtDropApparatus);
+				}				
 				return true;
 			}
 		});
@@ -244,6 +242,7 @@ public class DerbyDatabase implements IDatabase {
 		return null;
 	}
 
+
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
 		user.setId(resultSet.getInt(1));
@@ -264,7 +263,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public int addFireApparatusSpecToDB(final FireApparatusSpec fireApparatusSpec) {
+	public int addFireApparatusToDB(final FireApparatus fireApparatus) {
 			databaseRun(new ITransaction<Boolean>() {
 			
 			PreparedStatement stmt = null;
@@ -277,12 +276,12 @@ public class DerbyDatabase implements IDatabase {
 				stmt = conn.prepareStatement("INSERT INTO fire_apparatus_spec (make, model, name, model_year, type, description)" +
 											 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
 				
-				stmt.setString(1, fireApparatusSpec.getMake());
-				stmt.setString(2, fireApparatusSpec.getModel());
-				stmt.setString(3, fireApparatusSpec.getName());
-				stmt.setInt(4, fireApparatusSpec.getYear());
-				stmt.setString(5, fireApparatusSpec.getType());
-				stmt.setString(6,  fireApparatusSpec.getDescription());
+				stmt.setString(1, fireApparatus.getFireApparatusSpec().getMake());
+				stmt.setString(2, fireApparatus.getFireApparatusSpec().getModel());
+				stmt.setString(3, fireApparatus.getFireApparatusSpec().getName());
+				stmt.setInt(4, fireApparatus.getFireApparatusSpec().getYear());
+				stmt.setString(5, fireApparatus.getFireApparatusSpec().getType());
+				stmt.setString(6,  fireApparatus.getFireApparatusSpec().getDescription());
 				
 				stmt.executeUpdate();
 				
@@ -291,7 +290,7 @@ public class DerbyDatabase implements IDatabase {
 					throw new SQLException("Couldn't get generated key");
 				}
 				
-				fireApparatusSpec.setId(keys.getInt(1));
+				fireApparatus.getFireApparatusSpec().setId(keys.getInt(1));
 				
 				return null;
 				
@@ -341,12 +340,6 @@ public class DerbyDatabase implements IDatabase {
 				}
 			}
 		});
-	}
-
-	@Override
-	public ArrayList<FireApparatus> getFireApparatusSpecFromDB() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

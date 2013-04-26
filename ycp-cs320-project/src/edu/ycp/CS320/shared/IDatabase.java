@@ -16,7 +16,11 @@ public interface IDatabase {
 	public Map<Integer, User> getUsersFromDB();		
 	public void addEquipmentToDB();	
 	public void addContactToDB();	
+
 	public void addUserToDB(User user);					
+			
+	public int addFireApparatusToDB(FireApparatus fireApparatus);
+
 	public void addEventsToDB();	
 	public int addFireCalendarEventToDB(FireCalendar fireCalendar);
 	
@@ -25,7 +29,5 @@ public interface IDatabase {
 	public ArrayList<FireApparatus> getFireApparatusFromDB();
 	public ArrayList<FireCalendar> getFireEventFromDB();
 	public List<Events> getEventsFromDB();
-	ArrayList<FireApparatus> getFireApparatusSpecFromDB();
-	int addFireApparatusSpecToDB(FireApparatusSpec fireApparatusSpec);
 
 }
