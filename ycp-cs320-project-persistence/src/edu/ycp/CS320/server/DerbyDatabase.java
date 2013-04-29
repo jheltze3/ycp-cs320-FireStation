@@ -12,7 +12,6 @@ import java.util.Map;
 
 import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.Equipment;
-import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
@@ -86,10 +85,8 @@ public class DerbyDatabase implements IDatabase {
 	void createTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
-
-			public Boolean run(Connection conn) throws SQLException {				
+			public Boolean run(Connection conn) throws SQLException {	
 				PreparedStatement stmtApparatusSpec = null;			
-
 				try {
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
@@ -98,8 +95,7 @@ public class DerbyDatabase implements IDatabase {
 //							"password VARCHAR(64) " +
 //							")"
 
-//													);					
-
+//													);	
 					stmtApparatusSpec = conn.prepareStatement(
 							"create table fire_apparatus_spec (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
@@ -112,7 +108,6 @@ public class DerbyDatabase implements IDatabase {
 							")"
 															);		
 					stmtApparatusSpec.executeUpdate();
-
 					
 				} finally {
 					DBUtil.closeQuietly(stmtApparatusSpec);
@@ -245,14 +240,8 @@ public class DerbyDatabase implements IDatabase {
 		user.setPassword(resultSet.getString(3));
 	}
 
-
 	@Override
-	public void addEventsToDB() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
 	public int addFireApparatusToDB(final FireApparatus fireApparatus) {
 			databaseRun(new ITransaction<Boolean>() {
 			
@@ -332,9 +321,4 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-	@Override
-	public List<Events> getEventsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
