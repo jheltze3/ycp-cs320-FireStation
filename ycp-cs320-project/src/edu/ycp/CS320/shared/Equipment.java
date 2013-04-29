@@ -1,7 +1,5 @@
 package edu.ycp.CS320.shared;
 
-import edu.ycp.CS320.equipment.EquipmentSpec;
-
 public class Equipment {
 	private String equipmentName = "";
 	private int amount;
@@ -36,6 +34,10 @@ public class Equipment {
 	public EquipmentSpec getSpec()
 	{
 		return null;
+	}
+	
+	public void setSpec(EquipmentSpec es){
+		this.spec = es;
 	}
 	
 	
