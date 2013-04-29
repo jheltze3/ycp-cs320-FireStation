@@ -86,9 +86,10 @@ public class DerbyDatabase implements IDatabase {
 	void createTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
+
 			public Boolean run(Connection conn) throws SQLException {				
-//				PreparedStatement stmtUsers = null;
 				PreparedStatement stmtApparatusSpec = null;			
+
 				try {
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
@@ -96,7 +97,9 @@ public class DerbyDatabase implements IDatabase {
 //							"name VARCHAR(64) NOT NULL, " +
 //							"password VARCHAR(64) " +
 //							")"
+
 //													);					
+
 					stmtApparatusSpec = conn.prepareStatement(
 							"create table fire_apparatus_spec (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
@@ -109,6 +112,7 @@ public class DerbyDatabase implements IDatabase {
 							")"
 															);		
 					stmtApparatusSpec.executeUpdate();
+
 					
 				} finally {
 					DBUtil.closeQuietly(stmtApparatusSpec);
@@ -185,9 +189,7 @@ public class DerbyDatabase implements IDatabase {
 				try{
 					
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
-											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-				
-			
+											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
 				
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getPassword());
@@ -235,6 +237,7 @@ public class DerbyDatabase implements IDatabase {
 		return null;
 	}
 
+
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
 		user.setId(resultSet.getInt(1));
@@ -242,11 +245,6 @@ public class DerbyDatabase implements IDatabase {
 		user.setPassword(resultSet.getString(3));
 	}
 
-	@Override
-	public List<Events> getEventsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void addEventsToDB() {
@@ -334,5 +332,9 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-
+	@Override
+	public List<Events> getEventsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
