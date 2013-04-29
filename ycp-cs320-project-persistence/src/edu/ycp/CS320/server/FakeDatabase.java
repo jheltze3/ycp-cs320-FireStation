@@ -130,8 +130,6 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return 0;
 	}
 
-
-
 	@Override
 
 	public int addFireApparatusToDB(FireApparatus fireApparatus) {
