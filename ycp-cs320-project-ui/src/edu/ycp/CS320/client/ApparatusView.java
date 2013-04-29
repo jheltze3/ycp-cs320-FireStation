@@ -15,35 +15,17 @@ import edu.ycp.CS320.shared.*;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 
-//mws
 
 public class ApparatusView extends Composite implements ISubscriber {
 	private Label lblEquipmentHeader;
 	private LayoutPanel layoutPanel;
-//	private Label lblName;
-//	private Label lblName01;
 	private Label lblTitle;
-//	private ArrayList<FireApparatus> fireApparatusList;
-//	private Label lblType;
-//	private Label lblModel;
-//	private Label lblMake;
-//	private Label lblmake_1;
-	private Label lblName_1;
-//	private Label lblName_2;
-//	private Label lblmodel_1;
-//	private Label lbltype_1;
-//	private Label lbldescription_1;
-//	private Label lblDescription;
-//	private Label lblYear;
-//	private Label lblYear_1;
 	private Button btnHomePage;
 	private FlowPanel scrollPanelContents;
-	
 	
 	public ApparatusView() {			
 		layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("ApparatusViewStyle");
-//		layoutPanel.setStyleName("fireStation-panelBackground");
 		initWidget(layoutPanel);
 		layoutPanel.setSize("2200px", "1200px");
 		
@@ -63,7 +45,7 @@ public class ApparatusView extends Composite implements ISubscriber {
 
 		btnHomePage = new Button("Home Page");
 		layoutPanel.add(btnHomePage);
-		layoutPanel.setWidgetLeftWidth(btnHomePage, 1039.0, Unit.PX, 103.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(btnHomePage, 1039.0, Unit.PX, 121.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnHomePage, 0.0, Unit.PX, 30.0, Unit.PX);
 		
 		btnHomePage.addClickHandler(new ClickHandler() {
@@ -83,7 +65,18 @@ public class ApparatusView extends Composite implements ISubscriber {
 		scrollPanelContents.setStyleName("ApparatusViewStyle");
 		scrollPanel.add(scrollPanelContents);
 		
-//		loadApparatusList(scrollPanelContents);	
+		Button btnAddEquipment = new Button("Add Equipment");
+		layoutPanel.add(btnAddEquipment);
+		layoutPanel.setWidgetLeftWidth(btnAddEquipment, 1039.0, Unit.PX, 121.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnAddEquipment, 36.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnAddEquipment.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Ycp_cs320_project_ui.setView(new AddApparatusPageView());				
+			}
+		});
 	}
 
 	public void activate() {
