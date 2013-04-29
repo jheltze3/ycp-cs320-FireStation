@@ -23,6 +23,13 @@ import com.google.gwt.user.client.ui.TextBox;
  */
 public class AddApparatusPageView extends Composite{
 	private Button btnForms = new Button();
+	private TextBox textBoxName;
+	private TextBox textBoxMake;
+	private TextBox textBoxModel;
+	private TextBox textBoxYear;
+	private TextBox textBoxType;
+	private TextBox textBoxDescription;
+	private Button btnSubmit;
 	
 	public AddApparatusPageView(){
 
@@ -72,41 +79,59 @@ public class AddApparatusPageView extends Composite{
 		layout.setWidgetLeftWidth(lblAddDescription, 0.0, Unit.PX, 184.0, Unit.PX);
 		layout.setWidgetTopHeight(lblAddDescription, 300.0, Unit.PX, 18.0, Unit.PX);
 		
-		TextBox textBoxName = new TextBox();
+		textBoxName = new TextBox();
 		layout.add(textBoxName);
 		layout.setWidgetLeftWidth(textBoxName, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxName, 100.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBoxMake = new TextBox();
+		textBoxMake = new TextBox();
 		layout.add(textBoxMake);
 		layout.setWidgetLeftWidth(textBoxMake, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxMake, 140.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBoxModel = new TextBox();
+		textBoxModel = new TextBox();
 		textBoxModel.setText("");
 		layout.add(textBoxModel);
 		layout.setWidgetLeftWidth(textBoxModel, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxModel, 180.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBoxYear = new TextBox();
+		textBoxYear = new TextBox();
 		layout.add(textBoxYear);
 		layout.setWidgetLeftWidth(textBoxYear, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxYear, 220.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBoxType = new TextBox();
+		textBoxType = new TextBox();
 		layout.add(textBoxType);
 		layout.setWidgetLeftWidth(textBoxType, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxType, 260.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBoxDescription = new TextBox();
+		textBoxDescription = new TextBox();
 		layout.add(textBoxDescription);
 		layout.setWidgetLeftWidth(textBoxDescription, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxDescription, 300.0, Unit.PX, 34.0, Unit.PX);
 		
-		Button btnSubmit = new Button("Submit");
+		btnSubmit = new Button("Submit");
 		btnSubmit.setStyleName("submitButton");
 		layout.add(btnSubmit);
 		layout.setWidgetLeftWidth(btnSubmit, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(btnSubmit, 380.0, Unit.PX, 40.0, Unit.PX);
+		
+		btnSubmit.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				this.GetText();				
+			}
+
+			private void GetText() {
+				if(textBoxName.getText() == ""){
+					System.out.println("Empty"+textBoxName.getText());
+				}
+				else{
+					System.out.println(textBoxName.getText());
+				}
+				
+			}
+		});
 	}
 }
