@@ -48,6 +48,11 @@ public class CreateInitialData {
 
 //		FireApparatus app1 = new FireApparatus();
 //		app1.setFireApparatusSpec(spec1); TODO: implement addFireApparatus derby method
+		
+		
+
+	//	FireCalendar fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
+		//db.addFireApparatusToDB(fireApparatus);
 
 
 		FireApparatus fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		

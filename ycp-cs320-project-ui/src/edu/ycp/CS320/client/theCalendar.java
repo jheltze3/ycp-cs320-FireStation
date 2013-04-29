@@ -54,10 +54,7 @@ public class theCalendar extends Composite implements ISubscriber {
 
 	@SuppressWarnings("deprecation")
 	public theCalendar() {
-		
-		// DerbyDatabase db = new DerbyDatabase();	
-		//final FireCalendarEvent fireCalendar = new FireCalendarEvent();
-		
+
 		this.formPanel = new FormPanel();
 		absolutePanel.add(formPanel, 21, 269);
 		formPanel.setSize("613px", "322px");
@@ -150,8 +147,8 @@ public class theCalendar extends Composite implements ISubscriber {
 
 
 	
-				FireCalendarEvent event1 = new FireCalendarEvent(title,location,StartTime,EndTime,notes,date);		
-					db.addFireCalendarEventToDB(event1);
+			//	FireCalendarEvent event1 = new FireCalendarEvent(title,location,StartTime,EndTime,notes,date);		
+				//	db.addFireCalendarEventToDB(event1);
 				
 			}
 		});

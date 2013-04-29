@@ -101,9 +101,9 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return userMap;
 	}
 
-	public List<ContactInfo> getContactsFromDB() {
+/*	public List<ContactInfo> getContactsFromDB() {
 		return null;
-	}
+	}*/
 
 	public List<Equipment> getEquipmentFromDB() {
 		return null;
@@ -126,12 +126,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
 
-	public List<Events> getEventsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
@@ -145,6 +140,24 @@ public class FakeDatabase implements IDatabase, Serializable {
 	public int addFireCalendarEventToDB(FireCalendarEvent fireCalendar) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<ContactInfo> getContactsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FireCalendar> getEventsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

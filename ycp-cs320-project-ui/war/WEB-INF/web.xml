@@ -14,15 +14,17 @@
       <servlet-name>LoginService</servlet-name>
       <url-pattern>/ycp_cs320_project_ui/LoginServiceImpl</url-pattern>
   </servlet-mapping>
+ 
   
-  <servlet>
-      <servlet-name>ApparatusService</servlet-name>
-      <servlet-class>edu.ycp.CS320.server.ApparatusServiceImpl</servlet-class>
+    <servlet>
+    <servlet-name>ExportUsers</servlet-name>
+    <servlet-class>edu.ycp.CS320.server.ExportUsers</servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>ApparatusService</servlet-name>
-      <url-pattern>/ycp_cs320_project_ui/ApparatusServiceImpl</url-pattern>
+    <servlet-name>ExportUsers</servlet-name>
+    <url-pattern>/ExportUsers/*</url-pattern>
   </servlet-mapping>
+  
   
   <!-- Default page to serve -->
   <welcome-file-list>
