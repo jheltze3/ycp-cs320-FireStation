@@ -130,11 +130,14 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return 0;
 	}
 
+
+
 	@Override
+
 	public int addFireApparatusToDB(FireApparatus fireApparatus) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}	
-	
 
 }
