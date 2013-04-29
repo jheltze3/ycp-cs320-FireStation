@@ -87,7 +87,8 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 
 			public Boolean run(Connection conn) throws SQLException {
-				PreparedStatement stmtApparatusSpec = null;	
+				PreparedStatement stmtContacts = null;	
+				PreparedStatement stmtEvents = null;
 				try {
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
@@ -96,20 +97,41 @@ public class DerbyDatabase implements IDatabase {
 //							"password VARCHAR(64) " +
 //							")"
 //													);
-					stmtApparatusSpec = conn.prepareStatement(
-							"create table fire_apparatus_spec (" +
+//					stmtApparatusSpec = conn.prepareStatement(
+//							"create table fire_apparatus_spec (" +
+//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+//							"make VARCHAR(64), " +
+//							"model VARCHAR(64), " +
+//							"name VARCHAR(64) NOT NULL, " +
+//							"model_year INTEGER, " +
+//							"type VARCHAR(64), " +
+//							"description VARCHAR(64)" +
+//							")"
+//															);		
+					
+					stmtContacts = conn.prepareStatement(
+							"create table contact_info (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-							"make VARCHAR(64), " +
-							"model VARCHAR(64), " +
-							"name VARCHAR(64) NOT NULL, " +
-							"model_year INTEGER, " +
 							"type VARCHAR(64), " +
-							"description VARCHAR(64)" +
+							"home_phone_number VARCHAR(64), " +
+							"cell_phone_number VARCHAR(64), " +
+							"name VARCHAR(64)" +
 							")"
-															);		
-					stmtApparatusSpec.executeUpdate();					
+														);
+					
+					stmtEvents = conn.prepareStatement(
+							"create table fire_events ("  +
+							"equipment_name VARCHAR(64), " +
+							"amount INTEGER, " +
+							"condition VARCHAR(64)" +
+							")"
+													  );
+							
+					stmtContacts.executeUpdate();
+					stmtEvents.executeUpdate();					
+										
 				} finally {
-					DBUtil.closeQuietly(stmtApparatusSpec);
+					DBUtil.closeQuietly(stmtContacts);
 				}				
 				return true;
 			}
@@ -217,11 +239,18 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	
 	@Override
 	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
-		// TODO Auto-generated method stub
+		databaseRun(new ITransaction<Boolean>() {
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
 		return 0;
 	}	
 	
@@ -231,16 +260,12 @@ public class DerbyDatabase implements IDatabase {
 		return null;
 	}
 
-
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
 		user.setId(resultSet.getInt(1));
 		user.setUsername(resultSet.getString(2));
 		user.setPassword(resultSet.getString(3));
 	}
-
-
-
 
 	@Override
 
@@ -322,7 +347,4 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
-
-
 }
