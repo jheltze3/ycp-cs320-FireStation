@@ -1,4 +1,3 @@
-
 package edu.ycp.cs320.controllers;
 
 import java.io.Serializable;
@@ -25,8 +24,7 @@ public class GetCalendarController implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ArrayList<FireCalendar> getEvent(IDatabase db){
-	
+	public ArrayList<FireCalendar> getEvent(IDatabase db){	
 		return db.getFireEventFromDB();
 	}
 }

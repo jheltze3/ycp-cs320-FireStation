@@ -128,22 +128,14 @@ public class FakeDatabase implements IDatabase, Serializable {
 	}
 
 
+	@Override
+	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public int addFireApparatusToDB(FireApparatus fireApparatus) {
-		// TODO Auto-generated method stub
-		return 0;
-
-	}
-
-	@Override
-	public int addFireCalendarEventToDB(FireCalendarEvent fireCalendar) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -153,13 +145,6 @@ public class FakeDatabase implements IDatabase, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<FireCalendar> getEventsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 

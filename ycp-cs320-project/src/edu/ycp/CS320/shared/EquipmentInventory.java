@@ -1,4 +1,4 @@
-package edu.ycp.CS320.equipment;
+package edu.ycp.CS320.shared;
 
 import java.util.ArrayList;
 
