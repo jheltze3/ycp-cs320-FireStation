@@ -17,4 +17,5 @@ public interface ApparatusService extends RemoteService {
 	public boolean message(String message);
 	public ArrayList<FireApparatus> loadApparatus();
 	public boolean addApparatus(FireApparatus fireApparatus);
+	public boolean removeApparatus(String name);
 }

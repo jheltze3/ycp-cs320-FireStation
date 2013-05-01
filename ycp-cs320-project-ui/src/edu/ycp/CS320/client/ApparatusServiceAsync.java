@@ -13,4 +13,5 @@ public interface ApparatusServiceAsync {
 	
 	void addApparatus(FireApparatus fireApparatus, AsyncCallback<Boolean> callback);
 	
+	void removeApparatus(String name, AsyncCallback<Boolean> callback);
 }
