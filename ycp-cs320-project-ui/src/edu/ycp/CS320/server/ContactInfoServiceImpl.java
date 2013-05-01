@@ -8,7 +8,7 @@ import edu.ycp.CS320.client.ContactInfoService;
 import edu.ycp.CS320.shared.ContactInfo;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.cs320.controllers.GetContactInfoController;
-
+//add commment
 public class ContactInfoServiceImpl extends RemoteServiceServlet implements ContactInfoService {
 	@Override
 	public ArrayList<ContactInfo> loadContactInfo() {

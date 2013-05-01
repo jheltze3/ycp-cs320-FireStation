@@ -112,7 +112,8 @@ public class HomePageView extends Composite{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-			//	Ycp_cs320_project_ui.setView(UsersView);
+				UsersView view = new UsersView();
+				Ycp_cs320_project_ui.setView(view);
 				
 				
 				

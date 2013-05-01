@@ -85,7 +85,6 @@ public class DerbyDatabase implements IDatabase {
 	void createTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
-
 			public Boolean run(Connection conn) throws SQLException {
 				PreparedStatement stmtContacts = null;	
 				PreparedStatement stmtEvents = null;

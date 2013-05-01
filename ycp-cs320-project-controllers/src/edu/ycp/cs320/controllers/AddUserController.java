@@ -13,6 +13,6 @@ public class AddUserController {
 	 * @param user	this user object will be added to that database
 	 */
 	public void addUser(IDatabase db, User user){		
-		db.addUserToDB(user);
+		db.addUserToDB(user);		
 	}
 }
