@@ -15,4 +15,8 @@ public class GetApparatusController implements Serializable{
 	public ArrayList<FireApparatus> getApparatus(IDatabase db){
 		return db.getFireApparatusFromDB();
 	}
+	
+	public void addApparatus(FireApparatus fireApparatus, IDatabase db){
+		db.addFireApparatusToDB(fireApparatus);
+	}
 }

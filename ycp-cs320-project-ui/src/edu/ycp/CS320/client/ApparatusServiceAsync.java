@@ -11,4 +11,6 @@ public interface ApparatusServiceAsync {
 
 	void loadApparatus(AsyncCallback<ArrayList<FireApparatus>> callback);
 	
+	void addApparatus(FireApparatus fireApparatus, AsyncCallback<Boolean> callback);
+	
 }
