@@ -95,3 +95,13 @@ Title {
 	font-style: normal;
 	font-weight: normal;
 }
+.AddApparatusStyle {
+	background-color: #6666cc;
+}
+.AddApparatusLabels {
+	color: #ff0000;
+	font-size: 14px;
+	font-weight: bold;
+}
+.submitButton {
+}
