@@ -35,11 +35,18 @@ public class ApparatusServiceImpl extends RemoteServiceServlet implements Appara
 			result = new ArrayList<FireApparatus>();
 		}
 		return result;
+	}
+
+
+	@Override
+	public boolean addApparatus(FireApparatus fireApparatus) {
+		GetApparatusController apparatusController = new GetApparatusController();
 		
-//		if(apparatusController.getApparatus(db) != null){	
-//			return apparatusController.getApparatus(db);
-//		} 
-//		return null;
+		IDatabase db = DatabaseSingleton.instance();
+		
+		apparatusController.addApparatus(fireApparatus, db);
+		
+		return true;
 	}
 
 }

@@ -14,13 +14,13 @@ import java.util.Map;
 public interface IDatabase {
 	
 	public Map<Integer, User> getUsersFromDB();		
-	public void addEquipmentToDB();		
-	public void addContactToDB();
+	public void addEquipmentToDB(Equipment equipment);		
 	public void addUserToDB(User user);		
 	public int addFireApparatusToDB(FireApparatus fireApparatus);	
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar);
+	public int addFireCalendarEventToDB(FireCalendarEvent fireCalendarEvent);
 	public ArrayList<ContactInfo> getContactsFromDB();	
 	public List<Equipment> getEquipmentFromDB();	
 	public ArrayList<FireApparatus> getFireApparatusFromDB();	
-	public ArrayList<FireCalendar> getFireEventFromDB();
+	public ArrayList<FireCalendarEvent> getFireEventFromDB();
+	void addContactToDB(ContactInfo contactInfo);
 }

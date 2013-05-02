@@ -26,14 +26,14 @@ public class CalendarServiceImpl extends RemoteServiceServlet implements Calenda
 
 
 	@Override
-	public ArrayList<FireCalendar> loadEvents() {
+	public ArrayList<FireCalendarEvent> loadEvents() {
 		GetCalendarController calendarController = new GetCalendarController();
 		
 		IDatabase db = DatabaseSingleton.instance();
 		
-		ArrayList<FireCalendar> result = calendarController.getEvent(db);
+		ArrayList<FireCalendarEvent> result = calendarController.getEvent(db);
 		if (result == null) {
-			result = new ArrayList<FireCalendar>();
+			result = new ArrayList<FireCalendarEvent>();
 		}
 		return result;
 		

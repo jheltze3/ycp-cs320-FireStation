@@ -13,6 +13,7 @@ import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
+import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
@@ -119,21 +120,33 @@ public class FakeDatabase implements IDatabase, Serializable {
 	}
 
 	@Override
-	public ArrayList<FireCalendar> getFireEventFromDB() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int addFireCalendarEventToDB(FireCalendar fireCalendar) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int addFireApparatusToDB(FireApparatus fireApparatus) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void addEquipmentToDB(Equipment equipment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addContactToDB(ContactInfo contactInfo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int addFireCalendarEventToDB(FireCalendarEvent fireCalendarEvent) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<FireCalendarEvent> getFireEventFromDB() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

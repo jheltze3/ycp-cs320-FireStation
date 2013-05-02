@@ -16,5 +16,5 @@ import edu.ycp.CS320.shared.FireCalendarEvent;
 public interface CalendarService extends RemoteService {
 	
 	public boolean message(String message);
-	public ArrayList<FireCalendar> loadEvents();
+	public ArrayList<FireCalendarEvent> loadEvents();
 }

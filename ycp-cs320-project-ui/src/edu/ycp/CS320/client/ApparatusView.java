@@ -59,8 +59,8 @@ public class ApparatusView extends Composite implements ISubscriber {
 		scrollPanel.setStyleName("ApparatusViewScrollPanelStyle");
 		layoutPanel.add(scrollPanel);
 
-		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1915.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 952.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(scrollPanel, 0.0, Unit.PX, 1925.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scrollPanel, 100.0, Unit.PX, 860.0, Unit.PX);
 		this.scrollPanelContents = new FlowPanel();
 		scrollPanelContents.setStyleName("ApparatusViewStyle");
 		scrollPanel.add(scrollPanelContents);

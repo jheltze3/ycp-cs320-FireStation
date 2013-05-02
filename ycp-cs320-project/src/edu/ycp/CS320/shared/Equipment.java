@@ -5,8 +5,28 @@ public class Equipment {
 	private int amount;
 	private String condition = "";
 	private EquipmentSpec spec;
+	private int id;
 	
+	public Equipment(){
+		
+	}
 	
+	public Equipment(int id, String name, int amount, String condition, EquipmentSpec spec){
+		this.id = id;
+		this.equipmentName = name;
+		this.amount = amount;
+		this.condition = condition;
+		this.spec = spec;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setName(String equipmentName ) {
 		this.equipmentName = equipmentName;
 	}
