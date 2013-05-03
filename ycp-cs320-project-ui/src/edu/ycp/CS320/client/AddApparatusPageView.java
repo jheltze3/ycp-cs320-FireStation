@@ -41,6 +41,8 @@ public class AddApparatusPageView extends Composite{
 	private String type;
 	private String description;
 	private Label labelStatus;
+	private Button btnHomePage;
+	private Button btnApparatusPage;
 	
 	public AddApparatusPageView(){
 
@@ -121,6 +123,34 @@ public class AddApparatusPageView extends Composite{
 		layout.add(textBoxDescription);
 		layout.setWidgetLeftWidth(textBoxDescription, 190.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(textBoxDescription, 300.0, Unit.PX, 34.0, Unit.PX);
+		
+		btnHomePage = new Button("Home Page");
+		layout.add(btnHomePage);
+		layout.setWidgetLeftWidth(btnHomePage, 1039.0, Unit.PX, 121.0, Unit.PX);
+		layout.setWidgetTopHeight(btnHomePage, 0.0, Unit.PX, 30.0, Unit.PX);
+		
+		btnHomePage.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Ycp_cs320_project_ui.setView(new HomePageView());				
+			}
+		});
+		
+		btnApparatusPage = new Button("Back to Apparatus Page");
+		layout.add(btnApparatusPage);
+		layout.setWidgetLeftWidth(btnApparatusPage, 1039.0, Unit.PX, 1040.0, Unit.PX);
+		layout.setWidgetTopHeight(btnApparatusPage, 50.0, Unit.PX, 40.0, Unit.PX);
+		
+		btnApparatusPage.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				ApparatusView view = new ApparatusView();
+				Ycp_cs320_project_ui.setView(view);
+				view.activate();				
+			}
+		});
 		
 		btnSubmit = new Button("Submit");
 		btnSubmit.setStyleName("submitButton");

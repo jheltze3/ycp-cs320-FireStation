@@ -133,6 +133,9 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 					@Override
 					public void onSuccess(Boolean result) {	
 						System.out.println("Removed: "+lblName_1.getText());
+						ApparatusView view = new ApparatusView();
+						Ycp_cs320_project_ui.setView(view);
+						view.activate();
 					}
 					
 					@Override
