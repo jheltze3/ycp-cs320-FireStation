@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import edu.ycp.CS320.shared.ContactInfo;
@@ -15,7 +14,6 @@ import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.EquipmentSpec;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
-import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
@@ -62,8 +60,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	private<E> E databaseRun(ITransaction<E> transaction) {
-		// FIXME: retry if transaction times out due to deadlock
-		
+		// FIXME: retry if transaction times out due to deadlock		
 		try {
 			DatabaseConnection dbConn = getConnection();
 			
@@ -145,7 +142,7 @@ public class DerbyDatabase implements IDatabase {
 //					stmtEvents.executeUpdate();	
 //					stmtEquipment.executeUpdate();
 //										
-//					ALL TABLES ABOVE CREATED SUCCESSFULLY, ALREADY EXIST
+//					ALL TABLES ABOVE CREATED SUCCESSFULLY
 				} finally {
 					DBUtil.closeQuietly(stmtEquipment);
 				}				
@@ -350,7 +347,6 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-
 	public int addFireApparatusToDB(final FireApparatus fireApparatus) {
 			databaseRun(new ITransaction<Boolean>() {
 			
