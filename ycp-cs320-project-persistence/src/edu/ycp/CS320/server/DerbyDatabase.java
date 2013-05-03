@@ -177,8 +177,9 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmtRemoveFireApparatus = null;
 				try {					
 					stmtRemoveFireApparatus = conn.prepareStatement("DELETE FROM fire_apparatus_spec " +
-							"WHERE name = '" + name +"'"
+							"WHERE name = ?"
 							);
+					stmtRemoveFireApparatus.setString(1, name);
 					stmtRemoveFireApparatus.executeUpdate();					
 				} finally {
 					DBUtil.closeQuietly(stmtRemoveFireApparatus);
