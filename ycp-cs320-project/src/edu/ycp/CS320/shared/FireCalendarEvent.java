@@ -1,6 +1,8 @@
+
 package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
+
 
 public class FireCalendarEvent implements Serializable{
 	/**
@@ -19,10 +21,6 @@ public class FireCalendarEvent implements Serializable{
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public FireCalendarEvent(int id, String title, String location, String startTime, String endTime, String description, String date){
 		this.id = id;
 		this.title = title;
@@ -33,8 +31,8 @@ public class FireCalendarEvent implements Serializable{
 		this.date = date; 
 	}
 	
-	public FireCalendarEvent(){
-		
+	public FireCalendarEvent()
+	{
 	}
 	
 	public String getTitle() {
@@ -77,6 +75,19 @@ public class FireCalendarEvent implements Serializable{
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+		
+	}
+
+
+
+	public FireCalendarEvent getFireCalendarSpec() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }
+

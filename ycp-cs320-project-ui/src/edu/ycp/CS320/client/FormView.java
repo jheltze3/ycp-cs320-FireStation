@@ -9,6 +9,9 @@ import com.google.gwt.dom.client.Style.Unit;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -25,7 +28,7 @@ public class FormView extends Composite {
 	private Label lblMedicalForms;
 	private TextBox primCarePhysicianTextBox;		
 	
-	FormView(){
+	public FormView(){
 		final LayoutPanel layout = new LayoutPanel();
 		initWidget(layout);
 		layout.setSize("931px", "606px");

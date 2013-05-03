@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import java.util.ArrayList;
 
 import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireApparatusList;
 
 /**
  * @author Joshua

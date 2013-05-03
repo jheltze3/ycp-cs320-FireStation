@@ -1,4 +1,14 @@
+
 package edu.ycp.CS320.client;
+
+
+
+import java.util.ArrayList;
+
+import edu.ycp.CS320.shared.FireCalendar;
+
+
+
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -14,3 +24,4 @@ public interface CalendarServiceAsync {
 	void loadEvents(AsyncCallback<ArrayList<FireCalendarEvent>> callback);
 	
 }
+

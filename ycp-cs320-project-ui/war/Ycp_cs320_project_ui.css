@@ -54,7 +54,7 @@ Title {
 	color: Black;
 	font-size: 18px;
 	font-weight: bolder;
-
+	background-color: #F7F2E0;
 }
 .ApparatusViewStyle {
 	color: Black;
@@ -64,9 +64,9 @@ Title {
 }
 .ApparatusDetailViewStyle {
 	color: Black;
-	border-top: Black;
+	border-top: 3px solid Black;
 	border-right: Black;
-	border-bottom: 3px solid Black;
+	border-bottom: Black;
 	border-left: Black;
 	font-size: 16px;
 	font-weight: bold;
@@ -74,26 +74,6 @@ Title {
 }
 .ApparatusViewScrollPanelStyle {
 	border: 3px solid Black;
-}
-.ApparatusDetailLabels {
-	color: Black;
-	font-stretch: normal;
-	font-size: 16px;
-	font-weight: bold;
-}
-.LoginButton {
-	color: Black;
-	font-weight: bold;
-	background-color: forestgreen;
-}
-.NewUserButton {
-	font-weight: bold;
-	background-color: deepskyblue;
-}
-.ApparatusDetailsText {
-	font-size: 14px;
-	font-style: normal;
-	font-weight: normal;
 }
 .AddApparatusStyle {
 	background-color: #6666cc;

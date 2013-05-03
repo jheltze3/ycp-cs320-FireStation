@@ -1,5 +1,7 @@
 package edu.ycp.CS320.shared;
 
+
+
 public class Events {
 	private String equipmentName = "";
 	private int amount;
@@ -30,3 +32,4 @@ public class Events {
 	}	
 
 }
+

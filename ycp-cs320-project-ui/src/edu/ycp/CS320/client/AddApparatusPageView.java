@@ -146,7 +146,7 @@ public class AddApparatusPageView extends Composite{
 					labelStatus.setText("Please fill in all Fire Apparatus details!");
 				}
 				else{					
-					RPC.apparatusService.addApparatus(new FireApparatus(new FireApparatusSpec(textBoxMake.getText(), textBoxModel.getText(), textBoxName.getText(), Integer.parseInt(textBoxYear.getText()), textBoxType.getText(), textBoxDescription.getText())), new AsyncCallback<Boolean>() {
+					RPC.apparatusService.addApparatus(new FireApparatus(description, new FireApparatusSpec(textBoxMake.getText(), textBoxModel.getText(), textBoxName.getText(), Integer.parseInt(textBoxYear.getText()), textBoxType.getText(), textBoxDescription.getText())), new AsyncCallback<Boolean>() {
 						@Override
 						public void onSuccess(Boolean result) {		
 							labelStatus.setText("Succesfully Added Fire Apparatus!");	

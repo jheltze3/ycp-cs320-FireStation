@@ -12,7 +12,7 @@ import java.util.Map;
  *
  */
 public interface IDatabase {
-	
+
 	public Map<Integer, User> getUsersFromDB();		
 	public void addEquipmentToDB(Equipment equipment);		
 	public void addUserToDB(User user);		

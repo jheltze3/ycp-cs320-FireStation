@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+eclipse.preferences.version=1
+lastWarOutDir=H\:/git/ycp-cs320-project/ycp-cs320-project-ui/war
+warSrcDir=war
+warSrcDirIsOutput=false
+=======
+=======
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=refs/remotes/Drew/master
@@ -5,3 +13,4 @@ eclipse.preferences.version=1
 lastWarOutDir=H\:/git/ycp-cs320-project/ycp-cs320-project-ui/war
 warSrcDir=war
 warSrcDirIsOutput=false
+>>>>>>> refs/remotes/Drew/master
