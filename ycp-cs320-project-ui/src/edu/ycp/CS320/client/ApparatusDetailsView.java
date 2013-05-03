@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import edu.ycp.CS320.shared.*;
-
 import com.google.gwt.user.client.ui.Button;
 
 public class ApparatusDetailsView extends Composite implements ISubscriber {
@@ -33,7 +32,7 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("ApparatusViewStyle");
 		initWidget(layoutPanel);
-		layoutPanel.setSize("2200px", "169px");
+		layoutPanel.setSize("2200px", "150px");
 
 		lblName = new Label("Name: ");
 		lblName.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);

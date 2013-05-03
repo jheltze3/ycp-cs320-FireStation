@@ -9,6 +9,13 @@ public class ContactInfo implements Serializable {
 	private String cellPhoneNumber = "";
 	private String name = "";
 	
+	public ContactInfo(int id, String homePhone, String cellPhone, String name){
+		this.userId = id;		
+		this.homePhoneNumber = homePhone;
+		this.cellPhoneNumber = cellPhone;
+		this.name = name;
+	}
+	
 	public ContactInfo() {
 		
 	}

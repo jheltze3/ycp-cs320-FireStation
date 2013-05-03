@@ -1,7 +1,5 @@
 package edu.ycp.CS320.client;
 
-
-
 import java.util.ArrayList;
 
 import com.google.gwt.dom.client.Style.Unit;

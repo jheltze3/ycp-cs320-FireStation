@@ -7,6 +7,8 @@ import edu.ycp.CS320.shared.ContactInfoType;
 import edu.ycp.CS320.shared.Events;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
+import edu.ycp.CS320.shared.FireCalendar;
+import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.User;
 
 public class CreateInitialData {
@@ -39,16 +41,21 @@ public class CreateInitialData {
 //		fireApparatus = new FireApparatus(new FireApparatusSpec("American Le France", "Unknown", "Engine 62-5", 2002, "Tanker", "This pumper-tanker supplies water at a fire scene"));		
 //		db.addFireApparatusToDB(fireApparatus);
 		
-		Events event = new Events();
-		event.setCondition("graduated");
-		event.setName("party");
-		event.setPrice(50);
-		
 		ContactInfo contact = new ContactInfo();
 		contact.setCellphoneNumber("0-000-0000");
 		contact.setHomephoneNumber("9-999-9999");
 		contact.setName("fake");	
 		contact.setType(HOME);
+		
+		FireCalendarEvent event = new FireCalendarEvent();
+		event.setTitle("practice");
+		
+		FireCalendar fireCalendar = new FireCalendar();
+		fireCalendar.setFireCalendarEvent(event);
+		
+		db.addContactToDB(contact);
+		db.addFireCalendarEventToDB(event);
+		
 		
 		//add contact/event to DB
 		
