@@ -31,7 +31,7 @@ public class CreateInitialData {
 		//db.addFireApparatusToDB(fireApparatus);
 		
 		// THIS IS FOR THE CALENDAR
-		FireCalendar firecalendar = new FireCalendar(new FireCalendarEvent(0, "TITLE", "LOCATION", "STARTTIME", "ENDTIME", "NOTES", "DATE"));		
+		FireCalendar firecalendar = new FireCalendar(new FireCalendarEvent(0, "TITLE", "LOCATION", "STARTTIME", "ENDTIME", "DATE", "NOTES"));		
 		db.addFireCalendarEventToDB(firecalendar);
 		
 
@@ -58,7 +58,7 @@ public class CreateInitialData {
 		//fireApparatus = new FireApparatus(null, new FireApparatusSpec("American Le France", "Unknown", "Engine 62-5", 2002, "Tanker", "This pumper-tanker supplies water at a fire scene"));		
 		//db.addFireApparatusToDB(fireApparatus);
 
-		ContactInfo contact = new ContactInfo();
+	/*	ContactInfo contact = new ContactInfo();
 		contact.setCellphoneNumber("0-000-0000");
 		contact.setHomephoneNumber("9-999-9999");
 		contact.setName("fake");	
@@ -70,8 +70,8 @@ public class CreateInitialData {
 		FireCalendar fireCalendar = new FireCalendar(event);
 		fireCalendar.setFireCalendarEvent(event);
 		
-		db.addContactToDB(contact);
-		db.addFireCalendarEventToDB(event);
+		db.addContactToDB(contact);*/
+		//db.addFireCalendarEventToDB(event);
 		
 		
 		//add contact/event to DB

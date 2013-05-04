@@ -24,9 +24,12 @@ public class GetCalendarController implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-public ArrayList<FireCalendarEvent> getEvent(IDatabase db){	
+public ArrayList<FireCalendar> getEvent(IDatabase db){	
 
 		return db.getFireEventFromDB();
 	}
+public void addEvent(FireCalendar firecalendar, IDatabase db){
+	db.addFireCalendarEventToDB(firecalendar);
+}
 }
 

@@ -91,63 +91,74 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmtContacts = null;	
 				PreparedStatement stmtEvents = null;
 				PreparedStatement stmtEquipment = null;
+				PreparedStatement stmtUsers = null;
+				PreparedStatement stmtApparatusSpec = null;
 				try {
-//					stmtUsers = conn.prepareStatement(
-//							"create table users (" +
-//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-//							"name VARCHAR(64) NOT NULL, " +
-//							"password VARCHAR(64) " +
-//							")"
-//													);
-//					stmtApparatusSpec = conn.prepareStatement(
-//							"create table fire_apparatus_spec (" +
-//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-//							"make VARCHAR(64), " +
-//							"model VARCHAR(64), " +
-//							"name VARCHAR(64) NOT NULL, " +
-//							"model_year INTEGER, " +
-//							"type VARCHAR(64), " +
-//							"description VARCHAR(64)" +
-//							")"
-//															);		
-//					
-//					stmtContacts = conn.prepareStatement(
-//							"create table contact_info (" +
-//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-//							"type VARCHAR(64), " +
-//							"home_phone_number VARCHAR(64), " +
-//							"cell_phone_number VARCHAR(64), " +
-//							"name VARCHAR(64)" +
-//							")"
-//														);
-//					
-//					stmtEvents = conn.prepareStatement(
-//							"create table fire_events ("  +
-//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-//							"title VARCHAR(64), " +
-//							"location VARCHAR(64), " +
-//							"description VARCHAR(64)" +
-//							")"
-//													  );
-//					
-//					stmtEquipment = conn.prepareStatement(
-//							"create table fire_equipment (" +
-//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-//							"name VARCHAR(64), " +
-//							"amount INTEGER, " +
-//							"condition VARCHAR(64), " +
-//							"make VARCHAR(64), " +
-//							"model VARCHAR(64)" +
-//							")"
-//														);
-//							
-//					stmtContacts.executeUpdate();
-//					stmtEvents.executeUpdate();	
-//					stmtEquipment.executeUpdate();
-//										
-//					ALL TABLES ABOVE CREATED SUCCESSFULLY, ALREADY EXIST
+					stmtUsers = conn.prepareStatement(
+							"create table users (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"name VARCHAR(64) NOT NULL, " +
+							"password VARCHAR(64) " +
+							")"
+													);
+					stmtApparatusSpec = conn.prepareStatement(
+							"create table fire_apparatus_spec (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"make VARCHAR(64), " +
+							"model VARCHAR(64), " +
+							"name VARCHAR(64) NOT NULL, " +
+							"model_year INTEGER, " +
+							"type VARCHAR(64), " +
+							"description VARCHAR(64)" +
+							")"
+															);		
+					
+					stmtContacts = conn.prepareStatement(
+							"create table contact_info (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"type VARCHAR(64), " +
+							"home_phone_number VARCHAR(64), " +
+							"cell_phone_number VARCHAR(64), " +
+							"name VARCHAR(64)" +
+							")"
+														);
+					
+					stmtEvents = conn.prepareStatement(
+							"create table fire_events ("  +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"title VARCHAR(64), " +
+							"location VARCHAR(64), " +
+							"startTime VARCHAR(64), " +
+							"endTime VARCHAR(64), " +
+							"date VARCHAR(64), " +
+							"description VARCHAR(64)" +
+							")"
+													  );
+					
+					stmtEquipment = conn.prepareStatement(
+							"create table fire_equipment (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"name VARCHAR(64), " +
+							"amount INTEGER, " +
+							"condition VARCHAR(64), " +
+							"make VARCHAR(64), " +
+							"model VARCHAR(64)" +
+							")"
+														);
+						
+					stmtContacts.executeUpdate();
+					stmtEvents.executeUpdate();	
+					stmtEquipment.executeUpdate();
+					stmtUsers.executeUpdate();
+					stmtApparatusSpec.executeUpdate();
+										
+
 				} finally {
 					DBUtil.closeQuietly(stmtEquipment);
+					DBUtil.closeQuietly(stmtUsers);
+					DBUtil.closeQuietly(stmtEvents);
+					DBUtil.closeQuietly(stmtContacts);
+					DBUtil.closeQuietly(stmtApparatusSpec);
 				}				
 				return true;
 			}
@@ -270,20 +281,25 @@ public class DerbyDatabase implements IDatabase {
 		});		
 	}
 
-	@Override
-	public int addFireCalendarEventToDB(final FireCalendarEvent fireCalendarEvent) {
+	public int addFireCalendarEventToDB( final FireCalendar fireCalendarEvent) {
 		databaseRun(new ITransaction<Boolean>() {
 			PreparedStatement stmt = null;
 			ResultSet keys = null;
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
-					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, description)" +
+					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, startTime,endTime, date, description)" +
 							 "VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
 
-					stmt.setString(1, fireCalendarEvent.getTitle());
-					stmt.setString(2, fireCalendarEvent.getLocation());
-					stmt.setString(3, fireCalendarEvent.getDescription());
+				
+					stmt.setString(1,fireCalendarEvent.getFireFireEvent().getTitle());
+					stmt.setString(2,fireCalendarEvent.getFireFireEvent().getLocation());
+					stmt.setString(3,fireCalendarEvent.getFireFireEvent().getStartTime());
+					stmt.setString(4,fireCalendarEvent.getFireFireEvent().getEndTime());
+					stmt.setString(5,fireCalendarEvent.getFireFireEvent().getDate());
+					stmt.setString(6,fireCalendarEvent.getFireFireEvent().getDescription());
+		
+		
 
 					stmt.executeUpdate();
 					keys = stmt.getGeneratedKeys();
@@ -292,7 +308,7 @@ public class DerbyDatabase implements IDatabase {
 						throw new SQLException("Couldn't get generated key");
 					}
 
-					fireCalendarEvent.setId(keys.getInt(1));
+					fireCalendarEvent.getFireFireEvent().setId(keys.getInt(1));
 				} finally {
 					DBUtil.closeQuietly(stmt);
 					DBUtil.closeQuietly(keys);
@@ -304,32 +320,36 @@ public class DerbyDatabase implements IDatabase {
 	}	
 
 	@Override
-	public ArrayList<FireCalendarEvent> getFireEventFromDB() {
-		return databaseRun(new ITransaction<ArrayList<FireCalendarEvent>>() {			
+	public ArrayList<FireCalendar> getFireEventFromDB() {
+		return databaseRun(new ITransaction<ArrayList<FireCalendar>>() {			
 			@Override
-			public ArrayList<FireCalendarEvent> run(Connection conn) throws SQLException {
+			public ArrayList<FireCalendar> run(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 
 				try {
-					ArrayList<FireCalendarEvent> result = new ArrayList<FireCalendarEvent>();
+					ArrayList<FireCalendar> result = new ArrayList<FireCalendar>();
 
 					stmt = conn.prepareStatement("select " +
 							"fire_events.id, " +
 							"fire_events.title, " +
 							"fire_events.location, " +
+							"fire_events.starTime, " +
+							"fire_events.endTime, " +
+							"fire_events.date, " +
 							"fire_events.description");
 
 					resultSet = stmt.executeQuery();
 
 					while (resultSet.next()) {	
-						result.add(new FireCalendarEvent(resultSet.getInt(1), 
+						result.add(new FireCalendar( new FireCalendarEvent(
+								resultSet.getInt(1), 
 														 resultSet.getString(2),
 														 resultSet.getString(3),
-														 "",
-														 "",
 														 resultSet.getString(4),
-														 ""));
+														 resultSet.getString(5),
+														 resultSet.getString(6),
+														 resultSet.getString(7))));
 					}					
 
 
@@ -370,6 +390,7 @@ public class DerbyDatabase implements IDatabase {
 				stmt.setInt(4, fireApparatus.getFireApparatusSpec().getYear());
 				stmt.setString(5, fireApparatus.getFireApparatusSpec().getType());
 				stmt.setString(6,  fireApparatus.getFireApparatusSpec().getDescription());
+			
 
 				stmt.executeUpdate();
 
@@ -546,9 +567,5 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 
-	public int addFireCalendarEventToDB(FireCalendar firecalendar) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

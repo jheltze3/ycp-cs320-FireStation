@@ -8,6 +8,7 @@ import edu.ycp.CS320.client.CalendarService;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IDatabase;
+import edu.ycp.cs320.controllers.GetApparatusController;
 import edu.ycp.cs320.controllers.GetCalendarController;
 
 /**
@@ -27,14 +28,14 @@ public class CalendarServiceImpl extends RemoteServiceServlet implements Calenda
 
 
 	@Override
-	public ArrayList<FireCalendarEvent> loadEvents() {
+	public ArrayList<FireCalendar> loadEvents() {
 		GetCalendarController calendarController = new GetCalendarController();
 		
 		IDatabase db = DatabaseSingleton.instance();
 		
-		ArrayList<FireCalendarEvent> result = calendarController.getEvent(db);
+		ArrayList<FireCalendar> result = calendarController.getEvent(db);
 		if (result == null) {
-			result = new ArrayList<FireCalendarEvent>();
+			result = new ArrayList<FireCalendar>();
 		}
 		return result;
 		
@@ -42,6 +43,19 @@ public class CalendarServiceImpl extends RemoteServiceServlet implements Calenda
 //			return apparatusController.getApparatus(db);
 //		} 
 //		return null;
+	}
+
+
+	@Override
+	public boolean addcalendar(FireCalendar firecalendar) {
+	
+		GetCalendarController calendarController = new GetCalendarController();
+		
+		IDatabase db = DatabaseSingleton.instance();
+		
+		calendarController.addEvent(firecalendar, db);
+		
+		return true;
 	}
 
 }

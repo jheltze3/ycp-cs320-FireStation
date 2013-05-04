@@ -13,6 +13,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -26,6 +27,8 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
 import edu.ycp.CS320.server.DerbyDatabase;
+import edu.ycp.CS320.shared.FireApparatusSpec;
+import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
@@ -51,6 +54,7 @@ public class theCalendar extends Composite implements ISubscriber {
 	private ListBox cmbEndMinute;
 	private TextArea txtNotes;
 	private ListBox cmbEndTime;
+	private Label lblStatus;
 
 	@SuppressWarnings("deprecation")
 	public theCalendar() {
@@ -128,30 +132,54 @@ public class theCalendar extends Composite implements ISubscriber {
 					
 					
 			// get the information		
-		String title = txtTitle.getText();
-		String location = txtLocation.getText();
-		String date = lblDate.getText();
-		String notes = txtNotes.getText();	
+		final String title = txtTitle.getText();
+		final String location = txtLocation.getText();
+		final String date = lblDate.getText();
+		final String notes = txtNotes.getText();	
 		
 		// get the starting information
 		int Shourin = cmbStartHour.getSelectedIndex();
 		int Sminin = cmbStartMinute.getSelectedIndex();
 		int Stime = cmbStartTime.getSelectedIndex();
-		String StartTime = cmbStartHour.getItemText(Shourin) +  cmbStartMinute.getItemText(Sminin) + cmbStartTime.getItemText(Stime);
+		final String StartTime = cmbStartHour.getItemText(Shourin) +  cmbStartMinute.getItemText(Sminin) + cmbStartTime.getItemText(Stime);
 		
 		// get the ending information
 		int Ehourin = cmbEndHour.getSelectedIndex();
 		int Eminin = cmbEndMinute.getSelectedIndex();
 		int Etime = cmbEndTime.getSelectedIndex();
-		String EndTime = cmbEndHour.getItemText(Ehourin) +  cmbEndMinute.getItemText(Eminin) + cmbEndTime.getItemText(Etime);
+		final String EndTime = cmbEndHour.getItemText(Ehourin) +  cmbEndMinute.getItemText(Eminin) + cmbEndTime.getItemText(Etime);
 
-
-	
-			//	FireCalendarEvent event1 = new FireCalendarEvent(title,location,StartTime,EndTime,notes,date);		
-				//	db.addFireCalendarEventToDB(event1);
 				
+		if (txtTitle.getText().equals(""))
+				{
+				lblStatus.setText("Please fill in title!");
 			}
-		});
+		
+			else{					
+				RPC.calenderService.addcalendar(new FireCalendar(new FireCalendarEvent(0, title, location, StartTime, EndTime, date,notes)),new AsyncCallback<Boolean>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						lblStatus.setText("Failed to Add Event!");	
+						
+					}
+
+					@Override
+					public void onSuccess(Boolean result) {
+						lblStatus.setText("Succesfully Added Event!");	
+						//textBoxName.setText(""); textBoxMake.setText(""); textBoxModel.setText(""); textBoxYear.setText(""); textBoxType.setText(""); textBoxDescription.setText("");
+						txtTitle.setText("");
+						
+						System.out.println(title+location+StartTime+EndTime+date+notes);
+					}
+				});
+			}
+			
+		}
+	});
+
+
+
 		absolutePanel_1.add(btnNewButton, 508, 281);
 		
 		txtTitle = new TextBox();
@@ -331,6 +359,10 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		btnHomePage = new Button("Home Page");
 		absolutePanel.add(btnHomePage, 698, 10);
+		
+		lblStatus = new Label("44");
+		absolutePanel.add(lblStatus, 653, 351);
+		lblStatus.setSize("106px", "53px");
 		
 		btnHomePage.addClickHandler(new ClickHandler() {
 			

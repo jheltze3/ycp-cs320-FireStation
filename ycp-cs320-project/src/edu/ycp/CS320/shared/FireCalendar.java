@@ -14,12 +14,13 @@ public class FireCalendar implements Serializable{
 
 	public FireCalendar(FireCalendarEvent fireCalendarEvent)
 	{
-		setFireCalendarEvent(new FireCalendarEvent());
+		setFireCalendarEvent(fireCalendarEvent);
 	}
 	
 	
-	public FireCalendarEvent getFireCalendarSpec() {
-		// TODO Auto-generated method stub
+
+
+	public FireCalendarEvent getFireFireEvent() {
 		return fireCalendar;
 	}
 	
