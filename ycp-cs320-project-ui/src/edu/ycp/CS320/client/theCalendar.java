@@ -3,7 +3,10 @@ package edu.ycp.CS320.client;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import java.sql.SQLException;
 
@@ -27,11 +30,15 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
 import edu.ycp.CS320.server.DerbyDatabase;
+import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+
 
 public class theCalendar extends Composite implements ISubscriber {
 
@@ -55,6 +62,10 @@ public class theCalendar extends Composite implements ISubscriber {
 	private TextArea txtNotes;
 	private ListBox cmbEndTime;
 	private Label lblStatus;
+	private String[] dates;
+	private String[] events;
+	private int[] tracker = new int[50];
+	
 
 	@SuppressWarnings("deprecation")
 	public theCalendar() {
@@ -150,7 +161,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		final String EndTime = cmbEndHour.getItemText(Ehourin) +  cmbEndMinute.getItemText(Eminin) + cmbEndTime.getItemText(Etime);
 
 				
-		if (txtTitle.getText().equals(""))
+		/*if (txtTitle.getText().equals(""))
 				{
 				lblStatus.setText("Please fill in title!");
 			}
@@ -168,12 +179,19 @@ public class theCalendar extends Composite implements ISubscriber {
 					public void onSuccess(Boolean result) {
 						lblStatus.setText("Succesfully Added Event!");	
 						//textBoxName.setText(""); textBoxMake.setText(""); textBoxModel.setText(""); textBoxYear.setText(""); textBoxType.setText(""); textBoxDescription.setText("");
+						
+						
+						// set all the textboxes to NULL, clear the current list and repopulate it
+						
+						clear(); // clears the list Box
+						getEvents();
+						
 						txtTitle.setText("");
 						
 						System.out.println(title+location+StartTime+EndTime+date+notes);
 					}
 				});
-			}
+			}*/
 			
 		}
 	});
@@ -281,11 +299,8 @@ public class theCalendar extends Composite implements ISubscriber {
 
 		Button btnAddEvent = new Button("Add Event");
 		btnAddEvent.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				
-				formPanel.setVisible(true);		
-	
-				
+			public void onClick(ClickEvent event) {				
+				formPanel.setVisible(true);						
 			}
 		});
 		absolutePanel.add(btnAddEvent, 90, 233);
@@ -301,6 +316,8 @@ public class theCalendar extends Composite implements ISubscriber {
 				listBox.setSelectedIndex(-1);
 				count--;
 				numEvents.setText(Integer.toString(count));
+				clear();
+				getEvents();
 				
 			}
 		});
@@ -311,6 +328,14 @@ public class theCalendar extends Composite implements ISubscriber {
 		lblDate.setSize("102px", "20px");
 		
 		this.listBox = new ListBox();
+		listBox.addDoubleClickHandler(new DoubleClickHandler() {
+			public void onDoubleClick(DoubleClickEvent event) {
+				
+				// on double click show the information		
+				
+				
+			}
+		});
 		absolutePanel.add(listBox, 444, 74);
 		listBox.setSize("267px", "155px");
 
@@ -335,10 +360,7 @@ public class theCalendar extends Composite implements ISubscriber {
 				Date date1 = datePicker.getValue();
 				//count++;
 				lblDate.setText(dateFormat.format(date1));
-				//this.nEvents = numEvents.getText(); // this is be updated when
 			
-				//	listBox.addItem(count + " Events Today");
-				//	numEvents.setText(Integer.toString(count));
 				
 
 			}
@@ -376,5 +398,99 @@ public class theCalendar extends Composite implements ISubscriber {
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
 
 	}
+	
+	public void clear()
+	{
+		listBox.clear();	
+		
+	}
+	//this gets changed to load the info from the database
+	private void getEvents() {
+	
+			int counter = 0;
+		RPC.calenderService.loadEvents(new AsyncCallback<ArrayList<FireCalendar>>() {
+			
+			@Override
+			public void onSuccess(ArrayList<FireCalendar> fireCalendarEvents) {		
+				 events = new String[fireCalendarEvents.size()];
+				if(fireCalendarEvents != null){					
+					for(int i=0; i<fireCalendarEvents.size(); i++){									
+						events[i] = fireCalendarEvents.get(i).toString();
+						System.out.println(fireCalendarEvents.get(i).toString());						
+					}	
+				
+					fireCalendarEvents.clear();
+				}
+				else{
+					lblStatus.setText("Fail");							
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				lblStatus.setText("RPC failure");						
+			}
+		});
+		getDates();
+		for(int i = 0; i < dates.length; i++)
+		{
+			if(dates[i].equals(" ") && dates[i].equals(lblDate.getText() ) )
+			{
+				listBox.addItem(events[i]);		
+				String nEvents = numEvents.getText(); 
+				count++;	
+				numEvents.setText(Integer.toString(count));
+				tracker[counter] = i ; // keeps track of the values going into the list
+				counter++;
+			}
+			
+			
+			
+		}
+	}
+	
+	
+public void getDates()
+	{
+	dates = new String[events.length];
+	String date = "";
+	
+	for(int i =0; i < events.length; i++)
+		    if(events[i].charAt(i) == '/' && events[i+2].charAt(i) == '/')
+		    {
+		     date = events[i-2].toString() + events[i -1 ].toString() + events[i].toString() + events[i+1].toString() + events[i+2].toString() + events[i + 3].toString()
+		    		+ events[i +4].toString() +events[i+5].toString() + events[i +6].toString();
+		     	dates[i] = date;
+		    	
+		    }		
+	}
+
+
+	public void deleteEvent()
+	{
+		// get the selected index from the list box
+		// get the value and compare it to the tracker array
+		int index = listBox.getSelectedIndex();
+		
+		int itemToRemove = tracker[index]; // this is the real value to delete in the events array
+		
+		
+		// this removes it from the event list
+		List<String> list = new ArrayList<String>(Arrays.asList(events));
+		list.remove(itemToRemove);
+		events = list.toArray(new String[0]);
+		
+		// this deletes it from the list Box
+		listBox.removeItem(index);
+		
+		// now need to delete it from the database itself
+		
+	// insert the call to delete the event from the database
+	
+	
+	
+
+	}
 }
+
 
