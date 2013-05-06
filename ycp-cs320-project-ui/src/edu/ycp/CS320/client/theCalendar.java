@@ -142,8 +142,8 @@ public class theCalendar extends Composite implements ISubscriber {
 				// send the information to the database
 				formPanel.setVisible(false);
 				
-				//	db.addFireCalendarEventToDB( fireCalendar);
-				DerbyDatabase db = new DerbyDatabase();
+
+			
 					
 					
 			// get the information		
@@ -165,7 +165,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		final String EndTime = cmbEndHour.getItemText(Ehourin) +  cmbEndMinute.getItemText(Eminin) + cmbEndTime.getItemText(Etime);
 
 				
-		/*if (txtTitle.getText().equals(""))
+		if (txtTitle.getText().equals(""))
 				{
 				lblStatus.setText("Please fill in title!");
 			}
@@ -173,11 +173,7 @@ public class theCalendar extends Composite implements ISubscriber {
 			else{					
 				RPC.calenderService.addcalendar(new FireCalendar(new FireCalendarEvent(0, title, location, StartTime, EndTime, date,notes)),new AsyncCallback<Boolean>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						lblStatus.setText("Failed to Add Event!");	
-						
-					}
+				
 
 					@Override
 					public void onSuccess(Boolean result) {
@@ -194,8 +190,14 @@ public class theCalendar extends Composite implements ISubscriber {
 						
 						System.out.println(title+location+StartTime+EndTime+date+notes);
 					}
+					
+					@Override
+					public void onFailure(Throwable caught) {
+						lblStatus.setText("Failed to Add Event!");	
+						
+					}
 				});
-			}*/
+			}
 			
 		}
 	});
@@ -321,7 +323,7 @@ public class theCalendar extends Composite implements ISubscriber {
 				count--;
 				numEvents.setText(Integer.toString(count));
 				clear();
-				//getEvents();
+				getEvents();
 				
 			}
 		});
@@ -408,7 +410,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		listBox.clear();	
 		
 	}
-	/*
+	
 	//this gets changed to load the info from the database
 	private void getEvents() {
 	
@@ -495,7 +497,7 @@ public void getDates()
 	
 	
 
-	}*/
+	}
 }
 
 

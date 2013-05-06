@@ -8,7 +8,6 @@ import edu.ycp.CS320.client.CalendarService;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IDatabase;
-import edu.ycp.cs320.controllers.GetApparatusController;
 import edu.ycp.cs320.controllers.GetCalendarController;
 
 /**
@@ -39,13 +38,8 @@ public class CalendarServiceImpl extends RemoteServiceServlet implements Calenda
 			result = new ArrayList<FireCalendar>();
 		}
 		return result;
-		
-//		if(apparatusController.getApparatus(db) != null){	
-//			return apparatusController.getApparatus(db);
-//		} 
-//		return null;
+	
 	}
-
 
 	@Override
 	public boolean addcalendar(FireCalendar firecalendar) {

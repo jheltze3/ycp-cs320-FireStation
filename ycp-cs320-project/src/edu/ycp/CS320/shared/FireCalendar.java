@@ -11,6 +11,10 @@ public class FireCalendar implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private FireCalendarEvent fireCalendar;
+	
+	public FireCalendar() {
+		
+	}
 
 	public FireCalendar(FireCalendarEvent fireCalendarEvent)
 	{
