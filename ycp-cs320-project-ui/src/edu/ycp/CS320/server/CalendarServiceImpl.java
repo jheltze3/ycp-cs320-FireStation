@@ -12,7 +12,8 @@ import edu.ycp.cs320.controllers.GetApparatusController;
 import edu.ycp.cs320.controllers.GetCalendarController;
 
 /**
- * The server side implementation of the RPC service.
+ * The server side implementation of the RPC service. 
+ * author Jake
  */
 
 public class CalendarServiceImpl extends RemoteServiceServlet implements CalendarService{

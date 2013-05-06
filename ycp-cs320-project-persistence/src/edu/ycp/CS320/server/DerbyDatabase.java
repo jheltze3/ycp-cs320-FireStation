@@ -280,7 +280,7 @@ public class DerbyDatabase implements IDatabase {
 			}	
 		});		
 	}
-
+// created by Drew, Modified by Jake
 	public int addFireCalendarEventToDB( final FireCalendar fireCalendarEvent) {
 		databaseRun(new ITransaction<Boolean>() {
 			PreparedStatement stmt = null;
@@ -318,7 +318,8 @@ public class DerbyDatabase implements IDatabase {
 		});
 		return 0;
 	}	
-
+	
+	// created by Drew, Modified by Jake
 	@Override
 	public ArrayList<FireCalendar> getFireEventFromDB() {
 		return databaseRun(new ITransaction<ArrayList<FireCalendar>>() {			

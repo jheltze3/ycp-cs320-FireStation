@@ -39,7 +39,11 @@ import edu.ycp.CS320.shared.ISubscriber;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 
-
+/*
+ * 
+ * author Jake
+ * 
+ */
 public class theCalendar extends Composite implements ISubscriber {
 
 	private final AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -317,7 +321,7 @@ public class theCalendar extends Composite implements ISubscriber {
 				count--;
 				numEvents.setText(Integer.toString(count));
 				clear();
-				getEvents();
+				//getEvents();
 				
 			}
 		});
@@ -404,6 +408,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		listBox.clear();	
 		
 	}
+	/*
 	//this gets changed to load the info from the database
 	private void getEvents() {
 	
@@ -490,7 +495,7 @@ public void getDates()
 	
 	
 
-	}
+	}*/
 }
 
 

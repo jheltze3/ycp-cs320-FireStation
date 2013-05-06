@@ -12,7 +12,11 @@ import java.util.ArrayList;
 
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
-
+/*
+ * 
+ * 
+ *  author Jake
+ */
 
 public interface CalendarServiceAsync {
 	void message(String message, AsyncCallback<Boolean> callback);
