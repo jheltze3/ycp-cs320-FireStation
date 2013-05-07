@@ -8,9 +8,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import java.sql.SQLException;
-
-import java.text.*;     // Used for date formatting.
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -28,10 +25,6 @@ import com.google.gwt.user.client.ui.SimpleRadioButton;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
-
-import edu.ycp.CS320.server.DerbyDatabase;
-import edu.ycp.CS320.shared.FireApparatus;
-import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IPublisher;
@@ -77,7 +70,7 @@ public class theCalendar extends Composite implements ISubscriber {
 		this.formPanel = new FormPanel();
 		absolutePanel.add(formPanel, 21, 269);
 		formPanel.setSize("613px", "322px");
-		
+	
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		formPanel.setWidget(absolutePanel_1);
 		absolutePanel_1.setSize("712px", "321px");
@@ -183,12 +176,14 @@ public class theCalendar extends Composite implements ISubscriber {
 						
 						// set all the textboxes to NULL, clear the current list and repopulate it
 						
-						clear(); // clears the list Box
-						getEvents();
+					clear(); // clears the list Box
+					getEvents();
+					
+					
 						
 						txtTitle.setText("");
 						
-						System.out.println(title+location+StartTime+EndTime+date+notes);
+					
 					}
 					
 					@Override
@@ -333,15 +328,6 @@ public class theCalendar extends Composite implements ISubscriber {
 		absolutePanel.add(lblDate, 549, 26);
 		lblDate.setSize("102px", "20px");
 		
-		this.listBox = new ListBox();
-		listBox.addDoubleClickHandler(new DoubleClickHandler() {
-			public void onDoubleClick(DoubleClickEvent event) {
-				
-				// on double click show the information		
-				
-				
-			}
-		});
 		absolutePanel.add(listBox, 444, 74);
 		listBox.setSize("267px", "155px");
 
@@ -364,9 +350,11 @@ public class theCalendar extends Composite implements ISubscriber {
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 				Date date1 = datePicker.getValue();
-				//count++;
+			count = 0;
+			numEvents.setText(Integer.toString(count));
 				lblDate.setText(dateFormat.format(date1));
-			
+				clear();
+				getEvents();
 				
 
 			}
@@ -407,70 +395,65 @@ public class theCalendar extends Composite implements ISubscriber {
 	
 	public void clear()
 	{
-		listBox.clear();	
-		
+		listBox.clear();			
 	}
 	
 	//this gets changed to load the info from the database
-	private void getEvents() {
-	
-			int counter = 0;
+	private void getEvents() {		
+		count = 0;
 		RPC.calenderService.loadEvents(new AsyncCallback<ArrayList<FireCalendar>>() {
 			
 			@Override
-			public void onSuccess(ArrayList<FireCalendar> fireCalendarEvents) {		
+			public void onSuccess(ArrayList<FireCalendar> fireCalendarEvents) {	
+				int  counter = 0;
 				 events = new String[fireCalendarEvents.size()];
+				 dates = new String[fireCalendarEvents.size()];
 				if(fireCalendarEvents != null){					
-					for(int i=0; i<fireCalendarEvents.size(); i++){									
-						events[i] = fireCalendarEvents.get(i).toString();
-						System.out.println(fireCalendarEvents.get(i).toString());						
+					for(int i=0; i<fireCalendarEvents.size(); i++){	
+						
+						String Events = (fireCalendarEvents.get(i).getFireFireEvent().getTitle() + " " +
+								fireCalendarEvents.get(i).getFireFireEvent().getLocation() + " " + 
+								fireCalendarEvents.get(i).getFireFireEvent().getStartTime() + " " +
+								fireCalendarEvents.get(i).getFireFireEvent().getEndTime() + " " +
+								fireCalendarEvents.get(i).getFireFireEvent().getDescription() );
+						
+						String Dates = (fireCalendarEvents.get(i).getFireFireEvent().getDate());
+						dates[i] = Dates;
+								
+						events[i] = Events;						
+										
+					}
+				}
+					int counts = Integer.parseInt(numEvents.getText());
+					for(int j = 0; j < dates.length; j++)
+					{
+					
+						if(dates[j].equals(lblDate.getText()))
+						{
+							listBox.addItem(events[j]);		
+							//String nEvents = numEvents.getText(); 
+							count++;	
+							numEvents.setText(Integer.toString(count));
+							tracker[counter] = j ; // keeps track of the values going into the list
+							counter++;
+						}			
 					}	
-				
 					fireCalendarEvents.clear();
-				}
-				else{
-					lblStatus.setText("Fail");							
-				}
+				
+				
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
 				lblStatus.setText("RPC failure");						
 			}
-		});
-		getDates();
-		for(int i = 0; i < dates.length; i++)
-		{
-			if(dates[i].equals(" ") && dates[i].equals(lblDate.getText() ) )
-			{
-				listBox.addItem(events[i]);		
-				String nEvents = numEvents.getText(); 
-				count++;	
-				numEvents.setText(Integer.toString(count));
-				tracker[counter] = i ; // keeps track of the values going into the list
-				counter++;
-			}
-			
-			
-			
-		}
+		});	
+		
+		
+		
 	}
 	
 	
-public void getDates()
-	{
-	dates = new String[events.length];
-	String date = "";
-	
-	for(int i =0; i < events.length; i++)
-		    if(events[i].charAt(i) == '/' && events[i+2].charAt(i) == '/')
-		    {
-		     date = events[i-2].toString() + events[i -1 ].toString() + events[i].toString() + events[i+1].toString() + events[i+2].toString() + events[i + 3].toString()
-		    		+ events[i +4].toString() +events[i+5].toString() + events[i +6].toString();
-		     	dates[i] = date;
-		    	
-		    }		
-	}
 
 
 	public void deleteEvent()
@@ -491,12 +474,6 @@ public void getDates()
 		listBox.removeItem(index);
 		
 		// now need to delete it from the database itself
-		
-	// insert the call to delete the event from the database
-	
-	
-	
-
 	}
 }
 

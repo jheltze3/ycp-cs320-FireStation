@@ -289,7 +289,7 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean run(Connection conn) throws SQLException {
 				try{
 					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, startTime,endTime, date, description)" +
-							 "VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
+							 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
 
 				
 					stmt.setString(1,fireCalendarEvent.getFireFireEvent().getTitle());
@@ -331,14 +331,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					ArrayList<FireCalendar> result = new ArrayList<FireCalendar>();
 
-					stmt = conn.prepareStatement("select " +
-							"fire_events.id, " +
-							"fire_events.title, " +
-							"fire_events.location, " +
-							"fire_events.starTime, " +
-							"fire_events.endTime, " +
-							"fire_events.date, " +
-							"fire_events.description");
+					stmt = conn.prepareStatement("select * from fire_events");
 
 					resultSet = stmt.executeQuery();
 

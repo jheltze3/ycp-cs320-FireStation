@@ -14,7 +14,16 @@
       <servlet-name>LoginService</servlet-name>
       <url-pattern>/ycp_cs320_project_ui/LoginServiceImpl</url-pattern>
   </servlet-mapping>
- 
+  
+    <servlet>
+      <servlet-name>CalendarService</servlet-name>
+      <servlet-class>edu.ycp.CS320.server.CalendarServiceImpl</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+      <servlet-name>CalendarService</servlet-name>
+      <url-pattern>/ycp_cs320_project_ui/CalendarServiceImpl</url-pattern>
+  </servlet-mapping>
   
     <servlet>
     <servlet-name>ExportUsers</servlet-name>
