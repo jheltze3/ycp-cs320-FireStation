@@ -14,7 +14,6 @@ public class Ycp_cs320_project_ui implements EntryPoint{
 	/**
 	 * This is the entry point method.
 	 */
-	@Override
 	public void onModuleLoad() {		
 		LoginView loginView = new LoginView();
 		

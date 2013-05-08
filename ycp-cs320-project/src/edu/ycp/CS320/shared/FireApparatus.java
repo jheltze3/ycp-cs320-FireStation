@@ -14,7 +14,7 @@ public class FireApparatus implements Serializable{
 		//default constructor		
 	}
 
-	public FireApparatus(FireApparatusSpec spec)
+	public FireApparatus(String name, FireApparatusSpec spec)
 	{
 		setFireApparatusSpec(spec);
 	}

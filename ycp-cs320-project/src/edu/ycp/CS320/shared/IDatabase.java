@@ -12,16 +12,16 @@ import java.util.Map;
  *
  */
 public interface IDatabase {
-	
+
 	public Map<Integer, User> getUsersFromDB();		
 	public void addEquipmentToDB(Equipment equipment);		
 	public void addUserToDB(User user);		
 	public int addFireApparatusToDB(FireApparatus fireApparatus);	
-	public int addFireCalendarEventToDB(FireCalendarEvent fireCalendarEvent);
+	public int addFireCalendarEventToDB(FireCalendar firecalendar);
 	public ArrayList<ContactInfo> getContactsFromDB();	
 	public List<Equipment> getEquipmentFromDB();	
 	public ArrayList<FireApparatus> getFireApparatusFromDB();	
-	public ArrayList<FireCalendarEvent> getFireEventFromDB();
 	public void removeFireApparatus(final String name);
+	public ArrayList<FireCalendar> getFireEventFromDB();
 	void addContactToDB(ContactInfo contactInfo);
 }

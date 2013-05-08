@@ -3,14 +3,17 @@ package edu.ycp.CS320.client;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
-import java.text.*;     // Used for date formatting.
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -22,10 +25,18 @@ import com.google.gwt.user.client.ui.SimpleRadioButton;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
-
+import edu.ycp.CS320.shared.FireCalendar;
+import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IPublisher;
 import edu.ycp.CS320.shared.ISubscriber;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
 
+/*
+ * 
+ * author Jake
+ * 
+ */
 public class theCalendar extends Composite implements ISubscriber {
 
 	private final AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -38,14 +49,28 @@ public class theCalendar extends Composite implements ISubscriber {
 	private SimpleRadioButton simpleRadioButton;
 	private SimpleRadioButton simpleRadioButton_1;
 	private Button btnHomePage;
+	private TextBox txtTitle;
+	private TextBox txtLocation;
+	private ListBox cmbStartHour;
+	private ListBox cmbStartMinute;
+	private ListBox cmbStartTime;
+	private ListBox cmbEndHour;
+	private ListBox cmbEndMinute;
+	private TextArea txtNotes;
+	private ListBox cmbEndTime;
+	private Label lblStatus;
+	private String[] dates;
+	private String[] events;
+	private int[] tracker = new int[50];
+	
 
 	@SuppressWarnings("deprecation")
 	public theCalendar() {
-		
+
 		this.formPanel = new FormPanel();
 		absolutePanel.add(formPanel, 21, 269);
 		formPanel.setSize("613px", "322px");
-		
+	
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		formPanel.setWidget(absolutePanel_1);
 		absolutePanel_1.setSize("712px", "321px");
@@ -73,7 +98,6 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		this.simpleRadioButton = new SimpleRadioButton("");
 		simpleRadioButton.addClickHandler(new ClickHandler() {
-			@Override
 			public void onClick(ClickEvent event) {
 				
 				simpleRadioButton_1.setChecked(false);
@@ -88,7 +112,6 @@ public class theCalendar extends Composite implements ISubscriber {
 		
 		this.simpleRadioButton_1 = new SimpleRadioButton("");
 		simpleRadioButton_1.addClickHandler(new ClickHandler() {
-			@Override
 			public void onClick(ClickEvent event) {
 				
 				simpleRadioButton.setChecked(false);
@@ -102,100 +125,161 @@ public class theCalendar extends Composite implements ISubscriber {
 		absolutePanel_1.add(lblEmail, 190, 165);
 		lblEmail.setSize("38px", "18px");
 		
-		TextArea textArea = new TextArea();
-		absolutePanel_1.add(textArea, 35, 224);
-		textArea.setSize("413px", "73px");
+		txtNotes = new TextArea();
+		absolutePanel_1.add(txtNotes, 35, 224);
+		txtNotes.setSize("413px", "73px");
 		
 		Button btnNewButton = new Button("Add Event");
 		btnNewButton.addClickHandler(new ClickHandler() {
-			@Override
 			public void onClick(ClickEvent event) {
 				// send the information to the database
 				formPanel.setVisible(false);
 				
+
+			
+					
+					
+			// get the information		
+		final String title = txtTitle.getText();
+		final String location = txtLocation.getText();
+		final String date = lblDate.getText();
+		final String notes = txtNotes.getText();	
+		
+		// get the starting information
+		int Shourin = cmbStartHour.getSelectedIndex();
+		int Sminin = cmbStartMinute.getSelectedIndex();
+		int Stime = cmbStartTime.getSelectedIndex();
+		final String StartTime = cmbStartHour.getItemText(Shourin) +  cmbStartMinute.getItemText(Sminin) + cmbStartTime.getItemText(Stime);
+		
+		// get the ending information
+		int Ehourin = cmbEndHour.getSelectedIndex();
+		int Eminin = cmbEndMinute.getSelectedIndex();
+		int Etime = cmbEndTime.getSelectedIndex();
+		final String EndTime = cmbEndHour.getItemText(Ehourin) +  cmbEndMinute.getItemText(Eminin) + cmbEndTime.getItemText(Etime);
+
+				
+		if (txtTitle.getText().equals(""))
+				{
+				lblStatus.setText("Please fill in title!");
 			}
-		});
+		
+			else{					
+				RPC.calenderService.addcalendar(new FireCalendar(new FireCalendarEvent(0, title, location, StartTime, EndTime, date,notes)),new AsyncCallback<Boolean>() {
+
+				
+
+					@Override
+					public void onSuccess(Boolean result) {
+						lblStatus.setText("Succesfully Added Event!");	
+						//textBoxName.setText(""); textBoxMake.setText(""); textBoxModel.setText(""); textBoxYear.setText(""); textBoxType.setText(""); textBoxDescription.setText("");
+						
+						
+						// set all the textboxes to NULL, clear the current list and repopulate it
+						
+					clear(); // clears the list Box
+					getEvents();
+					
+					
+						
+						txtTitle.setText("");
+						
+					
+					}
+					
+					@Override
+					public void onFailure(Throwable caught) {
+						lblStatus.setText("Failed to Add Event!");	
+						
+					}
+				});
+			}
+			
+		}
+	});
+
+
+
 		absolutePanel_1.add(btnNewButton, 508, 281);
 		
-		TextBox textBox = new TextBox();
-		absolutePanel_1.add(textBox, 94, 8);
-		textBox.setSize("159px", "18px");
+		txtTitle = new TextBox();
+		absolutePanel_1.add(txtTitle, 94, 8);
+		txtTitle.setSize("159px", "18px");
 		
-		ListBox comboBox = new ListBox();
-		comboBox.addItem("1");
-		comboBox.addItem("2");
-		comboBox.addItem("3");
-		comboBox.addItem("4");
-		comboBox.addItem("5");
-		comboBox.addItem("6");
-		comboBox.addItem("7");
-		comboBox.addItem("8");
-		comboBox.addItem("9");
-		comboBox.addItem("10");
-		comboBox.addItem("11");
-		comboBox.addItem("12");
-		absolutePanel_1.add(comboBox, 105, 91);
-		comboBox.setSize("44px", "22px");
+		cmbStartHour = new ListBox();
+		cmbStartHour.addItem("1");
+		cmbStartHour.addItem("2");
+		cmbStartHour.addItem("3");
+		cmbStartHour.addItem("4");
+		cmbStartHour.addItem("5");
+		cmbStartHour.addItem("6");
+		cmbStartHour.addItem("7");
+		cmbStartHour.addItem("8");
+		cmbStartHour.addItem("9");
+		cmbStartHour.addItem("10");
+		cmbStartHour.addItem("11");
+		cmbStartHour.addItem("12");
+		absolutePanel_1.add(cmbStartHour, 105, 91);
+		cmbStartHour.setSize("44px", "22px");
 		
-		ListBox listBox_1 = new ListBox();
-		listBox_1.addItem("1");
-		listBox_1.addItem("2");
-		listBox_1.addItem("3");
-		listBox_1.addItem("4");
-		listBox_1.addItem("5");
-		listBox_1.addItem("6");
-		listBox_1.addItem("7");
-		listBox_1.addItem("8");
-		listBox_1.addItem("9");
-		listBox_1.addItem("10");
-		listBox_1.addItem("11");
-		listBox_1.addItem("12");
-		absolutePanel_1.add(listBox_1, 105, 121);
-		listBox_1.setSize("44px", "22px");
+		cmbEndHour = new ListBox();
+		cmbEndHour.addItem("1");
+		cmbEndHour.addItem("2");
+		cmbEndHour.addItem("3");
+		cmbEndHour.addItem("4");
+		cmbEndHour.addItem("5");
+		cmbEndHour.addItem("6");
+		cmbEndHour.addItem("7");
+		cmbEndHour.addItem("8");
+		cmbEndHour.addItem("9");
+		cmbEndHour.addItem("10");
+		cmbEndHour.addItem("11");
+		cmbEndHour.addItem("12");
+		absolutePanel_1.add(cmbEndHour, 105, 121);
+		cmbEndHour.setSize("44px", "22px");
 		
-		ListBox listBox_2 = new ListBox();
-		listBox_2.addItem("00");
-		listBox_2.addItem("05");
-		listBox_2.addItem("10");
-		listBox_2.addItem("15");
-		listBox_2.addItem("20");
-		listBox_2.addItem("25");
-		listBox_2.addItem("30");
-		listBox_2.addItem("35");
-		listBox_2.addItem("40");
-		listBox_2.addItem("45");
-		listBox_2.addItem("50");
-		listBox_2.addItem("55");
-		absolutePanel_1.add(listBox_2, 184, 91);
-		listBox_2.setSize("44px", "22px");
+		cmbStartMinute = new ListBox();
+		cmbStartMinute.addItem("00");
+		cmbStartMinute.addItem("05");
+		cmbStartMinute.addItem("10");
+		cmbStartMinute.addItem("15");
+		cmbStartMinute.addItem("20");
+		cmbStartMinute.addItem("25");
+		cmbStartMinute.addItem("30");
+		cmbStartMinute.addItem("35");
+		cmbStartMinute.addItem("40");
+		cmbStartMinute.addItem("45");
+		cmbStartMinute.addItem("50");
+		cmbStartMinute.addItem("55");
+		absolutePanel_1.add(cmbStartMinute, 184, 91);
+		cmbStartMinute.setSize("44px", "22px");
 		
-		ListBox listBox_3 = new ListBox();
-		listBox_3.addItem("00");
-		listBox_3.addItem("05");
-		listBox_3.addItem("10");
-		listBox_3.addItem("15");
-		listBox_3.addItem("20");
-		listBox_3.addItem("25");
-		listBox_3.addItem("30");
-		listBox_3.addItem("35");
-		listBox_3.addItem("40");
-		listBox_3.addItem("45");
-		listBox_3.addItem("50");
-		listBox_3.addItem("55");
-		absolutePanel_1.add(listBox_3, 184, 121);
-		listBox_3.setSize("44px", "22px");
+		cmbEndMinute = new ListBox();
+		cmbEndMinute.addItem("00");
+		cmbEndMinute.addItem("05");
+		cmbEndMinute.addItem("10");
+		cmbEndMinute.addItem("15");
+		cmbEndMinute.addItem("20");
+		cmbEndMinute.addItem("25");
+		cmbEndMinute.addItem("30");
+		cmbEndMinute.addItem("35");
+		cmbEndMinute.addItem("40");
+		cmbEndMinute.addItem("45");
+		cmbEndMinute.addItem("50");
+		cmbEndMinute.addItem("55");
+		absolutePanel_1.add(cmbEndMinute, 184, 121);
+		cmbEndMinute.setSize("44px", "22px");
 		
-		ListBox listBox_4 = new ListBox();
-		listBox_4.addItem("AM");
-		listBox_4.addItem("PM");
-		absolutePanel_1.add(listBox_4, 255, 91);
-		listBox_4.setSize("54px", "22px");
+		cmbStartTime = new ListBox();
+		cmbStartTime.addItem("AM");
+		cmbStartTime.addItem("PM");
+		absolutePanel_1.add(cmbStartTime, 255, 91);
+		cmbStartTime.setSize("54px", "22px");
 		
-		ListBox listBox_5 = new ListBox();
-		listBox_5.addItem("AM");
-		listBox_5.addItem("PM");
-		absolutePanel_1.add(listBox_5, 255, 121);
-		listBox_5.setSize("54px", "22px");
+		cmbEndTime = new ListBox();
+		cmbEndTime.addItem("AM");
+		cmbEndTime.addItem("PM");
+		absolutePanel_1.add(cmbEndTime, 255, 121);
+		cmbEndTime.setSize("54px", "22px");
 		
 		Label label = new Label(":");
 		absolutePanel_1.add(label, 163, 91);
@@ -204,9 +288,9 @@ public class theCalendar extends Composite implements ISubscriber {
 		absolutePanel_1.add(label_1, 163, 125);
 		label_1.setSize("4px", "18px");
 		
-		TextBox textBox_1 = new TextBox();
-		absolutePanel_1.add(textBox_1, 94, 44);
-		textBox_1.setSize("159px", "18px");
+		txtLocation = new TextBox();
+		absolutePanel_1.add(txtLocation, 94, 44);
+		txtLocation.setSize("159px", "18px");
 		
 		formPanel.setVisible(false);
 		
@@ -216,21 +300,14 @@ public class theCalendar extends Composite implements ISubscriber {
 
 		Button btnAddEvent = new Button("Add Event");
 		btnAddEvent.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				// this is to add events to the calendar
-				formPanel.setVisible(true);
-				
-				
-				
+			public void onClick(ClickEvent event) {				
+				formPanel.setVisible(true);						
 			}
 		});
 		absolutePanel.add(btnAddEvent, 90, 233);
 
 		Button btnDeleteEvent = new Button("Delete Event");
 		btnDeleteEvent.addClickHandler(new ClickHandler() {
-			@Override
 			public void onClick(ClickEvent event) {
 				
 				// this is to remove the events from the calendar
@@ -240,6 +317,8 @@ public class theCalendar extends Composite implements ISubscriber {
 				listBox.setSelectedIndex(-1);
 				count--;
 				numEvents.setText(Integer.toString(count));
+				clear();
+				getEvents();
 				
 			}
 		});
@@ -249,7 +328,6 @@ public class theCalendar extends Composite implements ISubscriber {
 		absolutePanel.add(lblDate, 549, 26);
 		lblDate.setSize("102px", "20px");
 		
-		this.listBox = new ListBox();
 		absolutePanel.add(listBox, 444, 74);
 		listBox.setSize("267px", "155px");
 
@@ -269,16 +347,14 @@ public class theCalendar extends Composite implements ISubscriber {
 			@SuppressWarnings("unused")
 			private String nEvents;
 
-			@Override
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 				Date date1 = datePicker.getValue();
-				count++;
+			count = 0;
+			numEvents.setText(Integer.toString(count));
 				lblDate.setText(dateFormat.format(date1));
-				this.nEvents = numEvents.getText(); // this is be updated when
-			
-					listBox.addItem(count + " Events Today");
-					numEvents.setText(Integer.toString(count));
+				clear();
+				getEvents();
 				
 
 			}
@@ -300,6 +376,10 @@ public class theCalendar extends Composite implements ISubscriber {
 		btnHomePage = new Button("Home Page");
 		absolutePanel.add(btnHomePage, 698, 10);
 		
+		lblStatus = new Label("44");
+		absolutePanel.add(lblStatus, 653, 351);
+		lblStatus.setSize("106px", "53px");
+		
 		btnHomePage.addClickHandler(new ClickHandler() {
 			
 			@Override
@@ -312,5 +392,89 @@ public class theCalendar extends Composite implements ISubscriber {
 	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
 
 	}
+	
+	public void clear()
+	{
+		listBox.clear();			
+	}
+	
+	//this gets changed to load the info from the database
+	private void getEvents() {		
+		count = 0;
+		RPC.calenderService.loadEvents(new AsyncCallback<ArrayList<FireCalendar>>() {
+			
+			@Override
+			public void onSuccess(ArrayList<FireCalendar> fireCalendarEvents) {	
+				int  counter = 0;
+				 events = new String[fireCalendarEvents.size()];
+				 dates = new String[fireCalendarEvents.size()];
+				if(fireCalendarEvents != null){					
+					for(int i=0; i<fireCalendarEvents.size(); i++){	
+						
+						String Events = (fireCalendarEvents.get(i).getFireFireEvent().getTitle() + " " +
+								fireCalendarEvents.get(i).getFireFireEvent().getLocation() + " " + 
+								fireCalendarEvents.get(i).getFireFireEvent().getStartTime() + " " +
+								fireCalendarEvents.get(i).getFireFireEvent().getEndTime() + " " +
+								fireCalendarEvents.get(i).getFireFireEvent().getDescription() );
+						
+						String Dates = (fireCalendarEvents.get(i).getFireFireEvent().getDate());
+						dates[i] = Dates;
+								
+						events[i] = Events;						
+										
+					}
+				}
+					int counts = Integer.parseInt(numEvents.getText());
+					for(int j = 0; j < dates.length; j++)
+					{
+					
+						if(dates[j].equals(lblDate.getText()))
+						{
+							listBox.addItem(events[j]);		
+							//String nEvents = numEvents.getText(); 
+							count++;	
+							numEvents.setText(Integer.toString(count));
+							tracker[counter] = j ; // keeps track of the values going into the list
+							counter++;
+						}			
+					}	
+					fireCalendarEvents.clear();
+				
+				
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				lblStatus.setText("RPC failure");						
+			}
+		});	
+		
+		
+		
+	}
+	
+	
+
+
+	public void deleteEvent()
+	{
+		// get the selected index from the list box
+		// get the value and compare it to the tracker array
+		int index = listBox.getSelectedIndex();
+		
+		int itemToRemove = tracker[index]; // this is the real value to delete in the events array
+		
+		
+		// this removes it from the event list
+		List<String> list = new ArrayList<String>(Arrays.asList(events));
+		list.remove(itemToRemove);
+		events = list.toArray(new String[0]);
+		
+		// this deletes it from the list Box
+		listBox.removeItem(index);
+		
+		// now need to delete it from the database itself
+	}
 }
+
 

@@ -5,6 +5,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.util.ArrayList;
 import edu.ycp.CS320.client.ApparatusService;
 import edu.ycp.CS320.shared.FireApparatus;
+import edu.ycp.CS320.shared.FireApparatusList;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.cs320.controllers.GetApparatusController;
 

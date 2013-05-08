@@ -15,22 +15,14 @@
       <url-pattern>/ycp_cs320_project_ui/LoginServiceImpl</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-      <servlet-name>ApparatusService</servlet-name>
-      <servlet-class>edu.ycp.CS320.server.ApparatusServiceImpl</servlet-class>
+    <servlet>
+      <servlet-name>CalendarService</servlet-name>
+      <servlet-class>edu.ycp.CS320.server.CalendarServiceImpl</servlet-class>
   </servlet>
-  <servlet-mapping>
-      <servlet-name>ApparatusService</servlet-name>
-      <url-pattern>/ycp_cs320_project_ui/ApparatusServiceImpl</url-pattern>
-  </servlet-mapping>
   
-  <servlet>
-      <servlet-name>ContactInfoServiceImpl</servlet-name>
-      <servlet-class>edu.ycp.CS320.server.ContactInfoServiceImpl</servlet-class>
-  </servlet>
-  <servlet-mapping>
-      <servlet-name>ContactInfoServiceImpl</servlet-name>
-      <url-pattern>/ycp_cs320_project_ui/ContactInfoServiceImpl</url-pattern>
+   <servlet-mapping>
+      <servlet-name>CalendarService</servlet-name>
+      <url-pattern>/ycp_cs320_project_ui/CalendarServiceImpl</url-pattern>
   </servlet-mapping>
   
     <servlet>
