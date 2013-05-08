@@ -166,6 +166,25 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+	
+	public void removeFireApparatus(final String name){
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {				
+				PreparedStatement stmtRemoveFireApparatus = null;
+				try {					
+					stmtRemoveFireApparatus = conn.prepareStatement("DELETE FROM fire_apparatus_spec " +
+							"WHERE name = ?"
+							);
+					stmtRemoveFireApparatus.setString(1, name);
+					stmtRemoveFireApparatus.executeUpdate();					
+				} finally {
+					DBUtil.closeQuietly(stmtRemoveFireApparatus);
+				}				
+				return true;
+			}
+		});
+	}
 
 	@Override
 	public Map<Integer, User> getUsersFromDB() {

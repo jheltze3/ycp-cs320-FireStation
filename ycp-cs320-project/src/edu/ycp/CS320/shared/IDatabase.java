@@ -22,5 +22,6 @@ public interface IDatabase {
 	public List<Equipment> getEquipmentFromDB();	
 	public ArrayList<FireApparatus> getFireApparatusFromDB();	
 	public ArrayList<FireCalendarEvent> getFireEventFromDB();
+	public void removeFireApparatus(final String name);
 	void addContactToDB(ContactInfo contactInfo);
 }

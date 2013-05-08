@@ -149,5 +149,9 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return null;
 	}
 
-
+	@Override
+	public void removeFireApparatus(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 }

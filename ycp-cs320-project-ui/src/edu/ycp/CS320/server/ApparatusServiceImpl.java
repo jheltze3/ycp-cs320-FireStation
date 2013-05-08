@@ -49,4 +49,16 @@ public class ApparatusServiceImpl extends RemoteServiceServlet implements Appara
 		return true;
 	}
 
+
+	@Override
+	public boolean removeApparatus(String name) {
+		GetApparatusController apparatusController = new GetApparatusController();
+		
+		IDatabase db = DatabaseSingleton.instance();
+		
+		apparatusController.removeApparatus(name, db);
+		
+		return true;
+	}
+
 }

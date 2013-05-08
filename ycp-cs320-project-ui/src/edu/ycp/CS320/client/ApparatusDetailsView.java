@@ -1,11 +1,15 @@
 package edu.ycp.CS320.client;
 
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import edu.ycp.CS320.shared.*;
+import com.google.gwt.user.client.ui.Button;
 
 public class ApparatusDetailsView extends Composite implements ISubscriber {
 	private LayoutPanel layoutPanel;
@@ -111,6 +115,36 @@ public class ApparatusDetailsView extends Composite implements ISubscriber {
 		layoutPanel.add(lblYear_1);
 		layoutPanel.setWidgetLeftWidth(lblYear_1, 100.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblYear_1, 100.0, Unit.PX, 20.0, Unit.PX);
+		
+		Button btnDeleteEntry = new Button("Delete Entry");
+		layoutPanel.add(btnDeleteEntry);
+		layoutPanel.setWidgetLeftWidth(btnDeleteEntry, 0.0, Unit.PX, 117.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnDeleteEntry, 126.0, Unit.PX, 30.0, Unit.PX);
+		btnDeleteEntry.addClickHandler(new ClickHandler() {
+			
+
+			@Override
+			public void onClick(ClickEvent event) {
+				this.GetText();				
+			}
+
+			private void GetText() {
+				RPC.apparatusService.removeApparatus(lblName_1.getText(), new AsyncCallback<Boolean>() {
+					@Override
+					public void onSuccess(Boolean result) {	
+						System.out.println("Removed: "+lblName_1.getText());
+						ApparatusView view = new ApparatusView();
+						Ycp_cs320_project_ui.setView(view);
+						view.activate();
+					}
+					
+					@Override
+					public void onFailure(Throwable caught) {	
+						System.out.println("Could not Removed: "+lblName_1.getText());
+					}
+				});
+			}
+		});
 		
 	}	
 
