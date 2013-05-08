@@ -86,3 +86,12 @@ Title {
 .submitButton {
 	background-color: darkgreen;
 }
+.LoginButton {
+	color: Black;
+	font-weight: bold;
+	background-color: forestgreen;
+}
+.NewUserButton {
+	font-weight: bold;
+	background-color: deepskyblue;
+}

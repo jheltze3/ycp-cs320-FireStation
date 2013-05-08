@@ -34,6 +34,14 @@
     <url-pattern>/ExportUsers/*</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ApparatusServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.CS320.server.ApparatusServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApparatusServiceImpl</servlet-name>
+    <url-pattern>/ycp_cs320_project_ui/ApparatusServiceImpl</url-pattern>
+  </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
