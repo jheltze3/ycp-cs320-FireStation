@@ -14,13 +14,15 @@ import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.EquipmentSpec;
 import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
+import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
+import edu.ycp.CS320.shared.Form;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
 public class DerbyDatabase implements IDatabase {
 	private static final String DATASTORE = "H:/firestation.db";
-	
+
 	static {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -28,14 +30,14 @@ public class DerbyDatabase implements IDatabase {
 			throw new RuntimeException("Could not load Derby JDBC driver");
 		}
 	}
-	
+
 	private class DatabaseConnection {
 		public Connection conn;
 		public int refCount;
 	}
-	
+
 	private final ThreadLocal<DatabaseConnection> connHolder = new ThreadLocal<DatabaseConnection>();
-	
+
 	private DatabaseConnection getConnection() throws SQLException {
 		DatabaseConnection dbConn = connHolder.get();
 		if (dbConn == null) {
@@ -47,7 +49,7 @@ public class DerbyDatabase implements IDatabase {
 		dbConn.refCount++;
 		return dbConn;
 	}
-	
+
 	private void releaseConnection(DatabaseConnection dbConn) throws SQLException {
 		dbConn.refCount--;
 		if (dbConn.refCount == 0) {
@@ -58,17 +60,19 @@ public class DerbyDatabase implements IDatabase {
 			}
 		}
 	}
-	
+
 	private<E> E databaseRun(ITransaction<E> transaction) {
+
 		// FIXME: retry if transaction times out due to deadlock		
+
 		try {
 			DatabaseConnection dbConn = getConnection();
-			
+
 			try {
 				boolean origAutoCommit = dbConn.conn.getAutoCommit();
 				try {
 					dbConn.conn.setAutoCommit(false);
-					
+
 					return transaction.run(dbConn.conn);
 				} finally {
 					dbConn.conn.setAutoCommit(origAutoCommit);
@@ -80,7 +84,7 @@ public class DerbyDatabase implements IDatabase {
 			throw new RuntimeException("SQLException accessing database", e);
 		}
 	}
-	
+
 	void createTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
@@ -88,7 +92,12 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmtContacts = null;	
 				PreparedStatement stmtEvents = null;
 				PreparedStatement stmtEquipment = null;
+				PreparedStatement stmtUsers = null;
+				PreparedStatement stmtApparatusSpec = null;
+				PreparedStatement stmtForms = null;
+				
 				try {
+
 //					stmtUsers = conn.prepareStatement(
 //							"create table users (" +
 //							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
@@ -137,27 +146,44 @@ public class DerbyDatabase implements IDatabase {
 //							"model VARCHAR(64)" +
 //							")"
 //														);
+//					
+//					stmtForms = conn.prepareStatement(
+//							"create table forms (" +
+//							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+//							"name VARCHAR(64), " +
+//							"address VARCHAR(64), " +
+//							"doctor VARCHAR(64), " +
+//							"doctorPhone VARCHAR(64)" +
+//							")"
+//													  );
+//							
 //							
 //					stmtContacts.executeUpdate();
 //					stmtEvents.executeUpdate();	
 //					stmtEquipment.executeUpdate();
+//					stmtForms.executeUpdate();
 //										
 //					ALL TABLES ABOVE CREATED SUCCESSFULLY
+
 				} finally {
 					DBUtil.closeQuietly(stmtEquipment);
+					DBUtil.closeQuietly(stmtUsers);
+					DBUtil.closeQuietly(stmtEvents);
+					DBUtil.closeQuietly(stmtContacts);
+					DBUtil.closeQuietly(stmtApparatusSpec);
 				}				
 				return true;
 			}
 		});
 	}
-	
+
 	void dropTables() throws SQLException {
 		databaseRun(new ITransaction<Boolean>() {
 			@Override
 			public Boolean run(Connection conn) throws SQLException {				
 				PreparedStatement stmtDrop = null;
 				try {					
-					stmtDrop = conn.prepareStatement("DROP TABLE contact_info");
+					stmtDrop = conn.prepareStatement("DROP TABLE forms");
 					stmtDrop.executeUpdate();					
 				} finally {
 					DBUtil.closeQuietly(stmtDrop);
@@ -193,19 +219,19 @@ public class DerbyDatabase implements IDatabase {
 			public Map<Integer, User> run(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				
+
 				try {
 					Map<Integer, User> result = new HashMap<Integer, User>();
-					
+
 					stmt = conn.prepareStatement("select users.id, users.name, users.password from users");
-					
+
 					resultSet = stmt.executeQuery();
 					while (resultSet.next()) {
 						User user = new User();
 						loadUserFromResultSet(resultSet, user);
 						result.put(user.getId(), user);
 					}
-					
+
 					return result;
 				} finally {
 					DBUtil.closeQuietly(stmt);
@@ -220,25 +246,25 @@ public class DerbyDatabase implements IDatabase {
 
 			PreparedStatement stmt = null;
 			ResultSet keys = null;
-			
+
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
 					stmt = conn.prepareStatement("INSERT INTO contact_info (home_phone_number, cell_phone_number, name)" +
 												"VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);					
-					
+
 					stmt.setString(1, contactInfo.getHomePhoneNumber());
 					stmt.setString(2, contactInfo.getCellPhoneNumber());
 					stmt.setString(3, contactInfo.getName());
-					
+
 					stmt.executeUpdate();
-					
+
 					keys = stmt.getGeneratedKeys();
-					
+
 					if(!keys.next()){
 						throw new SQLException("Couldn't get generated key");
 					}
-					
+
 					contactInfo.setUserId(keys.getInt(1));
 				} finally {
 					DBUtil.closeQuietly(stmt);
@@ -246,38 +272,38 @@ public class DerbyDatabase implements IDatabase {
 				}
 				return null;
 			}
-			
+
 		});
 	}
 
 	@Override
 	public void addUserToDB(final User user) {
-		
+
 		databaseRun(new ITransaction<Boolean>() {
-			
+
 			PreparedStatement stmt = null;
 			ResultSet keys = null;
-			
+
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
-					
+
 				stmt = conn.prepareStatement("INSERT INTO users (name, password)" +
 											 "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
-				
+
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getPassword());
-				
+
 				stmt.executeUpdate();
-				
+
 				keys = stmt.getGeneratedKeys();
 				if (!keys.next()) {
 					throw new SQLException("Couldn't get generated key");
 				}
 				user.setId(keys.getInt(1));
-				
+
 				return null;
-				
+
 				} finally {
 					DBUtil.closeQuietly(stmt);
 					DBUtil.closeQuietly(keys);
@@ -285,30 +311,35 @@ public class DerbyDatabase implements IDatabase {
 			}	
 		});		
 	}
-	
-	@Override
-	public int addFireCalendarEventToDB(final FireCalendarEvent fireCalendarEvent) {
+// created by Drew, Modified by Jake
+	public int addFireCalendarEventToDB(final FireCalendar fireCalendarEvent) {
 		databaseRun(new ITransaction<Boolean>() {
 			PreparedStatement stmt = null;
 			ResultSet keys = null;
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
-					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, description)" +
-							 "VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
-					
-					stmt.setString(1, fireCalendarEvent.getTitle());
-					stmt.setString(2, fireCalendarEvent.getLocation());
-					stmt.setString(3, fireCalendarEvent.getDescription());
-					
+					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, startTime,endTime, date, description)" +
+							 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
+
+				
+					stmt.setString(1,fireCalendarEvent.getFireFireEvent().getTitle());
+					stmt.setString(2,fireCalendarEvent.getFireFireEvent().getLocation());
+					stmt.setString(3,fireCalendarEvent.getFireFireEvent().getStartTime());
+					stmt.setString(4,fireCalendarEvent.getFireFireEvent().getEndTime());
+					stmt.setString(5,fireCalendarEvent.getFireFireEvent().getDate());
+					stmt.setString(6,fireCalendarEvent.getFireFireEvent().getDescription());
+		
+		
+
 					stmt.executeUpdate();
 					keys = stmt.getGeneratedKeys();
-					
+
 					if(!keys.next()){
 						throw new SQLException("Couldn't get generated key");
 					}
-					
-					fireCalendarEvent.setId(keys.getInt(1));
+
+					fireCalendarEvent.getFireFireEvent().setId(keys.getInt(1));
 				} finally {
 					DBUtil.closeQuietly(stmt);
 					DBUtil.closeQuietly(keys);
@@ -319,37 +350,35 @@ public class DerbyDatabase implements IDatabase {
 		return 0;
 	}	
 	
+	// created by Drew, Modified by Jake
 	@Override
-	public ArrayList<FireCalendarEvent> getFireEventFromDB() {
-		return databaseRun(new ITransaction<ArrayList<FireCalendarEvent>>() {			
+	public ArrayList<FireCalendar> getFireEventFromDB() {
+		return databaseRun(new ITransaction<ArrayList<FireCalendar>>() {			
 			@Override
-			public ArrayList<FireCalendarEvent> run(Connection conn) throws SQLException {
+			public ArrayList<FireCalendar> run(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				
+
 				try {
-					ArrayList<FireCalendarEvent> result = new ArrayList<FireCalendarEvent>();
-					
-					stmt = conn.prepareStatement("select " +
-							"fire_events.id, " +
-							"fire_events.title, " +
-							"fire_events.location, " +
-							"fire_events.description");
-					
+					ArrayList<FireCalendar> result = new ArrayList<FireCalendar>();
+
+					stmt = conn.prepareStatement("select * from fire_events");
+
 					resultSet = stmt.executeQuery();
-					
+
 					while (resultSet.next()) {	
-						result.add(new FireCalendarEvent(resultSet.getInt(1), 
+						result.add(new FireCalendar( new FireCalendarEvent(
+								resultSet.getInt(1), 
 														 resultSet.getString(2),
 														 resultSet.getString(3),
-														 "",
-														 "",
 														 resultSet.getString(4),
-														 ""));
+														 resultSet.getString(5),
+														 resultSet.getString(6),
+														 resultSet.getString(7))));
 					}					
-					
-					
-					
+
+
+
 					return result;
 				} finally {
 					DBUtil.closeQuietly(stmt);
@@ -368,42 +397,43 @@ public class DerbyDatabase implements IDatabase {
 	@Override
 	public int addFireApparatusToDB(final FireApparatus fireApparatus) {
 			databaseRun(new ITransaction<Boolean>() {
-			
+
 			PreparedStatement stmt = null;
 			ResultSet keys = null;
-			
+
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
-					
+
 				stmt = conn.prepareStatement("INSERT INTO fire_apparatus_spec (make, model, name, model_year, type, description)" +
 											 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);			
-				
+
 				stmt.setString(1, fireApparatus.getFireApparatusSpec().getMake());
 				stmt.setString(2, fireApparatus.getFireApparatusSpec().getModel());
 				stmt.setString(3, fireApparatus.getFireApparatusSpec().getName());
 				stmt.setInt(4, fireApparatus.getFireApparatusSpec().getYear());
 				stmt.setString(5, fireApparatus.getFireApparatusSpec().getType());
 				stmt.setString(6,  fireApparatus.getFireApparatusSpec().getDescription());
-				
+			
+
 				stmt.executeUpdate();
-				
+
 				keys = stmt.getGeneratedKeys();
 				if (!keys.next()) {
 					throw new SQLException("Couldn't get generated key");
 				}
-				
+
 				fireApparatus.getFireApparatusSpec().setId(keys.getInt(1));
-				
+
 				return null;
-				
+
 				} finally {
 					DBUtil.closeQuietly(stmt);
 					DBUtil.closeQuietly(keys);
 				}
 			}	
 		});			
-		
+
 			return 0;
 	}
 
@@ -413,27 +443,27 @@ public class DerbyDatabase implements IDatabase {
 
 			PreparedStatement stmt = null;
 			ResultSet keys = null;
-			
+
 			@Override
 			public Boolean run(Connection conn) throws SQLException {
 				try{
 					stmt = conn.prepareStatement("INSERT INTO fire_equipment(name, amount, condition, make, model)" +
 												"VALUES(?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-					
+
 					stmt.setString(1, equipment.getName());
 					stmt.setInt(2, equipment.getPrice());
 					stmt.setString(3, equipment.getCondition());
 					stmt.setString(4, equipment.getSpec().getMake());
 					stmt.setString(5, equipment.getSpec().getModel());
-					
+
 					stmt.executeUpdate();
-					
+
 					keys = stmt.getGeneratedKeys();
-					
+
 					if(!keys.next()){
 						throw new SQLException("Couldn't get generated key");
 					}
-					
+
 					equipment.setId(keys.getInt(1));
 				} finally {
 					DBUtil.closeQuietly(stmt);
@@ -442,7 +472,7 @@ public class DerbyDatabase implements IDatabase {
 				return null;
 			}
 		});
-		
+
 	}
 
 	@Override
@@ -452,10 +482,10 @@ public class DerbyDatabase implements IDatabase {
 			public ArrayList<FireApparatus> run(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				
+
 				try {
 					ArrayList<FireApparatus> result = new ArrayList<FireApparatus>();
-					
+
 					stmt = conn.prepareStatement("select " +
 							"fire_apparatus_spec.make, " +
 							"fire_apparatus_spec.model, " +
@@ -463,10 +493,10 @@ public class DerbyDatabase implements IDatabase {
 							"fire_apparatus_spec.model_year, " +
 							"fire_apparatus_spec.type, " +
 							"fire_apparatus_spec.description from fire_apparatus_spec");
-					
+
 					resultSet = stmt.executeQuery();
 					while (resultSet.next()) {	
-						result.add(new FireApparatus(new FireApparatusSpec(
+						result.add(new FireApparatus(null, new FireApparatusSpec(
 								resultSet.getString(1), 
 								resultSet.getString(2), 
 								resultSet.getString(3), 
@@ -489,21 +519,21 @@ public class DerbyDatabase implements IDatabase {
 
 			@Override
 			public ArrayList<ContactInfo> run(Connection conn) throws SQLException {
-					
+
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				
+
 				try{
 					ArrayList <ContactInfo> result = new ArrayList <ContactInfo>();
-					
+
 					stmt = conn.prepareStatement("select " +
 												"contact_info.id, " +
 												"contact_info.home_phone_number, " +
 												"contact_info.cell_phone_number, " +
 												"contact_info.name");
-					
+
 					resultSet = stmt.executeQuery();
-					
+
 					while(resultSet.next()){
 						result.add(new ContactInfo(resultSet.getInt(1),												   
 												   resultSet.getString(2),
@@ -515,10 +545,10 @@ public class DerbyDatabase implements IDatabase {
 				} finally {
 					DBUtil.closeQuietly(stmt);
 				}
-				
+
 			}
 		});
-		
+
 	}
 
 	@Override
@@ -527,13 +557,13 @@ public class DerbyDatabase implements IDatabase {
 
 			@Override
 			public ArrayList<Equipment> run(Connection conn) throws SQLException {
-				
+
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				
+
 				try{
 					ArrayList <Equipment> result = new ArrayList <Equipment>();
-					
+
 					stmt = conn.prepareStatement("select " +
 												"equipment.id, " +
 												"equipment.name, " +
@@ -541,9 +571,9 @@ public class DerbyDatabase implements IDatabase {
 												"equipment.condition, " +
 												"equipment.make, " +
 												"equipment.model");
-					
+
 					resultSet = stmt.executeQuery();
-					
+
 					while(resultSet.next()){
 						result.add(new Equipment(resultSet.getInt(1),
 												 resultSet.getString(2),
@@ -559,5 +589,83 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+
+	@Override
+	public ArrayList<Form> getFormsFromDB() {
+		return databaseRun(new ITransaction<ArrayList<Form>>() {			
+			@Override
+			public ArrayList<Form> run(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				try {
+					ArrayList<Form> result = new ArrayList<Form>();
+
+					stmt = conn.prepareStatement("select " +
+												 "forms.id, " +
+												 "forms.name, " +
+												 "forms.address, " +
+												 "forms.doctor, " +
+												 "forms.doctorPhone");
+
+					resultSet = stmt.executeQuery();
+
+					while (resultSet.next()) {	
+						result.add(new Form(resultSet.getInt(1), 
+											resultSet.getString(2),
+											resultSet.getString(3), 
+											resultSet.getString(4), 
+											resultSet.getString(5)));
+					}					
+
+
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
+
+	@Override
+	public void addFormsToDB(final Form form) {
+		databaseRun(new ITransaction<Boolean>() {
+
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				try{
+					stmt = conn.prepareStatement("INSERT INTO forms(name, address, doctor, doctorPhone)" +
+												"VALUES(?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+
+					stmt.setString(1, form.getName());
+					stmt.setString(2, form.getAddress());
+					stmt.setString(3, form.getDoctor());
+					stmt.setString(4, form.getDoctorPhone());					
+
+					stmt.executeUpdate();
+
+					keys = stmt.getGeneratedKeys();
+
+					if(!keys.next()){
+						throw new SQLException("Couldn't get generated key");
+					}
+
+					form.setId(keys.getInt(1));
+				} finally {
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(keys);
+				}
+				return null;
+			}
+		});
+		
+	}
+
+
 
 }

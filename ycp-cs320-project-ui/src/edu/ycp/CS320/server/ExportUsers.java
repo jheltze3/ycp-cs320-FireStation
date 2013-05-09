@@ -23,18 +23,18 @@ public class ExportUsers extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String pathInfo = req.getPathInfo();
-		
+
 		//writing path info and success upon...success
 		System.out.println("Path is: " + pathInfo);
-		
+
 		resp.setStatus(HttpServletResponse.SC_OK);
 		resp.setContentType("text/plain");
 		resp.getWriter().write("Success!! \n");
-		
+
 		//printing out all users in database
 		IDatabase db = DatabaseSingleton.instance();
 		Map<Integer, User> users = db.getUsersFromDB();		
-		
+
 		Iterator<Entry<Integer, User>> usersIt = users.entrySet().iterator();
 		while(usersIt.hasNext()){
 			resp.getWriter().write(usersIt.next().getValue().getUsername() + "\n" );

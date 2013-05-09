@@ -1,14 +1,29 @@
 package edu.ycp.CS320.shared;
 
-import java.io.Serializable;
-
-public class ContactInfo implements Serializable {
+public class ContactInfo {
 	private int userId;
 	private ContactInfoType type;
 	private String homePhoneNumber = "";
 	private String cellPhoneNumber = "";
 	private String name = "";
+	private String preferred = "";
 	
+	public String getPreferred() {
+		return preferred;
+	}
+
+	public void setPreferred(String preferred) {
+		this.preferred = preferred;
+	}
+
+	public void setHomePhoneNumber(String homePhoneNumber) {
+		this.homePhoneNumber = homePhoneNumber;
+	}
+
+	public void setCellPhoneNumber(String cellPhoneNumber) {
+		this.cellPhoneNumber = cellPhoneNumber;
+	}
+
 	public ContactInfo(int id, String homePhone, String cellPhone, String name){
 		this.userId = id;		
 		this.homePhoneNumber = homePhone;

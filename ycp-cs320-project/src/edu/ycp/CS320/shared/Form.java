@@ -9,22 +9,24 @@ public class Form implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;	
 	
-	private String name;
-	private String password;
+	private String name;	
 	private String address;
-	private ContactInfo contact = new ContactInfo();
+	private String doctor;
+	private String doctorPhone;	
 	private int id = -1;		
 	
 	public Form(){
 		//default constructor
 	}
 	
-	public Form(String name, String password, String address, ContactInfo contact, int id){
-		this.name = name;
-		this.password = password;
-		this.address = address;
-		this.contact = contact;
+	public Form(int id, String name, String address, String doctor, String doctorPhone){
+		
 		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.doctor = doctor;
+		this.doctorPhone = doctorPhone;		
+		
 	}
 
 	/**
@@ -32,6 +34,23 @@ public class Form implements Serializable{
 	 * live below --
 	 * 
 	 */
+	
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
+	}
+
+	public String getDoctorPhone() {
+		return doctorPhone;
+	}
+
+	public void setDoctorPhone(String doctorPhone) {
+		this.doctorPhone = doctorPhone;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -40,28 +59,12 @@ public class Form implements Serializable{
 		this.name = name;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public ContactInfo getContact() {
-		return contact;
-	}
-
-	public void setContact(ContactInfo contact) {
-		this.contact = contact;
 	}
 
 	public int getId() {

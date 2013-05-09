@@ -1,7 +1,9 @@
+
 package edu.ycp.CS320.shared;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 
 public class FireCalendarList implements Serializable{
 	/**
@@ -19,3 +21,4 @@ public class FireCalendarList implements Serializable{
 	}
 	
 }
+

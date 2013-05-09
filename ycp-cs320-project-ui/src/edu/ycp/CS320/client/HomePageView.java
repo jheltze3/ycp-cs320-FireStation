@@ -1,7 +1,5 @@
 package edu.ycp.CS320.client;
 
-
-
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,6 +9,13 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 
+import edu.ycp.CS320.client.ApparatusView;
+import edu.ycp.CS320.client.ContactInfoView;
+import edu.ycp.CS320.client.FormView;
+import edu.ycp.CS320.client.LoginView;
+import edu.ycp.CS320.client.UsersView;
+import edu.ycp.CS320.client.Ycp_cs320_project_ui;
+import edu.ycp.CS320.client.theCalendar;
 import edu.ycp.CS320.shared.ContactInfo;
 import com.google.gwt.user.client.ui.InlineLabel;
 
@@ -26,9 +31,7 @@ public class HomePageView extends Composite{
 	private Button btnCalendar;
 	private Button btnContact;
 	private Button btnBackToLogin;
-	private Button btnUsersButton;
-	public InlineLabel lblUser;
-	
+
 	public HomePageView(){
 
 		final LayoutPanel layout = new LayoutPanel();
@@ -38,12 +41,12 @@ public class HomePageView extends Composite{
 		layout.add(hi);
 		layout.setWidgetLeftWidth(hi, 0.0, Unit.PX, 637.0, Unit.PX);
 		layout.setWidgetTopHeight(hi, 0.0, Unit.PX, 542.0, Unit.PX);
-		
+
 		btnForms = new Button("Forms");
 		layout.add(btnForms);
-		layout.setWidgetLeftWidth(btnForms, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnForms, 202.0, Unit.PX, 30.0, Unit.PX);
-		
+		layout.setWidgetLeftWidth(btnForms, 278.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetTopHeight(btnForms, 170.0, Unit.PX, 30.0, Unit.PX);
+
 		btnForms.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent click){				
@@ -53,8 +56,8 @@ public class HomePageView extends Composite{
 
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
-		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnApparatus, 278.0, Unit.PX, 120.0, Unit.PX);
+		layout.setWidgetTopHeight(btnApparatus, 48.0, Unit.PX, 30.0, Unit.PX);
 
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
@@ -70,73 +73,41 @@ public class HomePageView extends Composite{
 				Ycp_cs320_project_ui.setView(view);
 				view.activate();
 			}		
-			
+
 		});		
-		
+
 		btnCalendar = new Button("Calendar");
 		layout.add(btnCalendar);
 		layout.setWidgetLeftWidth(btnCalendar, 21.0, Unit.PX, 120.0, Unit.PX);
 		layout.setWidgetTopHeight(btnCalendar, 48.0, Unit.PX, 30.0, Unit.PX);
-		
+
 		btnContact = new Button("Contacts");
 		layout.add(btnContact);
 		layout.setWidgetLeftWidth(btnContact, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnContact, 151.0, Unit.PX, 30.0, Unit.PX);
-		
-		Button btnVolunteer = new Button("Volunteer");
-		layout.add(btnVolunteer);
-		layout.setWidgetLeftWidth(btnVolunteer, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnVolunteer, 246.0, Unit.PX, 30.0, Unit.PX);
-		
+		layout.setWidgetTopHeight(btnContact, 170.0, Unit.PX, 30.0, Unit.PX);
+
 		btnBackToLogin = new Button("Back to Login");
 		layout.add(btnBackToLogin);
-		layout.setWidgetLeftWidth(btnBackToLogin, 331.0, Unit.PX, 103.0, Unit.PX);
-		layout.setWidgetTopHeight(btnBackToLogin, 48.0, Unit.PX, 30.0, Unit.PX);
-		
-		btnUsersButton = new Button("Users");
-		layout.add(btnUsersButton);
-		layout.setWidgetLeftWidth(btnUsersButton, 331.0, Unit.PX, 103.0, Unit.PX);
-		layout.setWidgetTopHeight(btnUsersButton, 202.0, Unit.PX, 30.0, Unit.PX);
-		
-		InlineLabel nlnlblUserLoggedIn = new InlineLabel("User Logged In is: ");
-		layout.add(nlnlblUserLoggedIn);
-		layout.setWidgetLeftWidth(nlnlblUserLoggedIn, 189.0, Unit.PX, 90.0, Unit.PX);
-		layout.setWidgetTopHeight(nlnlblUserLoggedIn, 122.0, Unit.PX, 18.0, Unit.PX);
-		
-		lblUser = new InlineLabel("USER");
-		layout.add(lblUser);
-		layout.setWidgetLeftWidth(lblUser, 315.0, Unit.PX, 90.0, Unit.PX);
-		layout.setWidgetTopHeight(lblUser, 122.0, Unit.PX, 18.0, Unit.PX);
-		
-		btnUsersButton.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				UsersView view = new UsersView();
-				Ycp_cs320_project_ui.setView(view);
-				
-				
-				
-			}
-		});
-		
+		layout.setWidgetLeftWidth(btnBackToLogin, 159.0, Unit.PX, 103.0, Unit.PX);
+		layout.setWidgetTopHeight(btnBackToLogin, 246.0, Unit.PX, 30.0, Unit.PX);
+
 		btnBackToLogin.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {				
 				Ycp_cs320_project_ui.setView(new LoginView());				
 			}
-			
+
 		});
-		
+
 		btnCalendar.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {				
 				Ycp_cs320_project_ui.setView(new theCalendar());
 			}			
 		});		
-		
-		
+
+
 		btnContact.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
