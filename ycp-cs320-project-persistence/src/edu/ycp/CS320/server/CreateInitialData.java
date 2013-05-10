@@ -81,7 +81,23 @@ public class CreateInitialData {
 		
 		
 		//add contact/event to DB
+
+		User alana = new User(-1, "alana", "pw");
+		db.addUserToDB(alana);
 		
+		Events event = new Events();
+		event.setCondition("graduated");
+		event.setName("party");
+		event.setPrice(50);
+
+		ContactInfo contact = new ContactInfo();
+		contact.setType(ContactInfoType.HOME);
+		contact.setUserId(alana.getId());
+		contact.setCellphoneNumber("0-000-0000");
+		contact.setHomephoneNumber("9-999-9999");
+		contact.setName("Alana");	
+		//contact.setType(HOME);
+		db.addContactInfo(contact);
 
 		System.out.println("Successfully created initial data");
 	}

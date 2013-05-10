@@ -40,10 +40,8 @@ public class LoginView extends Composite implements ISubscriber {
 		 */		
 		final LayoutPanel layoutPanel = new LayoutPanel();
 		layoutPanel.setStyleName("fireStation-panelBackground");
-
-		initWidget(layoutPanel);		
-
-		layoutPanel.setSize("2200px", "1200px");
+		initWidget(layoutPanel);	
+		layoutPanel.setSize("2000px", "2000px");
 
 
 		Label lblWelcomeToYork = new Label("Welcome To York Fire Station");

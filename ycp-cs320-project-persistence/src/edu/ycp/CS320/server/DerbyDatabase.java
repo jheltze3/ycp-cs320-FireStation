@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.ycp.CS320.shared.ContactInfo;
+import edu.ycp.CS320.shared.ContactInfoType;
 import edu.ycp.CS320.shared.Equipment;
 import edu.ycp.CS320.shared.EquipmentSpec;
 import edu.ycp.CS320.shared.FireApparatus;
@@ -19,6 +20,7 @@ import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.Form;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.CS320.shared.UserWithContactInfo;
 
 public class DerbyDatabase implements IDatabase {
 	private static final String DATASTORE = "H:/firestation.db";
@@ -119,6 +121,7 @@ public class DerbyDatabase implements IDatabase {
 					stmtContacts = conn.prepareStatement(
 							"create table contact_info (" +
 							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"user_id INTEGER NOT NULL, " +
 							"type VARCHAR(64), " +
 							"home_phone_number VARCHAR(64), " +
 							"cell_phone_number VARCHAR(64), " +
@@ -238,38 +241,40 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public void addContactToDB(final ContactInfo contactInfo) {
-		databaseRun(new ITransaction<Boolean>() {
-
-			PreparedStatement stmt = null;
-			ResultSet keys = null;
-
+	public ContactInfo addContactInfo(final ContactInfo contactInfo) {
+		return databaseRun(new ITransaction<ContactInfo>() {
 			@Override
-			public Boolean run(Connection conn) throws SQLException {
-				try{
-					stmt = conn.prepareStatement("INSERT INTO contact_info (home_phone_number, cell_phone_number, name)" +
-												"VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);					
+			public ContactInfo run(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet keys = null;
 
-					stmt.setString(1, contactInfo.getHomePhoneNumber());
-					stmt.setString(2, contactInfo.getCellPhoneNumber());
-					stmt.setString(3, contactInfo.getName());
+				try {
+					stmt = conn.prepareStatement(
+						"insert into contact_info(user_id, type, home_phone_number, cell_phone_number, name) values (?, ?, ?, ?, ?)",
+						PreparedStatement.RETURN_GENERATED_KEYS
+					);
+					stmt.setInt(1, contactInfo.getUserId());
+					ContactInfoType type = contactInfo.getType();
+					stmt.setString(2, type.toString());
+					stmt.setString(3, contactInfo.getHomePhoneNumber());
+					stmt.setString(4, contactInfo.getCellPhoneNumber());
+					stmt.setString(5, contactInfo.getName());
+					// TODO: other fields
 
 					stmt.executeUpdate();
 
 					keys = stmt.getGeneratedKeys();
-
-					if(!keys.next()){
-						throw new SQLException("Couldn't get generated key");
+					if (!keys.next()) {
+						throw new SQLException("Couldn't get generated key for contact info");
 					}
+					contactInfo.setId(keys.getInt(1));
 
-					contactInfo.setUserId(keys.getInt(1));
+					return contactInfo;
 				} finally {
-					DBUtil.closeQuietly(stmt);
 					DBUtil.closeQuietly(keys);
+					DBUtil.closeQuietly(stmt);
 				}
-				return null;
 			}
-
 		});
 	}
 
@@ -309,17 +314,49 @@ public class DerbyDatabase implements IDatabase {
 		});		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public ArrayList<UserWithContactInfo> getContactsFromDB() {
+		// TODO Auto-generated method stub
+		return databaseRun(new ITransaction<ArrayList<UserWithContactInfo>>() {			
+			@Override
+			public ArrayList<UserWithContactInfo> run(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				try {
+					ArrayList<UserWithContactInfo> result = new ArrayList<UserWithContactInfo>();
+
+					stmt = conn.prepareStatement("select users.*, contact_info.* from users, contact_info where users.id = contact_info.user_id");
+					resultSet = stmt.executeQuery();
+
+					while (resultSet.next()) {	
+						User user = new User();
+						ContactInfo contactInfo = new ContactInfo();
+
+						user.setId(resultSet.getInt(1));
+						user.setUsername(resultSet.getString(2));
+						user.setPassword("***");
+
+						contactInfo.setId(resultSet.getInt(4));
+						// etc.
+						contactInfo.setUserId(resultSet.getInt(5));
+						ContactInfoType type = ContactInfoType.valueOf(resultSet.getString(6));
+						contactInfo.setHomephoneNumber(resultSet.getString(7));
+						contactInfo.setCellphoneNumber(resultSet.getString(8));
+						contactInfo.setName(resultSet.getString(9));
+
+						UserWithContactInfo userWithContactInfo = new UserWithContactInfo();
+						userWithContactInfo.setUser(user);
+						userWithContactInfo.setContactInfo(contactInfo);
+						result.add(userWithContactInfo);						
+					}					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 	
 	// created by Drew, Modified by Jake
 		public int addFireCalendarEventToDB( final FireCalendar fireCalendarEvent) {
@@ -598,43 +635,43 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-	@Override
-	public ArrayList<ContactInfo> getContactsFromDB() {
-		return databaseRun(new ITransaction<ArrayList<ContactInfo>>() {
-
-			@Override
-			public ArrayList<ContactInfo> run(Connection conn) throws SQLException {
-
-				PreparedStatement stmt = null;
-				ResultSet resultSet = null;
-
-				try{
-					ArrayList <ContactInfo> result = new ArrayList <ContactInfo>();
-
-					stmt = conn.prepareStatement("select " +
-												"contact_info.id, " +
-												"contact_info.home_phone_number, " +
-												"contact_info.cell_phone_number, " +
-												"contact_info.name");
-
-					resultSet = stmt.executeQuery();
-
-					while(resultSet.next()){
-						result.add(new ContactInfo(resultSet.getInt(1),												   
-												   resultSet.getString(2),
-												   resultSet.getString(3),
-												   resultSet.getString(4)
-												   ));
-					}
-					return result;
-				} finally {
-					DBUtil.closeQuietly(stmt);
-				}
-
-			}
-		});
-
-	}
+//	@Override
+//	public ArrayList<ContactInfo> getContactsFromDB() {
+//		return databaseRun(new ITransaction<ArrayList<ContactInfo>>() {
+//
+//			@Override
+//			public ArrayList<ContactInfo> run(Connection conn) throws SQLException {
+//
+//				PreparedStatement stmt = null;
+//				ResultSet resultSet = null;
+//
+//				try{
+//					ArrayList <ContactInfo> result = new ArrayList <ContactInfo>();
+//
+//					stmt = conn.prepareStatement("select " +
+//												"contact_info.id, " +
+//												"contact_info.home_phone_number, " +
+//												"contact_info.cell_phone_number, " +
+//												"contact_info.name");
+//
+//					resultSet = stmt.executeQuery();
+//
+//					while(resultSet.next()){
+//						result.add(new ContactInfo(resultSet.getInt(1),												   
+//												   resultSet.getString(2),
+//												   resultSet.getString(3),
+//												   resultSet.getString(4)
+//												   ));
+//					}
+//					return result;
+//				} finally {
+//					DBUtil.closeQuietly(stmt);
+//				}
+//
+//			}
+//		});
+//
+//	}
 
 	@Override
 	public ArrayList<Equipment> getEquipmentFromDB() {
@@ -748,6 +785,12 @@ public class DerbyDatabase implements IDatabase {
 				return null;
 			}
 		});
+		
+	}
+
+	@Override
+	public void addContactToDB() {
+		// TODO Auto-generated method stub
 		
 	}
 	

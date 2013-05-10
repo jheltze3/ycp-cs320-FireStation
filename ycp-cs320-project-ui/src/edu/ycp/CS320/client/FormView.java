@@ -142,7 +142,7 @@ public class FormView extends Composite {
 				contactInfo.setName(contactNameBox.getText());
 				contactInfo.setHomephoneNumber(homePhoneBox.getText());
 				contactInfo.setCellphoneNumber(cellPhoneBox.getText());
-				contactInfo.setPreferred(preferredNumberBox.getText());
+				
 				
 				RPC.formService.addForms(form, new AsyncCallback<Void>() {
 					
@@ -184,7 +184,6 @@ public class FormView extends Composite {
 				contact.setCellphoneNumber(cellPhoneBox.getText());
 				contact.setHomephoneNumber(homePhoneBox.getText());
 				contact.setName(contactNameBox.getText());
-				contact.setPreferred(preferredNumberBox.getText());
 				
 				//TODO: implement contact service
 				

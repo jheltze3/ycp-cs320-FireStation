@@ -17,6 +17,7 @@ import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.Form;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
+import edu.ycp.CS320.shared.UserWithContactInfo;
 
 
 public class FakeDatabase implements IDatabase, Serializable {
@@ -100,9 +101,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		return userMap;
 	}
 
-	public ArrayList<ContactInfo> getContactsFromDB() {
-		return null;
-	}
+	
 
 	public List<Equipment> getEquipmentFromDB() {
 		return null;
@@ -131,12 +130,7 @@ public class FakeDatabase implements IDatabase, Serializable {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void addContactToDB(ContactInfo contactInfo) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	@Override
 	public int addFireCalendarEventToDB(FireCalendar fireCalendarEvent) {
@@ -172,6 +166,18 @@ public class FakeDatabase implements IDatabase, Serializable {
 	public void removeFireCalendarEvent(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ContactInfo addContactInfo(ContactInfo contactInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<UserWithContactInfo> getContactsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

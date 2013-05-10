@@ -51,6 +51,15 @@
     <url-pattern>/ycp_cs320_project_ui/ApparatusServiceImpl</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ContactInfoServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.CS320.server.ContactInfoServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContactInfoServiceImpl</servlet-name>
+    <url-pattern>/ycp_cs320_project_ui/ContactInfoServiceImpl</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Ycp_cs320_project_ui.html</welcome-file>
