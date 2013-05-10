@@ -127,7 +127,7 @@ public class LoginView extends Composite implements ISubscriber {
 		btnNewUser.setStyleName("NewUserButton");
 		layoutPanel.add(btnNewUser);
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 384.0, Unit.PX, 100.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewUser, 177.0, Unit.PX, 36.0, Unit.PX);	
+		layoutPanel.setWidgetTopHeight(btnNewUser, 177.0, Unit.PX, 36.0, Unit.PX);
 
 
 		btnNewUser.addClickHandler(new ClickHandler() {

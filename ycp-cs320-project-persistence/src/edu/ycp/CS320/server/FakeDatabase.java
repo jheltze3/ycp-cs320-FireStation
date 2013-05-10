@@ -14,6 +14,7 @@ import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
+import edu.ycp.CS320.shared.Form;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
@@ -154,4 +155,18 @@ public class FakeDatabase implements IDatabase, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<Form> getFormsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addFormsToDB(Form form) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
+

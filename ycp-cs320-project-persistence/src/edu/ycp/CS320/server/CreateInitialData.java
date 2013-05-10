@@ -24,14 +24,21 @@ public class CreateInitialData {
 //		FireCalendar fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
 //		db.addFireApparatusToDB(fireApparatus);
 
-
 //		FireApparatus fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
 //		db.addFireApparatusToDB(fireApparatus);
-		
 // 		THIS IS FOR THE CALENDAR
 //		FireCalendar firecalendar = new FireCalendar(new FireCalendarEvent(0, "TITLE", "LOCATION", "STARTTIME", "ENDTIME", "DATE", "NOTES"));		
 //		db.addFireCalendarEventToDB(firecalendar);
+
+	//	FireCalendar fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
+		//db.addFireApparatusToDB(fireApparatus);
+
+		//FireApparatus fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
+		//db.addFireApparatusToDB(fireApparatus);
 		
+		// THIS IS FOR THE CALENDAR
+		//FireCalendar firecalendar = new FireCalendar(new FireCalendarEvent(0, "TITLE", "LOCATION", "STARTTIME", "ENDTIME", "DATE", "NOTES"));		
+		//db.addFireCalendarEventToDB(firecalendar);
 
 //		FireApparatus fireApparatus = new FireApparatus(new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Engine 62-1", 2009, "Pumper", "This is the first out engine to fire calls"));		
 //		db.addFireApparatusToDB(fireApparatus);
@@ -45,7 +52,8 @@ public class CreateInitialData {
 //		fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Rescue 62", 2013, "Rescue", "This is the new rescue unit on order."));		
 //		db.addFireApparatusToDB(fireApparatus);
 
-
+		//fireApparatus = new FireApparatus(null, new FireApparatusSpec("Pierce", "Arrow XTC PUC", "Rescue 62", 2013, "Rescue", "This is the new rescue unit on order."));		
+		//db.addFireApparatusToDB(fireApparatus);
 		
 	//	Events event = new Events();
 		//event.setCondition("graduated");

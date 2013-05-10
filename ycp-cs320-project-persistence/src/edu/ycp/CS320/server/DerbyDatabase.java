@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import edu.ycp.CS320.shared.ContactInfo;
@@ -17,6 +16,7 @@ import edu.ycp.CS320.shared.FireApparatus;
 import edu.ycp.CS320.shared.FireApparatusSpec;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
+import edu.ycp.CS320.shared.Form;
 import edu.ycp.CS320.shared.IDatabase;
 import edu.ycp.CS320.shared.User;
 
@@ -63,7 +63,6 @@ public class DerbyDatabase implements IDatabase {
 
 	private<E> E databaseRun(ITransaction<E> transaction) {
 		// FIXME: retry if transaction times out due to deadlock
-
 		try {
 			DatabaseConnection dbConn = getConnection();
 
@@ -93,6 +92,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmtEquipment = null;
 				PreparedStatement stmtUsers = null;
 				PreparedStatement stmtApparatusSpec = null;
+				PreparedStatement stmtForms = null;
 				try {
 					stmtUsers = conn.prepareStatement(
 							"create table users (" +
@@ -151,12 +151,24 @@ public class DerbyDatabase implements IDatabase {
 							")"
 														);
 					stmtEquipment.executeUpdate();
+
+					stmtForms = conn.prepareStatement(
+							"create table forms (" +
+							"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							"name VARCHAR(64), " +
+							"address VARCHAR(64), " +
+							"doctor VARCHAR(64), " +
+							"doctorPhone VARCHAR(64)" +
+							")"
+													  );
+					stmtForms.executeUpdate();								
 				} finally {
 					DBUtil.closeQuietly(stmtEquipment);
 					DBUtil.closeQuietly(stmtUsers);
 					DBUtil.closeQuietly(stmtEvents);
 					DBUtil.closeQuietly(stmtContacts);
 					DBUtil.closeQuietly(stmtApparatusSpec);
+					DBUtil.closeQuietly(stmtForms);
 				}				
 				return true;
 			}
@@ -169,7 +181,7 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean run(Connection conn) throws SQLException {				
 				PreparedStatement stmtDrop = null;
 				try {					
-					stmtDrop = conn.prepareStatement("DROP TABLE contact_info");
+					stmtDrop = conn.prepareStatement("DROP TABLE forms");
 					stmtDrop.executeUpdate();					
 				} finally {
 					DBUtil.closeQuietly(stmtDrop);
@@ -197,7 +209,6 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
 	@Override
 	public Map<Integer, User> getUsersFromDB() {
 		return databaseRun(new ITransaction<Map<Integer, User>>() {
@@ -381,7 +392,6 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-
 	public int addFireApparatusToDB(final FireApparatus fireApparatus) {
 			databaseRun(new ITransaction<Boolean>() {
 
@@ -577,6 +587,79 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
+	@Override
+	public ArrayList<Form> getFormsFromDB() {
+		return databaseRun(new ITransaction<ArrayList<Form>>() {			
+			@Override
+			public ArrayList<Form> run(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				try {
+					ArrayList<Form> result = new ArrayList<Form>();
+
+					stmt = conn.prepareStatement("select " +
+												 "forms.id, " +
+												 "forms.name, " +
+												 "forms.address, " +
+												 "forms.doctor, " +
+												 "forms.doctorPhone");
+
+					resultSet = stmt.executeQuery();
+
+					while (resultSet.next()) {	
+						result.add(new Form(resultSet.getInt(1), 
+											resultSet.getString(2),
+											resultSet.getString(3), 
+											resultSet.getString(4), 
+											resultSet.getString(5)));
+					}					
 
 
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
+
+	@Override
+	public void addFormsToDB(final Form form) {
+		databaseRun(new ITransaction<Boolean>() {
+
+			PreparedStatement stmt = null;
+			ResultSet keys = null;
+
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
+				try{
+					stmt = conn.prepareStatement("INSERT INTO forms(name, address, doctor, doctorPhone)" +
+												"VALUES(?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+
+					stmt.setString(1, form.getName());
+					stmt.setString(2, form.getAddress());
+					stmt.setString(3, form.getDoctor());
+					stmt.setString(4, form.getDoctorPhone());					
+
+					stmt.executeUpdate();
+
+					keys = stmt.getGeneratedKeys();
+
+					if(!keys.next()){
+						throw new SQLException("Couldn't get generated key");
+					}
+
+					form.setId(keys.getInt(1));
+				} finally {
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(keys);
+				}
+				return null;
+			}
+		});
+		
+	}
 }

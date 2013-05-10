@@ -23,5 +23,7 @@ public interface IDatabase {
 	public ArrayList<FireApparatus> getFireApparatusFromDB();	
 	public void removeFireApparatus(final String name);
 	public ArrayList<FireCalendar> getFireEventFromDB();
-	void addContactToDB(ContactInfo contactInfo);
+	public ArrayList<Form> getFormsFromDB();
+	public void addFormsToDB(Form form);
+	public void addContactToDB(ContactInfo contactInfo);
 }

@@ -1,6 +1,7 @@
 package edu.ycp.CS320.client;
 
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.dom.client.Style.Unit;
@@ -16,17 +17,24 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 
+import edu.ycp.CS320.shared.ContactInfo;
+import edu.ycp.CS320.shared.Form;
+
 public class FormView extends Composite {
 	private TextBox nameTextBox;	
-	private TextBox cellTextBox;
 	private Label nameLabel;
-	private Label idLabel;
 	private Button backButton;
 	private Label lblPrimaryCarePhysician;
 	private Label lblPhysiciansContactNumber;
 	private TextBox physicianContactNumberTextBox;
 	private Label lblMedicalForms;
 	private TextBox primCarePhysicianTextBox;		
+	private TextBox textBoxAddress;
+	private TextBox preferredNumberBox;
+	private TextBox cellPhoneBox;
+	private TextBox homePhoneBox;
+	private TextBox contactNameBox;
+	private Label lblSubmitStatus;
 	
 	public FormView(){
 		final LayoutPanel layout = new LayoutPanel();
@@ -44,18 +52,6 @@ public class FormView extends Composite {
 		layout.add(nameTextBox);
 		layout.setWidgetLeftWidth(nameTextBox, 86.0, Unit.PX, 173.0, Unit.PX);
 		layout.setWidgetTopHeight(nameTextBox, 146.0, Unit.PX, 34.0, Unit.PX);
-		
-		idLabel = new Label();
-		idLabel.setText("Employee ID:");
-		layout.add(idLabel);
-		layout.setWidgetLeftWidth(idLabel, 86.0, Unit.PX, 173.0, Unit.PX);
-		layout.setWidgetTopHeight(idLabel, 186.0, Unit.PX, 24.0, Unit.PX);
-		
-		cellTextBox = new TextBox();
-		cellTextBox.setText("");
-		layout.add(cellTextBox);
-		layout.setWidgetLeftWidth(cellTextBox, 86.0, Unit.PX, 173.0, Unit.PX);
-		layout.setWidgetTopHeight(cellTextBox, 216.0, Unit.PX, 34.0, Unit.PX);
 		
 		backButton = new Button("Home Page");
 		layout.add(backButton);
@@ -92,51 +88,117 @@ public class FormView extends Composite {
 		layout.setWidgetLeftWidth(lblContactInfo, 424.0, Unit.PX, 83.0, Unit.PX);
 		layout.setWidgetTopHeight(lblContactInfo, 92.0, Unit.PX, 18.0, Unit.PX);
 		
-		Label lblName = new Label("Name:");
-		layout.add(lblName);
-		layout.setWidgetLeftWidth(lblName, 424.0, Unit.PX, 56.0, Unit.PX);
-		layout.setWidgetTopHeight(lblName, 116.0, Unit.PX, 18.0, Unit.PX);
+		Label lblContactName = new Label("Name:");
+		layout.add(lblContactName);
+		layout.setWidgetLeftWidth(lblContactName, 424.0, Unit.PX, 56.0, Unit.PX);
+		layout.setWidgetTopHeight(lblContactName, 116.0, Unit.PX, 18.0, Unit.PX);
 		
-		TextBox textBox = new TextBox();
-		layout.add(textBox);
-		layout.setWidgetLeftWidth(textBox, 424.0, Unit.PX, 173.0, Unit.PX);
-		layout.setWidgetTopHeight(textBox, 146.0, Unit.PX, 34.0, Unit.PX);
+		contactNameBox = new TextBox();
+		layout.add(contactNameBox);
+		layout.setWidgetLeftWidth(contactNameBox, 424.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(contactNameBox, 146.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBox_1 = new TextBox();
-		layout.add(textBox_1);
-		layout.setWidgetLeftWidth(textBox_1, 424.0, Unit.PX, 173.0, Unit.PX);
-		layout.setWidgetTopHeight(textBox_1, 216.0, Unit.PX, 34.0, Unit.PX);
+		homePhoneBox = new TextBox();
+		layout.add(homePhoneBox);
+		layout.setWidgetLeftWidth(homePhoneBox, 424.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(homePhoneBox, 216.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBox_2 = new TextBox();
-		layout.add(textBox_2);
-		layout.setWidgetLeftWidth(textBox_2, 424.0, Unit.PX, 173.0, Unit.PX);
-		layout.setWidgetTopHeight(textBox_2, 280.0, Unit.PX, 34.0, Unit.PX);
+		cellPhoneBox = new TextBox();
+		layout.add(cellPhoneBox);
+		layout.setWidgetLeftWidth(cellPhoneBox, 424.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(cellPhoneBox, 280.0, Unit.PX, 34.0, Unit.PX);
 		
-		TextBox textBox_3 = new TextBox();
-		layout.add(textBox_3);
-		layout.setWidgetLeftWidth(textBox_3, 424.0, Unit.PX, 173.0, Unit.PX);
-		layout.setWidgetTopHeight(textBox_3, 351.0, Unit.PX, 34.0, Unit.PX);
+		preferredNumberBox = new TextBox();
+		layout.add(preferredNumberBox);
+		layout.setWidgetLeftWidth(preferredNumberBox, 424.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(preferredNumberBox, 351.0, Unit.PX, 34.0, Unit.PX);
 		
-		Label lblNewLabel = new Label("Home Phone");
-		layout.add(lblNewLabel);
-		layout.setWidgetLeftWidth(lblNewLabel, 424.0, Unit.PX, 83.0, Unit.PX);
-		layout.setWidgetTopHeight(lblNewLabel, 186.0, Unit.PX, 18.0, Unit.PX);
+		Label lblHomePhone = new Label("Home Phone");
+		layout.add(lblHomePhone);
+		layout.setWidgetLeftWidth(lblHomePhone, 424.0, Unit.PX, 83.0, Unit.PX);
+		layout.setWidgetTopHeight(lblHomePhone, 186.0, Unit.PX, 18.0, Unit.PX);
 		
-		Label lblNewLabel_1 = new Label("Cell phone");
-		layout.add(lblNewLabel_1);
-		layout.setWidgetLeftWidth(lblNewLabel_1, 424.0, Unit.PX, 71.0, Unit.PX);
-		layout.setWidgetTopHeight(lblNewLabel_1, 256.0, Unit.PX, 18.0, Unit.PX);
+		Label lblCellPhone = new Label("Cell phone");
+		layout.add(lblCellPhone);
+		layout.setWidgetLeftWidth(lblCellPhone, 424.0, Unit.PX, 71.0, Unit.PX);
+		layout.setWidgetTopHeight(lblCellPhone, 256.0, Unit.PX, 18.0, Unit.PX);
 		
-		Label lblNewLabel_2 = new Label("Preferred Number:");
-		layout.add(lblNewLabel_2);
-		layout.setWidgetLeftWidth(lblNewLabel_2, 424.0, Unit.PX, 123.0, Unit.PX);
-		layout.setWidgetTopHeight(lblNewLabel_2, 327.0, Unit.PX, 18.0, Unit.PX);
+		Label lblPreferredNumber = new Label("Preferred Number:");
+		layout.add(lblPreferredNumber);
+		layout.setWidgetLeftWidth(lblPreferredNumber, 424.0, Unit.PX, 123.0, Unit.PX);
+		layout.setWidgetTopHeight(lblPreferredNumber, 327.0, Unit.PX, 18.0, Unit.PX);
 		
-		Button btnSubmit = new Button("SUBMIT");
-		btnSubmit.setText("SUBMIT ANY INFO");
-		layout.add(btnSubmit);
-		layout.setWidgetLeftWidth(btnSubmit, 384.0, Unit.PX, 163.0, Unit.PX);
-		layout.setWidgetTopHeight(btnSubmit, 479.0, Unit.PX, 30.0, Unit.PX);
+		Button btnSubmitMedicalInfo = new Button("SUBMIT");
+		btnSubmitMedicalInfo.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				Form form = new Form();
+				ContactInfo contactInfo = new ContactInfo();
+				
+				form.setAddress(textBoxAddress.getText());
+				form.setName(nameTextBox.getText());
+				form.setDoctor(primCarePhysicianTextBox.getText());
+				form.setDoctorPhone(physicianContactNumberTextBox.getText());
+				
+				contactInfo.setName(contactNameBox.getText());
+				contactInfo.setHomephoneNumber(homePhoneBox.getText());
+				contactInfo.setCellphoneNumber(cellPhoneBox.getText());
+				contactInfo.setPreferred(preferredNumberBox.getText());
+				
+				RPC.formService.addForms(form, new AsyncCallback<Void>() {
+					
+					@Override
+					public void onSuccess(Void result) {
+						lblSubmitStatus.setText("Successfully submitted");
+						
+					}
+					
+					@Override
+					public void onFailure(Throwable caught) {
+						lblSubmitStatus.setText("Failed to submit");
+						
+					}
+				});
+				
+				
+			}
+		});
+		btnSubmitMedicalInfo.setText("SUBMIT MEDICAL INFO");
+		layout.add(btnSubmitMedicalInfo);
+		layout.setWidgetLeftWidth(btnSubmitMedicalInfo, 86.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(btnSubmitMedicalInfo, 473.0, Unit.PX, 30.0, Unit.PX);
+		
+		textBoxAddress = new TextBox();
+		layout.add(textBoxAddress);
+		layout.setWidgetLeftWidth(textBoxAddress, 86.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(textBoxAddress, 216.0, Unit.PX, 34.0, Unit.PX);
+		
+		Label lblAddress = new Label("Address:");
+		layout.add(lblAddress);
+		layout.setWidgetLeftWidth(lblAddress, 86.0, Unit.PX, 83.0, Unit.PX);
+		layout.setWidgetTopHeight(lblAddress, 186.0, Unit.PX, 18.0, Unit.PX);
+		
+		Button btnSubmitContactInfo = new Button("New button");
+		btnSubmitContactInfo.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				ContactInfo contact = new ContactInfo();
+				contact.setCellphoneNumber(cellPhoneBox.getText());
+				contact.setHomephoneNumber(homePhoneBox.getText());
+				contact.setName(contactNameBox.getText());
+				contact.setPreferred(preferredNumberBox.getText());
+				
+				//TODO: implement contact service
+				
+			}
+		});
+		btnSubmitContactInfo.setText("SUBMIT CONTACT INFO");
+		layout.add(btnSubmitContactInfo);
+		layout.setWidgetLeftWidth(btnSubmitContactInfo, 424.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(btnSubmitContactInfo, 473.0, Unit.PX, 30.0, Unit.PX);
+		
+		lblSubmitStatus = new Label("Submit Status: ");
+		layout.add(lblSubmitStatus);
+		layout.setWidgetLeftWidth(lblSubmitStatus, 86.0, Unit.PX, 173.0, Unit.PX);
+		layout.setWidgetTopHeight(lblSubmitStatus, 539.0, Unit.PX, 18.0, Unit.PX);
 		
 		backButton.addClickHandler(new ClickHandler() {
 			@Override
@@ -145,7 +207,7 @@ public class FormView extends Composite {
 			}
 		});
 		
-		//TODO: create contact info from textbox info
+		
 		
 		
 	}

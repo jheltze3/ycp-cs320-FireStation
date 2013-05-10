@@ -46,7 +46,7 @@ public class HomePageView extends Composite{
 		btnForms = new Button("Forms");
 		layout.add(btnForms);
 		layout.setWidgetLeftWidth(btnForms, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnForms, 202.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetTopHeight(btnForms, 134.0, Unit.PX, 30.0, Unit.PX);
 
 		btnForms.addClickHandler(new ClickHandler() {
 			@Override
@@ -58,7 +58,7 @@ public class HomePageView extends Composite{
 		btnApparatus = new Button("Apparatus");
 		layout.add(btnApparatus);
 		layout.setWidgetLeftWidth(btnApparatus, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnApparatus, 96.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetTopHeight(btnApparatus, 84.0, Unit.PX, 30.0, Unit.PX);
 
 		btnApparatus.addClickHandler(new ClickHandler() {
 			/* (non-Javadoc)
@@ -85,22 +85,17 @@ public class HomePageView extends Composite{
 		btnContact = new Button("Contacts");
 		layout.add(btnContact);
 		layout.setWidgetLeftWidth(btnContact, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnContact, 151.0, Unit.PX, 30.0, Unit.PX);
-
-		Button btnVolunteer = new Button("Volunteer");
-		layout.add(btnVolunteer);
-		layout.setWidgetLeftWidth(btnVolunteer, 21.0, Unit.PX, 120.0, Unit.PX);
-		layout.setWidgetTopHeight(btnVolunteer, 246.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetTopHeight(btnContact, 170.0, Unit.PX, 30.0, Unit.PX);
 
 		btnBackToLogin = new Button("Back to Login");
 		layout.add(btnBackToLogin);
 		layout.setWidgetLeftWidth(btnBackToLogin, 331.0, Unit.PX, 103.0, Unit.PX);
-		layout.setWidgetTopHeight(btnBackToLogin, 48.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetTopHeight(btnBackToLogin, 12.0, Unit.PX, 30.0, Unit.PX);
 
 		btnUsersButton = new Button("Users");
 		layout.add(btnUsersButton);
-		layout.setWidgetLeftWidth(btnUsersButton, 331.0, Unit.PX, 103.0, Unit.PX);
-		layout.setWidgetTopHeight(btnUsersButton, 202.0, Unit.PX, 30.0, Unit.PX);
+		layout.setWidgetLeftWidth(btnUsersButton, 21.0, Unit.PX, 103.0, Unit.PX);
+		layout.setWidgetTopHeight(btnUsersButton, 206.0, Unit.PX, 30.0, Unit.PX);
 
 		btnUsersButton.addClickHandler(new ClickHandler() {
 
