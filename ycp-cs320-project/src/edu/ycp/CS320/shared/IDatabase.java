@@ -26,4 +26,5 @@ public interface IDatabase {
 	public ArrayList<Form> getFormsFromDB();
 	public void addFormsToDB(Form form);
 	public void addContactToDB(ContactInfo contactInfo);
+	public void removeFireCalendarEvent(int id);
 }

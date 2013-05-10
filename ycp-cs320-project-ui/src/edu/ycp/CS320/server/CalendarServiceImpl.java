@@ -1,13 +1,14 @@
-
- package edu.ycp.CS320.server;
+package edu.ycp.CS320.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import edu.ycp.CS320.client.CalendarService;
 import edu.ycp.CS320.shared.FireCalendar;
 import edu.ycp.CS320.shared.FireCalendarEvent;
 import edu.ycp.CS320.shared.IDatabase;
+import edu.ycp.cs320.controllers.GetApparatusController;
 import edu.ycp.cs320.controllers.GetCalendarController;
 
 /**
@@ -30,28 +31,48 @@ public class CalendarServiceImpl extends RemoteServiceServlet implements Calenda
 	@Override
 	public ArrayList<FireCalendar> loadEvents() {
 		GetCalendarController calendarController = new GetCalendarController();
-		
+
 		IDatabase db = DatabaseSingleton.instance();
-		
+
 		ArrayList<FireCalendar> result = calendarController.getEvent(db);
 		if (result == null) {
 			result = new ArrayList<FireCalendar>();
 		}
 		return result;
-	
+
 	}
 
 	@Override
 	public boolean addcalendar(FireCalendar firecalendar) {
-	
+
 		GetCalendarController calendarController = new GetCalendarController();
-		
+
 		IDatabase db = DatabaseSingleton.instance();
-		
+
 		calendarController.addEvent(firecalendar, db);
-		
+
 		return true;
 	}
 
-}
 
+
+	@Override
+	public boolean removeFireCalendarEvent(int id) {
+		GetCalendarController calendarController = new GetCalendarController();
+
+		IDatabase db = DatabaseSingleton.instance();
+
+		calendarController.removeEvent(id, db);
+
+		return true;
+	}
+
+
+
+
+
+
+
+
+
+}

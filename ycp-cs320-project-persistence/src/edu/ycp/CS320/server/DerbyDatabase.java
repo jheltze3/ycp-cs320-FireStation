@@ -308,81 +308,169 @@ public class DerbyDatabase implements IDatabase {
 			}	
 		});		
 	}
-// created by Drew, Modified by Jake
-	public int addFireCalendarEventToDB( final FireCalendar fireCalendarEvent) {
-		databaseRun(new ITransaction<Boolean>() {
-			PreparedStatement stmt = null;
-			ResultSet keys = null;
-			@Override
-			public Boolean run(Connection conn) throws SQLException {
-				try{
-					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, startTime,endTime, date, description)" +
-							 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
-
-				
-					stmt.setString(1,fireCalendarEvent.getFireFireEvent().getTitle());
-					stmt.setString(2,fireCalendarEvent.getFireFireEvent().getLocation());
-					stmt.setString(3,fireCalendarEvent.getFireFireEvent().getStartTime());
-					stmt.setString(4,fireCalendarEvent.getFireFireEvent().getEndTime());
-					stmt.setString(5,fireCalendarEvent.getFireFireEvent().getDate());
-					stmt.setString(6,fireCalendarEvent.getFireFireEvent().getDescription());
-		
-		
-
-					stmt.executeUpdate();
-					keys = stmt.getGeneratedKeys();
-
-					if(!keys.next()){
-						throw new SQLException("Couldn't get generated key");
-					}
-
-					fireCalendarEvent.getFireFireEvent().setId(keys.getInt(1));
-				} finally {
-					DBUtil.closeQuietly(stmt);
-					DBUtil.closeQuietly(keys);
-				}
-				return null;
-			}
-		});
-		return 0;
-	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// created by Drew, Modified by Jake
-	@Override
-	public ArrayList<FireCalendar> getFireEventFromDB() {
-		return databaseRun(new ITransaction<ArrayList<FireCalendar>>() {			
-			@Override
-			public ArrayList<FireCalendar> run(Connection conn) throws SQLException {
+		public int addFireCalendarEventToDB( final FireCalendar fireCalendarEvent) {
+			databaseRun(new ITransaction<Boolean>() {
 				PreparedStatement stmt = null;
-				ResultSet resultSet = null;
+				ResultSet keys = null;
+				@Override
+				public Boolean run(Connection conn) throws SQLException {
+					try{
+						stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, startTime,endTime, date, description)" +
+								 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
 
-				try {
-					ArrayList<FireCalendar> result = new ArrayList<FireCalendar>();
 
-					stmt = conn.prepareStatement("select * from fire_events");
-
-					resultSet = stmt.executeQuery();
-
-					while (resultSet.next()) {	
-						result.add(new FireCalendar( new FireCalendarEvent(
-								resultSet.getInt(1), 
-														 resultSet.getString(2),
-														 resultSet.getString(3),
-														 resultSet.getString(4),
-														 resultSet.getString(5),
-														 resultSet.getString(6),
-														 resultSet.getString(7))));
-					}					
+						stmt.setString(1,fireCalendarEvent.getFireFireEvent().getTitle());
+						stmt.setString(2,fireCalendarEvent.getFireFireEvent().getLocation());
+						stmt.setString(3,fireCalendarEvent.getFireFireEvent().getStartTime());
+						stmt.setString(4,fireCalendarEvent.getFireFireEvent().getEndTime());
+						stmt.setString(5,fireCalendarEvent.getFireFireEvent().getDate());
+						stmt.setString(6,fireCalendarEvent.getFireFireEvent().getDescription());
 
 
 
-					return result;
-				} finally {
-					DBUtil.closeQuietly(stmt);
+
+						stmt.executeUpdate();
+						keys = stmt.getGeneratedKeys();
+
+						if(!keys.next()){
+							throw new SQLException("Couldn't get generated key");
+						}
+
+						fireCalendarEvent.getFireFireEvent().setId(keys.getInt(1));
+					} finally {
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(keys);
+					}
+					return null;
 				}
-			}
-		});
+			});
+			return 0;
+		}	
+		/*public void dropCalendarTables() throws SQLException {
+			databaseRun(new ITransaction<Boolean>() {
+				@Override
+				public Boolean run(Connection conn) throws SQLException {				
+					PreparedStatement stmtDrop = null;
+					try {					
+						stmtDrop = conn.prepareStatement("DROP TABLE fire_events");
+						stmtDrop.executeUpdate();					
+					} finally {
+						DBUtil.closeQuietly(stmtDrop);
+					}				
+					return true;
+				}
+			});
+		}*/
+		void createEventTable() throws SQLException {
+			databaseRun(new ITransaction<Boolean>() {
+				@Override
+				public Boolean run(Connection conn) throws SQLException {
+
+					PreparedStatement stmtEvents = null;
+
+					try {
+
+
+						stmtEvents = conn.prepareStatement(
+								"create table fire_events ("  +
+								"id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+								"title VARCHAR(64), " +
+								"location VARCHAR(64), " +
+								"startTime VARCHAR(64), " +
+								"endTime VARCHAR(64), " +
+								"date VARCHAR(64), " +
+								"description VARCHAR(64)" +
+								")"
+								  			);
+						stmtEvents.executeUpdate();
+
+					} finally {
+
+						DBUtil.closeQuietly(stmtEvents);
+
+					}				
+					return true;
+				}
+			});
 	}
+
+		// created by Drew, Modified by Jake
+		@Override
+		public ArrayList<FireCalendar> getFireEventFromDB() {
+			return databaseRun(new ITransaction<ArrayList<FireCalendar>>() {			
+				@Override
+				public ArrayList<FireCalendar> run(Connection conn) throws SQLException {
+					PreparedStatement stmt = null;
+					ResultSet resultSet = null;
+
+					try {
+						ArrayList<FireCalendar> result = new ArrayList<FireCalendar>();
+
+						stmt = conn.prepareStatement("select * from fire_events");
+
+						resultSet = stmt.executeQuery();
+
+						while (resultSet.next()) {	
+							result.add(new FireCalendar( new FireCalendarEvent(
+									resultSet.getInt(1), 
+															 resultSet.getString(2),
+															 resultSet.getString(3),
+															 resultSet.getString(4),
+															 resultSet.getString(5),
+															 resultSet.getString(6),
+															 resultSet.getString(7))));
+						}					
+
+
+
+						return result;
+					} finally {
+						DBUtil.closeQuietly(stmt);
+					}
+				}
+			});
+		}
+
+		public void removeFireCalendarEvent(final int ids){
+			databaseRun(new ITransaction<Boolean>() {
+				@Override
+				public Boolean run(Connection conn) throws SQLException {				
+					PreparedStatement stmtFireCalenderEvent = null;
+
+					try {					
+						stmtFireCalenderEvent = conn.prepareStatement("DELETE FROM fire_events " +
+								"WHERE id = ?"
+								);
+						stmtFireCalenderEvent.setInt(1, ids);
+
+						stmtFireCalenderEvent.executeUpdate();					
+					} finally {
+						DBUtil.closeQuietly(stmtFireCalenderEvent);
+					}				
+					return true;
+				}
+			});
+		}
+
+	
+	
+	
+	
+	
 
 	private void loadUserFromResultSet(ResultSet resultSet, User user)
 			throws SQLException {
@@ -662,4 +750,85 @@ public class DerbyDatabase implements IDatabase {
 		});
 		
 	}
+	
+	//
+//	
+//// created by Drew, Modified by Jake
+//	public int addFireCalendarEventToDB( final FireCalendar fireCalendarEvent) {
+//		databaseRun(new ITransaction<Boolean>() {
+//			PreparedStatement stmt = null;
+//			ResultSet keys = null;
+//			@Override
+//			public Boolean run(Connection conn) throws SQLException {
+//				try{
+//					stmt = conn.prepareStatement("INSERT INTO fire_events (title, location, startTime,endTime, date, description)" +
+//							 "VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);	
+//
+//				
+//					stmt.setString(1,fireCalendarEvent.getFireFireEvent().getTitle());
+//					stmt.setString(2,fireCalendarEvent.getFireFireEvent().getLocation());
+//					stmt.setString(3,fireCalendarEvent.getFireFireEvent().getStartTime());
+//					stmt.setString(4,fireCalendarEvent.getFireFireEvent().getEndTime());
+//					stmt.setString(5,fireCalendarEvent.getFireFireEvent().getDate());
+//					stmt.setString(6,fireCalendarEvent.getFireFireEvent().getDescription());
+//		
+//		
+//
+//					stmt.executeUpdate();
+//					keys = stmt.getGeneratedKeys();
+//
+//					if(!keys.next()){
+//						throw new SQLException("Couldn't get generated key");
+//					}
+//
+//					fireCalendarEvent.getFireFireEvent().setId(keys.getInt(1));
+//				} finally {
+//					DBUtil.closeQuietly(stmt);
+//					DBUtil.closeQuietly(keys);
+//				}
+//				return null;
+//			}
+//		});
+//		return 0;
+//	}	
+//	
+//	// created by Drew, Modified by Jake
+//	@Override
+//	public ArrayList<FireCalendar> getFireEventFromDB() {
+//		return databaseRun(new ITransaction<ArrayList<FireCalendar>>() {			
+//			@Override
+//			public ArrayList<FireCalendar> run(Connection conn) throws SQLException {
+//				PreparedStatement stmt = null;
+//				ResultSet resultSet = null;
+//
+//				try {
+//					ArrayList<FireCalendar> result = new ArrayList<FireCalendar>();
+//
+//					stmt = conn.prepareStatement("select * from fire_events");
+//
+//					resultSet = stmt.executeQuery();
+//
+//					while (resultSet.next()) {	
+//						result.add(new FireCalendar( new FireCalendarEvent(
+//								resultSet.getInt(1), 
+//														 resultSet.getString(2),
+//														 resultSet.getString(3),
+//														 resultSet.getString(4),
+//														 resultSet.getString(5),
+//														 resultSet.getString(6),
+//														 resultSet.getString(7))));
+//					}					
+//
+//
+//
+//					return result;
+//				} finally {
+//					DBUtil.closeQuietly(stmt);
+//				}
+//			}
+//		});
+//	}
+
+	
+	
 }

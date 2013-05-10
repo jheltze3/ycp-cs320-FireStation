@@ -12,10 +12,11 @@ import edu.ycp.CS320.shared.FireCalendar;
  */
 @RemoteServiceRelativePath("CalendarServiceImpl")
 public interface CalendarService extends RemoteService {
-	
+
 	public boolean message(String message);
 	ArrayList<FireCalendar> loadEvents();
 	boolean addcalendar(FireCalendar fireCalendar);
-	
-}
+	boolean removeFireCalendarEvent(int id);
 
+
+}

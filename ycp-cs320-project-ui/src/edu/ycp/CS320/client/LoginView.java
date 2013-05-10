@@ -97,6 +97,19 @@ public class LoginView extends Composite implements ISubscriber {
 			 */
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				if (username.getText().isEmpty())
+				{
+					lblLoginStatus.setText("Please enter a username.");
+
+
+				}
+				else if (passwordTextBox.getText().isEmpty())
+				{
+					lblLoginStatus.setText("Please enter a password.");
+				}
+				else
+				{
 				User user = new User();
 				user.setUsername(getUsername());
 				user.setPassword(passwordTextBox.getText());
@@ -121,9 +134,10 @@ public class LoginView extends Composite implements ISubscriber {
 						lblLoginStatus.setText("Could not Log In");						
 					}
 				});
-			}			
+			}		
+		}
 
-		});
+	});
 		btnNewUser.setStyleName("NewUserButton");
 		layoutPanel.add(btnNewUser);
 		layoutPanel.setWidgetLeftWidth(btnNewUser, 384.0, Unit.PX, 100.0, Unit.PX);

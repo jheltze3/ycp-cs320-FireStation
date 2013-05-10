@@ -168,5 +168,11 @@ public class FakeDatabase implements IDatabase, Serializable {
 		
 	}
 
+	@Override
+	public void removeFireCalendarEvent(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
